@@ -1,26 +1,44 @@
-
 using UnityEngine;
-using RenderHeads.Media.AVProVideo;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+
 ///<summary>
-///开始游戏界面
+///开始游戏按钮
 ///</summary>
 class StartGame : MonoBehaviour
 {
-    public DisplayUGUI m_displayUGUI;
-    public MediaPlayer mediaPlayer;
-    public MediaPlayer mediaPlayerB;
+    public VideoPlayer videoPlayer;
     public string sceneName;
-    public float time = 10f;
+    public float timeout = 3f;
+    public GameObject alfa_black;
+
     public void OnStartButton()
     {
-        m_displayUGUI.CurrentMediaPlayer = mediaPlayerB;
-        mediaPlayerB.Control.Rewind(); 
-        mediaPlayerB.Control.Play();
-        Invoke("LoadScene", time);
+        videoPlayer.Pause();
+        StaticClass.alfa = true;
+    }
+    private void Update()
+    {
+        if (StaticClass.alfa == true)
+        {
+            AlfaChange();
+        }
     }
     public void LoadScene()
     {
         SceneManager.LoadSceneAsync(sceneName);
+    }
+    public void AlfaChange()
+    {
+        alfa_black.GetComponent<SpriteRenderer>().material.color = new Color(
+            alfa_black.GetComponent<SpriteRenderer>().material.color.r,
+            alfa_black.GetComponent<SpriteRenderer>().material.color.g,
+            alfa_black.GetComponent<SpriteRenderer>().material.color.b,
+            alfa_black.GetComponent<SpriteRenderer>().material.color.a + Time.deltaTime
+            );
+        if (alfa_black.GetComponent<SpriteRenderer>().material.color.a >= 254f)
+        {
+            LoadScene();
+        }
     }
 }
