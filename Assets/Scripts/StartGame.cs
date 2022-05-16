@@ -7,9 +7,13 @@ using UnityEngine.Video;
 ///</summary>
 class StartGame : MonoBehaviour
 {
+    /// <summary>播放的视频startCG </summary>
     public VideoPlayer videoPlayer;
+    /// <summary>要切换的场景 </summary>
     public string sceneName;
+    /// <summary>黑幕渐变的时间 </summary>
     public float timeout = 3f;
+    /// <summary>黑幕 </summary>
     public GameObject alfa_black;
 
     public void OnStartButton()
@@ -23,22 +27,25 @@ class StartGame : MonoBehaviour
         {
             AlfaChange();
         }
+        if (alfa_black.GetComponent<SpriteRenderer>().color.a >= 0.95f)
+        {
+            LoadScene();
+        }
     }
     public void LoadScene()
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
+    /// <summary>
+    /// 黑幕从透明变黑
+    /// </summary>
     public void AlfaChange()
     {
-        alfa_black.GetComponent<SpriteRenderer>().material.color = new Color(
-            alfa_black.GetComponent<SpriteRenderer>().material.color.r,
-            alfa_black.GetComponent<SpriteRenderer>().material.color.g,
-            alfa_black.GetComponent<SpriteRenderer>().material.color.b,
-            alfa_black.GetComponent<SpriteRenderer>().material.color.a + Time.deltaTime
-            );
-        if (alfa_black.GetComponent<SpriteRenderer>().material.color.a >= 254f)
-        {
-            LoadScene();
-        }
+        alfa_black.GetComponent<SpriteRenderer>().color = new Color(
+            alfa_black.GetComponent<SpriteRenderer>().color.r,
+            alfa_black.GetComponent<SpriteRenderer>().color.g,
+            alfa_black.GetComponent<SpriteRenderer>().color.b,
+            alfa_black.GetComponent<SpriteRenderer>().color.a + Time.deltaTime/timeout
+            );        
     }
 }
