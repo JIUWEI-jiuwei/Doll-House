@@ -6,18 +6,27 @@ using UnityEngine.UI;
 ///</summary>
 class UIInteractableManager : MonoBehaviour
 {
-    private GameObject panel;
-    private itemPanel itemPanel;
+    /// <summary>物品栏中的panel面板</summary>
+    public static GameObject panel;
+    public static GameObject panel1;
+    public static GameObject panel2;
+    public static GameObject panelStd;
+    /// <summary>获取到物品栏身上的动画</summary>
+    public static itemPanel itemPanel;
+    /// <summary>预制体本身</summary>
     public GameObject itemImage;
 
     private void Awake()
     {
-        
-    }
-    private void Start()
-    {
         //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
         panel = GameObject.FindGameObjectWithTag("panel");
+        panel1 = GameObject.FindGameObjectWithTag("panel1");
+        panel2 = GameObject.FindGameObjectWithTag("panel2");
+        panelStd = GameObject.FindGameObjectWithTag("panelStd");
+    }
+    private void Start()
+    {       
+        panel2.SetActive(false);
         itemPanel = panel.GetComponent<itemPanel>();
     }
     /// <summary>
@@ -32,20 +41,53 @@ class UIInteractableManager : MonoBehaviour
             //实例化resources里面的“预制体”，Instantiate实例化的必须是预制体
             GameObject a = Instantiate(itemImage);
             a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>(this.gameObject.name);
-            a.transform.SetParent(panel.transform);
-            a.transform.localScale = new Vector3(1,1,1);
+            //如果物品栏第一页未满
+            if (panel1.transform.childCount <= 5)
+            {
+                a.transform.SetParent(panel1.transform);
+                a.transform.localScale = new Vector3(1, 1, 1);
+                
+            }
+            else//如果物品栏第一页满了
+            {
+                a.transform.SetParent(panel2.transform);
+                a.transform.localScale = new Vector3(1, 1, 1);
+                panel1.SetActive(false);
+            }
         }
         else
         {
             Debug.Log("null");
         }
     }
-    public void ItemPanelDown()
+    /// <summary>
+    /// 物品栏下降动画
+    /// </summary>
+    public static void ItemPanelDown()
     {
         itemPanel.itemPanelAnim.SetBool("up", false);
     }
-    public void ItemPanelKing()
+    /// <summary>
+    /// 物品栏上升动画
+    /// </summary>
+    public static void ItemPanelKing()
     {
         itemPanel.itemPanelAnim.SetBool("up", true);
+    }
+    /// <summary>
+    /// 物品栏下一页
+    /// </summary>
+    public void ItemPanelRight()
+    {
+        panel1.SetActive(false);
+        panel2.SetActive(true);
+    }
+    /// <summary>
+    /// 物品栏上一页
+    /// </summary>
+    public void ItemPanelLeft()
+    {
+        panel1.SetActive(true);
+        panel2.SetActive(false);
     }
 }

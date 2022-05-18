@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - panel
+  - panel1
+  - panel2
+  - panelStd
+  - freePanel
   layers:
   - Default
   - TransparentFX
