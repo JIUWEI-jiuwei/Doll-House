@@ -9,6 +9,13 @@ TagManager:
   - panel2
   - panelStd
   - freePanel
+  - blackpanel
+  - CT1
+  - CT2
+  - CT3
+  - BC
+  - heartbookPanel
+  - mimahe
   layers:
   - Default
   - TransparentFX

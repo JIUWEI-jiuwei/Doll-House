@@ -8,8 +8,8 @@ using UnityEngine;
 static class ItemText
 {
     public static string lip = "由崔斯特王子为婚礼精心挑选，优雅的正红色。";
-    public static string candle = "";
-    public static string xainglian = "资本洗涤过的卑微元素，若隐若现的真情实感";
+    public static string candle = "有火了";
+    public static string necklace = "资本洗涤过的卑微元素，若隐若现的真情实感";
     public static string xisheng = "项链上的细绳";
     public static string ribbon = "矫饰之物，但或许能派上新的用场";
     public static string yandou = "有了烟斗，怎么能少了烟草呢？";
@@ -31,15 +31,18 @@ static class ItemText
     public static string hamadefei = "发黑的肺，见证了多少年的忧愁";
     public static string wuguideke = "身世与荣耀的象征，不过，是假的";
     public static string yaoshi = "逃吧";
+    public static string bottle = "很沉，说明里面装着不少水";
 
     public static string lip01 = "口红";
     public static string candle01 = "蜡烛";
-    public static string xainglian01 = "项链";
+    public static string necklace01 = "项链";
     public static string xisheng01 = "细绳";
     public static string ribbon01 = "丝带";
     public static string yandou01 = "烟斗";
     public static string scissor01 = "剪刀";
     public static string cup01 = "杯子";
+    public static string bottle01 = "水壶";
+
     public static string ShowTextByItemName(string itemName)
     {
         if (itemName == "lip") return lip;
