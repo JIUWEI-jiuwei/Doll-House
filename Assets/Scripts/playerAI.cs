@@ -20,6 +20,27 @@ class playerAI : MonoBehaviour
 
     private void Update()
     {
-        agent.SetDestination(target.position);
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(target.position);
+        }
+        else
+        {
+            Debug.Log(false);
+        }
     }
+    /*public bool TestNavigation()
+    {
+        if (agent.isOnNavMesh)
+        {
+            NavMeshHit navigationHit;
+            if (NavMesh.SamplePosition(this.transform.position, out navigationHit, 15, agent.areaMask))
+                return agent.SetDestination(navigationHit.position);
+            return false;
+        }
+        else
+        {
+            return agent.Warp(warpPosition);
+        }
+    }*/
 }

@@ -11,6 +11,7 @@ class UIInteractableManager : MonoBehaviour
     public static GameObject panel1;
     public static GameObject panel2;
     public static GameObject panelStd;
+    public static GameObject blackpanelF;
     public static GameObject blackpanel;
     /// <summary>获取到物品栏身上的动画</summary>
     public static itemPanel itemPanel;
@@ -25,7 +26,8 @@ class UIInteractableManager : MonoBehaviour
         panel1 = GameObject.FindGameObjectWithTag("panel1");
         panel2 = GameObject.FindGameObjectWithTag("panel2");
         panelStd = GameObject.FindGameObjectWithTag("panelStd");
-        blackpanel = GameObject.FindGameObjectWithTag("blackpanel");
+        blackpanelF = GameObject.FindGameObjectWithTag("blackpanel");
+        blackpanel = blackpanelF.transform.GetChild(0).gameObject;
     }
     private void Start()
     {       

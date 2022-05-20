@@ -50,6 +50,7 @@ static class ItemText
         if (itemName == "scissor") return scissor;
         if (itemName == "cup") return cup;
         if (itemName == "ribbon") return ribbon;
+        if (itemName == "bottle") return bottle;
 
         return itemName;
     }   
@@ -60,6 +61,8 @@ static class ItemText
         if (itemName == "scissor01") return scissor01;
         if (itemName == "cup01") return cup01;
         if (itemName == "ribbon01") return ribbon01;
+        if (itemName == "bottle01") return bottle01;
+
         return itemName;
     }
 }

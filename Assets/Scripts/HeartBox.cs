@@ -19,8 +19,10 @@ class HeartBox : MonoBehaviour
     public Button bt2;
     public Button bt3;
     public Button bt4;
-    /// <summary>解开密码的panel面板</summary>
+    /// <summary>解开密码的panel面板的父物体F</summary>
     private GameObject mimaPanel;
+    /// <summary>解开密码的panel面板</summary>
+    private Transform mimaPanel0;
     /// <summary>密码盒按钮的SpriteState</summary>
     private SpriteState spriteStatus;
     /// <summary>是否为第一次点击按钮</summary>
@@ -35,7 +37,8 @@ class HeartBox : MonoBehaviour
         bt4.GetComponentInChildren<Text>().text = num4.ToString();
         //获取密码盒面板
         mimaPanel = GameObject.FindGameObjectWithTag("mimahe");
-        mimaPanel.SetActive(false);
+        mimaPanel0 = mimaPanel.transform.GetChild(0);
+        mimaPanel0.gameObject.SetActive(false);
         //创建一个新的SpriteState（唯一可行的修改SpriteState的方法）
         spriteStatus = new SpriteState();
     }
@@ -47,7 +50,7 @@ class HeartBox : MonoBehaviour
             if ((int)heartVideo.frame >= (int)heartVideo.frameCount - 1)
             {
                 heartVideo.gameObject.SetActive(false);
-                mimaPanel.SetActive(true);
+                mimaPanel0.gameObject.SetActive(true);
             }
         }
         //如果密码正确
@@ -60,7 +63,7 @@ class HeartBox : MonoBehaviour
                 if ((int)necklaceVideo.frame >= (int)necklaceVideo.frameCount - 1)
                 {
                     necklaceVideo.gameObject.SetActive(false);
-                    mimaPanel.SetActive(false);
+                    mimaPanel0.gameObject.SetActive(false);
                     //密码盒不可再交互
                     GetComponent<Button>().interactable = false;
                     //获得项链
@@ -96,7 +99,7 @@ class HeartBox : MonoBehaviour
         }
         else//第二次及以后点击
         {
-            mimaPanel.SetActive(true);
+            mimaPanel0.gameObject.SetActive(true);
         }
     }
     /// <summary>
@@ -153,6 +156,6 @@ class HeartBox : MonoBehaviour
     //解密界面的返回按钮
     public void backGame()
     {
-        mimaPanel.SetActive(false);
+        mimaPanel0.gameObject.SetActive(false);
     }
 }
