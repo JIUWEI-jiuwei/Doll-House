@@ -4,14 +4,13 @@ using UnityEngine.UI;
 ///<summary>
 ///物品栏点击交互
 ///</summary>
-class UIInteractableManager : MonoBehaviour
+class ItemPanelClick : MonoBehaviour
 {
     /// <summary>物品栏中的panel面板</summary>
     public static GameObject panel;
     public static GameObject panel1;
     public static GameObject panel2;
     public static GameObject panelStd;
-    public static GameObject blackpanelF;
     public static GameObject blackpanel;
     /// <summary>获取到物品栏身上的动画</summary>
     public static itemPanel itemPanel;
@@ -26,8 +25,7 @@ class UIInteractableManager : MonoBehaviour
         panel1 = GameObject.FindGameObjectWithTag("panel1");
         panel2 = GameObject.FindGameObjectWithTag("panel2");
         panelStd = GameObject.FindGameObjectWithTag("panelStd");
-        blackpanelF = GameObject.FindGameObjectWithTag("blackpanel");
-        blackpanel = blackpanelF.transform.GetChild(0).gameObject;
+        blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
     }
     private void Start()
     {       
@@ -68,10 +66,6 @@ class UIInteractableManager : MonoBehaviour
                 a.transform.localScale = new Vector3(1, 1, 1);
                 panel1.SetActive(false);
             }
-        }
-        else
-        {
-            Debug.Log("null");
         }
     }
 

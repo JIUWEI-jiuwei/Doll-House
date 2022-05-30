@@ -32,6 +32,10 @@ static class ItemText
     public static string wuguideke = "身世与荣耀的象征，不过，是假的";
     public static string yaoshi = "逃吧";
     public static string bottle = "很沉，说明里面装着不少水";
+    public static string note1 = "空白的纸条，但是有一股牛奶味";
+    public static string note2 = "纸条上只写着一个数字5";
+    public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
+
 
     public static string lip01 = "口红";
     public static string candle01 = "蜡烛";
@@ -42,6 +46,9 @@ static class ItemText
     public static string scissor01 = "剪刀";
     public static string cup01 = "杯子";
     public static string bottle01 = "水壶";
+    public static string note101 = "梳妆台上的纸条";
+    public static string note201 = "掉落的纸条";
+    public static string note301 = "地上的纸条";
 
     public static string ShowTextByItemName(string itemName)
     {

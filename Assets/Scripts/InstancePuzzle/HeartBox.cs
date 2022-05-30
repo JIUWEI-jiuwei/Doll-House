@@ -70,17 +70,17 @@ class HeartBox : MonoBehaviour
                     GameObject a = Instantiate(itemImage);
                     a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("necklace");
                     //如果物品栏第一页未满
-                    if (UIInteractableManager.panel1.transform.childCount <= 5)
+                    if (ItemPanelClick.panel1.transform.childCount <= 5)
                     {
-                        a.transform.SetParent(UIInteractableManager.panel1.transform);
+                        a.transform.SetParent(ItemPanelClick.panel1.transform);
                         a.transform.localScale = new Vector3(1, 1, 1);
 
                     }
                     else//如果物品栏第一页满了
                     {
-                        a.transform.SetParent(UIInteractableManager.panel2.transform);
+                        a.transform.SetParent(ItemPanelClick.panel2.transform);
                         a.transform.localScale = new Vector3(1, 1, 1);
-                        UIInteractableManager.panel1.SetActive(false);
+                        ItemPanelClick.panel1.SetActive(false);
                     }
                 }                
             }

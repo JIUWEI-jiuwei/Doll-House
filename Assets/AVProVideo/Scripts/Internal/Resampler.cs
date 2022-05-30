@@ -131,7 +131,7 @@ namespace RenderHeads.Media.AVProVideo
 			_resampleMode = resampleMode;
 			_name = name;
 
-			Debug.Log("[AVProVideo] Resampler " + _name + " started");
+			//Debug.Log("[AVProVideo] Resampler " + _name + " started");
 		}
 
 		public Texture[] OutputTexture

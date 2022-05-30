@@ -59,7 +59,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 			if (_state == State.Finished)
 			{
-				Debug.Log("Do Something");
+				//Debug.Log("Do Something");
 			}
 			else if (_state == State.Playing)
 			{

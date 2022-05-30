@@ -69,7 +69,7 @@ namespace RenderHeads.Media.AVProVideo
 
 				_loaded = true;
 
-				Debug.Log("[AVProVideo] Stream parser completed parsing stream file " + _url);
+				//Debug.Log("[AVProVideo] Stream parser completed parsing stream file " + _url);
 				if (_events != null)
 				{
 					_events.Invoke(this, StreamParserEvent.EventType.Success);

@@ -356,7 +356,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				break;
 			}
 
-			Debug.Log("Event: " + et.ToString());
+			//Debug.Log("Event: " + et.ToString());
 		}
 
 //		private void SetButtonEnabled( string objectName, bool bEnabled )

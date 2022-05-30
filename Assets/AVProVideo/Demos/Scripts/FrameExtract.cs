@@ -134,7 +134,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			if (_saveToJPG)
 			{
 				string filePath = _filenamePrefix + "-" + _frameIndex + ".jpg";
-				Debug.Log("Writing frame to file: " + filePath);
+				//Debug.Log("Writing frame to file: " + filePath);
 				System.IO.File.WriteAllBytes(filePath, texture.EncodeToJPG());
 			}
 #endif

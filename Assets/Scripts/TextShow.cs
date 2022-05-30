@@ -33,7 +33,7 @@ class TextShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         //eventData.pointerCurrentRaycast 是指包含当前响应射线检测事件的信息，可以用它来获取当前物体
         text_details.text = ItemText.ShowTextByItemName(eventData.pointerCurrentRaycast.gameObject.GetComponentInChildren<Image>().sprite.name);
-        if (eventData.pointerCurrentRaycast.gameObject.name == "Image(Clone)")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "item(Clone)")
         {
             temp = eventData.pointerCurrentRaycast.gameObject;
             eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).gameObject.SetActive(true);

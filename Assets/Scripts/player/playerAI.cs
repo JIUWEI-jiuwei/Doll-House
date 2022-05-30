@@ -26,7 +26,7 @@ class playerAI : MonoBehaviour
         }
         else
         {
-            Debug.Log(false);
+            
         }
     }
     /*public bool TestNavigation()

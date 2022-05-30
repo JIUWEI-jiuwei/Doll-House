@@ -611,7 +611,7 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			if (context == null)
 			{
-				Debug.Log("[AVProVideo] " + message);
+				//Debug.Log("[AVProVideo] " + message);
 			}
 			else
 			{

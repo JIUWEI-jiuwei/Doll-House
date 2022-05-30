@@ -17,17 +17,26 @@ class ButtonManager : MonoBehaviour
     private Animator rightCase2;
     private Animator rightCase3;
 
+    private GameObject diaryPanel;
+    private GameObject blackPanel;
+
+
     private void Start()
     {
-        GameObject bedcase = GameObject.FindGameObjectWithTag("BC");
-        bedCase = bedcase.GetComponent<Animator>();
-        GameObject rightcase1 = GameObject.FindGameObjectWithTag("CT1");
-        rightCase1 = rightcase1.GetComponent<Animator>();
-        GameObject rightcase2 = GameObject.FindGameObjectWithTag("CT2");
-        rightCase2 = rightcase2.GetComponent<Animator>();
-        GameObject rightcase3 = GameObject.FindGameObjectWithTag("CT3");
-        rightCase3 = rightcase3.GetComponent<Animator>();
+        bedCase = GameObject.FindGameObjectWithTag("BC").GetComponent<Animator>();
+        rightCase1 = GameObject.FindGameObjectWithTag("CT1").GetComponent<Animator>();
+        rightCase2 = GameObject.FindGameObjectWithTag("CT2").GetComponent<Animator>();
+        rightCase3 = GameObject.FindGameObjectWithTag("CT3").GetComponent<Animator>();
 
+        diaryPanel = GameObject.Find("diary").transform.GetChild(0).gameObject;
+        
+    }
+    private void FixedUpdate()
+    {
+        if (GameObject.FindGameObjectWithTag("blackpanel") != null)
+        {
+            blackPanel = GameObject.FindGameObjectWithTag("blackpanel");
+        }
     }
     public void BedCaseRight()
     {
@@ -62,5 +71,16 @@ class ButtonManager : MonoBehaviour
     {
         numTre3++;
         rightCase3.SetInteger("CT3INT", numTre3 % 4);
+    }
+    /// <summary>
+    /// 日记本按钮
+    /// </summary>
+    public void Diary()
+    {
+        diaryPanel.SetActive(true);
+    }
+    public void CloseBlackPanel()
+    {
+        blackPanel.SetActive(false);
     }
 }

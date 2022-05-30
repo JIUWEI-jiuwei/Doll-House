@@ -98,7 +98,7 @@ namespace UnityEngine.AI
             {
                 CollectSources(it, sources, builder);
             }
-            if (!builder.hideEditorLogs) Debug.Log("Sources " + sources.Count);
+            if (!builder.hideEditorLogs) return; //Debug.Log("Sources " + sources.Count);
         }
 
         private static void CollectSources(GameObject root, List<NavMeshBuildSource> sources, NavMeshBuilder2dState builder)
@@ -166,7 +166,7 @@ namespace UnityEngine.AI
                     tilemap.CompressBounds();
                 }
 
-                if (!builder.hideEditorLogs) Debug.Log($"Walkable Bounds [{tilemap.name}]: {tilemap.localBounds}");
+                if (!builder.hideEditorLogs) return; //Debug.Log($"Walkable Bounds [{tilemap.name}]: {tilemap.localBounds}");
                 var box = BoxBoundSource(NavMeshSurface2d.GetWorldBounds(tilemap.transform.localToWorldMatrix, tilemap.localBounds));
                 box.area = builder.defaultArea;
                 sources.Add(box);
@@ -187,7 +187,7 @@ namespace UnityEngine.AI
             mesh = builder.GetMesh(sprite.sprite);
             if (mesh == null)
             {
-                if (!builder.hideEditorLogs) Debug.Log($"{sprite.name} mesh is null");
+                if (!builder.hideEditorLogs) //Debug.Log($"{sprite.name} mesh is null");
                 return;
             }
             src.transform = Matrix4x4.TRS(Vector3.Scale(sprite.transform.position, builder.overrideVector), sprite.transform.rotation, sprite.transform.lossyScale);
@@ -210,7 +210,7 @@ namespace UnityEngine.AI
             mesh = builder.GetMesh(collider);
             if (mesh == null)
             {
-                if (!builder.hideEditorLogs) Debug.Log($"{collider.name} mesh is null");
+                if (!builder.hideEditorLogs) //Debug.Log($"{collider.name} mesh is null");
                 return;
             }
             if (collider.attachedRigidbody)

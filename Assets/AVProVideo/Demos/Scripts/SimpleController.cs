@@ -68,7 +68,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         private void AddEvent(MediaPlayerEvent.EventType et)
         {
-			Debug.Log("[SimpleController] Event: " + et.ToString());
+			//Debug.Log("[SimpleController] Event: " + et.ToString());
             _eventLog.Enqueue(et.ToString());
             if (_eventLog.Count > 5)
             {
