@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 ///<summary>
-///
+///物品栏点击交互
 ///</summary>
 class UIInteractableManager : MonoBehaviour
 {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 ///<summary>
-///
+///全局管理Manager
 ///</summary>
 class GameManager : MonoBehaviour
 {
