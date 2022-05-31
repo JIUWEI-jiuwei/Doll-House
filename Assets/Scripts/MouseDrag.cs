@@ -1,8 +1,8 @@
-using UnityEngine.Video;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
+using RenderHeads.Media.AVProVideo;
+
 /// <summary>
 /// 鼠标拖拽物品栏的物品
 /// </summary>
@@ -11,19 +11,34 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     /// <summary>图像位置</summary>
     private RectTransform rectTrans;
     private Transform freePanel;
-    private Animator goose;
     private ItemPanelClick itemPanelClick;
     private VideoClips videoClips;
+    private MediaPlayer _mediaPlayer;
+    private MediaPlayer _mediaPlayerB;
+    private GameObject _mediaDisplay;
+    private GameObject _mediaDisplayB;
+    private GameObject player;
+    //private Goose s_goose;
+
 
     private void Start()
     {
         freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;
         rectTrans = GetComponent<RectTransform>();
         FindGrid();
-        goose = GameObject.Find("goose").GetComponent<Animator>();
+        //s_goose = GameObject.Find("goose").GetComponent<Goose>();
+        player = GameObject.Find("Player");
         itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();
         videoClips = GameObject.Find("VideoClips").GetComponent<VideoClips>();
+        _mediaPlayer = GameObject.Find("MediaPlayer").GetComponent<MediaPlayer>();
+        _mediaPlayerB = GameObject.Find("MediaPlayerB").GetComponent<MediaPlayer>();
+
+        _mediaDisplay = GameObject.Find("AVPro VideoF").transform.GetChild(0).gameObject;
+        _mediaDisplayB = GameObject.Find("AVPro VideoF").transform.GetChild(1).gameObject;
+        
+
     }
+
     /// <summary>
     /// 开始拖拽
     /// </summary>
@@ -100,14 +115,33 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //判断鼠标拖拽的物体和鼠标松开的物体
         if (this.GetComponent<Image>().sprite.name == "ribbon" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//丝带+鹅身上
-            goose.SetBool("EMouse",true);
-            //mov视频要用另一种视频方式实现
-            videoClips.videoPlayer.clip = videoClips.videoClips[0];
-            videoClips.videoPlayer.Play();
+            //将物体隐藏，播放绑嘴视频
+            Goose.goose.SetBool("EMouse", true);
+            Goose.goose.gameObject.SetActive(false);            
+            player.SetActive(false);
+
+            //mov视频实现
+            _mediaDisplay.SetActive(true);
+            _mediaDisplay.GetComponent<DisplayUGUI>()._mediaPlayer.Play();
+
+            //视频播放完毕，将物体显现
+            Invoke("MediaVideoFinished", 2f);
         }
         else if (this.GetComponent<Image>().sprite.name == "xisheng" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//细绳+鹅
-            //
+            //如果鹅嘴已被绑
+            if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("EMouseIdle"))
+            {
+                //播放绑腿动画
+                _mediaDisplayB.SetActive(true);
+                _mediaDisplayB.GetComponent<DisplayUGUI>()._mediaPlayer.Play();
+                Goose.goose.gameObject.SetActive(false);
+                player.SetActive(false);
+
+                //视频播放完毕，将物体显现
+                Invoke("MediaVideoFinished2", 2f);
+            }
+
         }
         else
         {
@@ -118,6 +152,29 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         }
 
     }
+    /// <summary>
+    /// 视频播放完毕，将物体显现
+    /// </summary>
+    private void MediaVideoFinished()
+    {
+        Goose.goose.gameObject.SetActive(true);
+        Goose.goose.SetBool("EMouse", true);
+        player.SetActive(true);
+        _mediaDisplay.SetActive(false);
+        _mediaDisplayB.SetActive(false);
+        ButtonManager. note2.SetActive(true);
+    }
+    private void MediaVideoFinished2()
+    {
+        Goose.goose.gameObject.SetActive(true);
+        Goose.goose.SetBool("EMouse", true);
+        Goose.goose.SetBool("stop", true);
+        player.SetActive(true);
+        _mediaDisplay.SetActive(false);
+        _mediaDisplayB.SetActive(false);
+        ButtonManager.yumao.SetActive(true);
+    }
+
     /// <summary>
     /// 将物品位置与物品栏位置相匹配
     /// </summary>

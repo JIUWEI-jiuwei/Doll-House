@@ -20,7 +20,8 @@ class ButtonManager : MonoBehaviour
     private GameObject diaryPanel;
     private GameObject blackPanel;
 
-
+    public static GameObject note2;
+    public static GameObject yumao;
     private void Start()
     {
         bedCase = GameObject.FindGameObjectWithTag("BC").GetComponent<Animator>();
@@ -29,7 +30,11 @@ class ButtonManager : MonoBehaviour
         rightCase3 = GameObject.FindGameObjectWithTag("CT3").GetComponent<Animator>();
 
         diaryPanel = GameObject.Find("diary").transform.GetChild(0).gameObject;
-        
+
+        yumao = GameObject.Find("yumao");
+        yumao.SetActive(false);
+        note2 = GameObject.Find("note2");
+        note2.SetActive(false);
     }
     private void FixedUpdate()
     {

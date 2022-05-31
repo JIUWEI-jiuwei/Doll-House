@@ -7,5 +7,9 @@ using UnityEngine;
 ///</summary>
 class Goose : MonoBehaviour
 {
-    
+    public static Animator goose;
+    private void Start()
+    {
+        goose = this.GetComponent<Animator>();
+    }
 }

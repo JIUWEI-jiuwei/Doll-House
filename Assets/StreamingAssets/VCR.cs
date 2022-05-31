@@ -235,7 +235,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		void Start()
 		{
-			if(PlayingPlayer)
+			if(PlayingPlayer!=null)
 			{
 				PlayingPlayer.Events.AddListener(OnVideoEvent);
 
@@ -256,7 +256,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				}
 
 				// Auto start toggle
-				_AutoStartToggle.isOn = PlayingPlayer.m_AutoStart;
+				//_AutoStartToggle.isOn = PlayingPlayer.m_AutoStart;
 
 				if(PlayingPlayer.m_AutoOpen )
 				{
@@ -292,7 +292,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		void Update()
 		{
-			if (PlayingPlayer && PlayingPlayer.Info != null && PlayingPlayer.Info.GetDurationMs() > 0f)
+			if (PlayingPlayer && PlayingPlayer.Info != null && PlayingPlayer.Info.GetDurationMs() > 0f&&_videoSeekSlider!=null)
 			{
 				float time = PlayingPlayer.Control.GetCurrentTimeMs();
 				float duration = PlayingPlayer.Info.GetDurationMs();

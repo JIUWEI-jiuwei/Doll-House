@@ -54,12 +54,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
-    uniqueID: 2170734681
-    locked: 0
   - name: canvas
     uniqueID: 3652514205
     locked: 0
+  - name: player
+    uniqueID: 2170734681
+    locked: 0
   - name: item
     uniqueID: 650663079
+    locked: 0
+  - name: mask
+    uniqueID: 2556079159
     locked: 0

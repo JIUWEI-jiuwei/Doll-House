@@ -35,6 +35,7 @@ static class ItemText
     public static string note1 = "空白的纸条，但是有一股牛奶味";
     public static string note2 = "纸条上只写着一个数字5";
     public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
+    public static string yumao = "";
 
 
     public static string lip01 = "口红";
@@ -49,6 +50,8 @@ static class ItemText
     public static string note101 = "梳妆台上的纸条";
     public static string note201 = "掉落的纸条";
     public static string note301 = "地上的纸条";
+    public static string yumao01 = "羽毛";
+
 
     public static string ShowTextByItemName(string itemName)
     {
@@ -58,6 +61,11 @@ static class ItemText
         if (itemName == "cup") return cup;
         if (itemName == "ribbon") return ribbon;
         if (itemName == "bottle") return bottle;
+        if (itemName == "note1") return note1;
+        if (itemName == "note2") return note2;
+        if (itemName == "note3") return note3;
+        if (itemName == "yumao") return yumao;
+
 
         return itemName;
     }   
@@ -69,6 +77,10 @@ static class ItemText
         if (itemName == "cup01") return cup01;
         if (itemName == "ribbon01") return ribbon01;
         if (itemName == "bottle01") return bottle01;
+        if (itemName == "note101") return note101;
+        if (itemName == "note201") return note201;
+        if (itemName == "note301") return note301;
+        if (itemName == "yumao01") return yumao01;
 
         return itemName;
     }
