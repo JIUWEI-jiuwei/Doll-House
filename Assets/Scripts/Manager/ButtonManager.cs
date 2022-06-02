@@ -22,6 +22,8 @@ class ButtonManager : MonoBehaviour
 
     public static GameObject note2;
     public static GameObject yumao;
+    public static bool isGetRawMeat = false;
+
     private void Start()
     {
         bedCase = GameObject.FindGameObjectWithTag("BC").GetComponent<Animator>();
@@ -41,6 +43,10 @@ class ButtonManager : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("blackpanel") != null)
         {
             blackPanel = GameObject.FindGameObjectWithTag("blackpanel");
+        }
+        if (rightCase2.GetInteger("CT2INT") == 2 && rightCase1.GetBool("CT1pull") == true && rightCase3.GetInteger("CT3INT") == 3)
+        {
+            isGetRawMeat = true;
         }
     }
     public void BedCaseRight()
@@ -71,6 +77,8 @@ class ButtonManager : MonoBehaviour
     {
         numTre2++;
         rightCase2.SetInteger("CT2INT", numTre2 % 3);
+        
+        
     }
     public void ThreeRightCase3()
     {
@@ -83,9 +91,11 @@ class ButtonManager : MonoBehaviour
     public void Diary()
     {
         diaryPanel.SetActive(true);
+        StaticClass.isPlayerMove = false;
     }
     public void CloseBlackPanel()
     {
         blackPanel.SetActive(false);
+        StaticClass.isPlayerMove = true;
     }
 }

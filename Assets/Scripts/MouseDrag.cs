@@ -13,32 +13,32 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private Transform freePanel;
     private ItemPanelClick itemPanelClick;
     private VideoClips videoClips;
-    private MediaPlayer _mediaPlayer;
-    private MediaPlayer _mediaPlayerB;
-    private GameObject _mediaDisplay;
-    private GameObject _mediaDisplayB;
-    private GameObject player;
-    //private Goose s_goose;
 
+    private GameObject player;
+    public GameObject dialogPrefab;
+    public GameObject itemImage;
+    public float timer = 0f;
+    public float resTime = 2f;
+    private GameObject dialog;
+    private Transform dialogPos;
 
     private void Start()
     {
         freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;
         rectTrans = GetComponent<RectTransform>();
         FindGrid();
-        //s_goose = GameObject.Find("goose").GetComponent<Goose>();
         player = GameObject.Find("Player");
         itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();
         videoClips = GameObject.Find("VideoClips").GetComponent<VideoClips>();
-        _mediaPlayer = GameObject.Find("MediaPlayer").GetComponent<MediaPlayer>();
-        _mediaPlayerB = GameObject.Find("MediaPlayerB").GetComponent<MediaPlayer>();
-
-        _mediaDisplay = GameObject.Find("AVPro VideoF").transform.GetChild(0).gameObject;
-        _mediaDisplayB = GameObject.Find("AVPro VideoF").transform.GetChild(1).gameObject;
-        
-
+        dialogPos = player.transform.GetChild(0);
     }
-
+    private void FixedUpdate()
+    {
+        if (dialog != null)
+        {
+            dialog.transform.position = dialogPos.position;
+        }
+    }
     /// <summary>
     /// 开始拖拽
     /// </summary>
@@ -71,15 +71,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
             //出现的问题：会检测到自身物体（尽管勾选了不检测也没用
+            //将物品拖拽到物品栏之外，物品栏才会降下去
             if (eventData.pointerCurrentRaycast.gameObject.name == "blackPanel")
             {
                 ItemPanelClick.ItemPanelDown();
                 itemPanelClick.blackPanelClose();
             }
-        }
-        
-        
-
+        }                
         //
         
     }
@@ -89,27 +87,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        //结束拖拽之后父物体回归
-        if (ItemPanelClick.panel1.transform.childCount <= 5)
-        {
-            this.transform.SetParent(ItemPanelClick.panel1.transform);
-        }
-        else
-        {
-            this.transform.SetParent(ItemPanelClick.panel2.transform);
-        }
-        
-
-        //若未使用，则回到最初位置
-        if (rectTrans != null)
-        {
-            FindGrid();
-        }
-        //将UI词条拖拽到角色身上
+        BackToItemPanel();
+        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        //射线检测
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);           
+            Debug.Log(hit.collider.name);
         }
 
         //判断鼠标拖拽的物体和鼠标松开的物体
@@ -117,12 +101,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {//丝带+鹅身上
             //将物体隐藏，播放绑嘴视频
             Goose.goose.SetBool("EMouse", true);
-            Goose.goose.gameObject.SetActive(false);            
+            Goose.goose.gameObject.SetActive(false);
             player.SetActive(false);
 
             //mov视频实现
-            _mediaDisplay.SetActive(true);
-            _mediaDisplay.GetComponent<DisplayUGUI>()._mediaPlayer.Play();
+            
 
             //视频播放完毕，将物体显现
             Invoke("MediaVideoFinished", 2f);
@@ -132,17 +115,98 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //如果鹅嘴已被绑
             if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("EMouseIdle"))
             {
-                //播放绑腿动画
-                _mediaDisplayB.SetActive(true);
-                _mediaDisplayB.GetComponent<DisplayUGUI>()._mediaPlayer.Play();
+                //播放绑腿动画                
                 Goose.goose.gameObject.SetActive(false);
                 player.SetActive(false);
 
                 //视频播放完毕，将物体显现
                 Invoke("MediaVideoFinished2", 2f);
             }
-
+            else
+            {
+                foreach (Canvas canvas in FindObjectsOfType<Canvas>())
+                {
+                    if (canvas.name == "OtherCanvas")
+                    {
+                        dialog = Instantiate(dialogPrefab, canvas.transform);
+                        dialog.transform.GetChild(0).GetComponent<Text>().text = "这根绳太细了，得找更坚固的东西。";
+                        Invoke("DestroyDialog", 2f);                        
+                    }
+                }
+                
+            }
         }
+        //蜡烛+生肉=》熟肉
+        else if (this.GetComponent<Image>().sprite.name == "candle"&& eventData.pointerCurrentRaycast.gameObject.name == "rawmeat")
+        {            
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            CreateNewItem("meatshu");
+        }
+        //蜡烛+生肉=》熟肉2 
+        else if (this.GetComponent<Image>().sprite.name == "rawmeat" && eventData.pointerCurrentRaycast.gameObject.name == "candle")
+        {           
+            Destroy(this.gameObject);
+            CreateNewItem("meatshu");
+        }
+        //熟肉+猫=》唾液
+        else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
+        {            
+            CreateNewItem("cattuoye");
+        }
+        //熟肉+猫=》唾液2
+        else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.name == "meatshu")
+        {            
+            CreateNewItem("cattuoye");
+        }
+        //蜡烛+熟肉=》烧焦的肉
+        else if (this.GetComponent<Image>().sprite.name == "candle"&& eventData.pointerCurrentRaycast.gameObject.name == "meatshu")
+        {            
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            CreateNewItem("boiledmeat");
+        }
+        //蜡烛+熟肉=》烧焦的肉2
+        else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.name == "candle")
+        {            
+            Destroy(this.gameObject);
+            CreateNewItem("boiledmeat");
+        }
+        //烧焦的肉+猫=>断齿
+        else if (this.GetComponent<Image>().sprite.name == "boiledmeat" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
+        { 
+            Destroy(this.gameObject);
+            CreateNewItem("cattooth");
+        }
+        //烧焦的肉+猫=>断齿2
+        else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.name == "boiledmeat")
+        { 
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            CreateNewItem("cattooth");
+        }
+        //项链+剪刀=》细绳
+        else if (this.GetComponent<Image>().sprite.name == "necklace" && eventData.pointerCurrentRaycast.gameObject.name == "scissor")
+        { 
+            Destroy(this.gameObject);
+            CreateNewItem("xisheng");
+        }
+        //项链+剪刀=》细绳2
+        else if (this.GetComponent<Image>().sprite.name == "scissor" && eventData.pointerCurrentRaycast.gameObject.name == "necklace")
+        { 
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            CreateNewItem("xisheng");
+        }
+        //唾液+杯子=》盛唾液的杯子
+        else if (this.GetComponent<Image>().sprite.name == "cattuoye" && eventData.pointerCurrentRaycast.gameObject.name == "cup")
+        { 
+            Destroy(this.gameObject);
+            CreateNewItem("xisheng");
+        }
+        //唾液+杯子=》盛唾液的杯子2
+        else if (this.GetComponent<Image>().sprite.name == "cup" && eventData.pointerCurrentRaycast.gameObject.name == "cattuoye")
+        { 
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            CreateNewItem("xisheng");
+        }
+
         else
         {
             //物品栏回归并且物品名字出现
@@ -150,8 +214,54 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             itemPanelClick.blackPanelOpen();
             TextShow.text_name.gameObject.SetActive(true);
         }
-
     }
+    /// <summary>
+    /// 生成新的物体
+    /// </summary>
+    private void CreateNewItem(string itemName)
+    {
+        GameObject a = Instantiate(itemImage);
+        a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>(itemName);
+        //如果物品栏第一页未满
+        if (ItemPanelClick.panel1.transform.childCount <= 5)
+        {
+            a.transform.SetParent(ItemPanelClick.panel1.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+
+        }
+        else//如果物品栏第一页满了
+        {
+            a.transform.SetParent(ItemPanelClick.panel2.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+            ItemPanelClick.panel1.SetActive(false);
+        }
+    }
+
+    private void DestroyDialog()
+    {
+        Destroy(dialog);
+    }
+
+    /// <summary>
+    /// 结束拖拽之后物品回到物品栏的panel里面
+    /// </summary>
+    private void BackToItemPanel()
+    {
+        if (ItemPanelClick.panel1.transform.childCount <= 5)
+        {
+            this.transform.SetParent(ItemPanelClick.panel1.transform);
+        }
+        else
+        {
+            this.transform.SetParent(ItemPanelClick.panel2.transform);
+        }
+        //若未使用，则回到最初位置
+        if (rectTrans != null)
+        {
+            FindGrid();
+        }
+    }
+
     /// <summary>
     /// 视频播放完毕，将物体显现
     /// </summary>
@@ -160,8 +270,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         Goose.goose.gameObject.SetActive(true);
         Goose.goose.SetBool("EMouse", true);
         player.SetActive(true);
-        _mediaDisplay.SetActive(false);
-        _mediaDisplayB.SetActive(false);
+       
         ButtonManager. note2.SetActive(true);
     }
     private void MediaVideoFinished2()
@@ -170,8 +279,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         Goose.goose.SetBool("EMouse", true);
         Goose.goose.SetBool("stop", true);
         player.SetActive(true);
-        _mediaDisplay.SetActive(false);
-        _mediaDisplayB.SetActive(false);
+        
         ButtonManager.yumao.SetActive(true);
     }
 

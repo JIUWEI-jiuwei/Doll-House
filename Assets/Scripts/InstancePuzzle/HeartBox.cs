@@ -44,16 +44,41 @@ class HeartBox : MonoBehaviour
     }
     private void Update()
     {
-        //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
+        //判断打开密码盒视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
         if (heartVideo.isPlaying)
         {
             if ((int)heartVideo.frame >= (int)heartVideo.frameCount - 1)
             {
                 heartVideo.gameObject.SetActive(false);
                 mimaPanel0.gameObject.SetActive(true);
+                StaticClass.isPlayerMove = false;
             }
         }
+        //点击密码盒按钮
+        if (StaticClass.isFinishedMove && StaticClass.isHeartBoxClick)
+        {
+            if (isFirst)//第一次点击
+            {
+                heartVideo.Play();
+                Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
+                isFirst = false;
+            }
+            else//第二次及以后点击
+            {
+                mimaPanel0.gameObject.SetActive(true);
+
+            }
+            StaticClass.isPlayerMove = false;
+            StaticClass.isHeartBoxClick = false;
+        }
         //如果密码正确
+        OpenBoxWin();
+    }
+    /// <summary>
+    /// 成功打开密码盒
+    /// </summary>
+    private void OpenBoxWin()
+    {
         if (num1 == 0 && num2 == 8 && num3 == 1 && num4 == 4)
         {
             necklaceVideo.Play();
@@ -64,6 +89,7 @@ class HeartBox : MonoBehaviour
                 {
                     necklaceVideo.gameObject.SetActive(false);
                     mimaPanel0.gameObject.SetActive(false);
+                    StaticClass.isPlayerMove = true;
                     //密码盒不可再交互
                     GetComponent<Button>().interactable = false;
                     //获得项链
@@ -82,25 +108,17 @@ class HeartBox : MonoBehaviour
                         a.transform.localScale = new Vector3(1, 1, 1);
                         ItemPanelClick.panel1.SetActive(false);
                     }
-                }                
+                }
             }
         }
     }
+
     /// <summary>
     /// 第一次点击密码盒，播放视频
     /// </summary>
     public void FirstOpenBox()
-    {       
-        if (isFirst)//第一次点击
-        {
-            heartVideo.Play();
-            Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
-            isFirst = false;
-        }
-        else//第二次及以后点击
-        {
-            mimaPanel0.gameObject.SetActive(true);
-        }
+    {
+        StaticClass.isHeartBoxClick = true;
     }
     /// <summary>
     /// 切换按钮的sprite图片
@@ -157,5 +175,6 @@ class HeartBox : MonoBehaviour
     public void backGame()
     {
         mimaPanel0.gameObject.SetActive(false);
+        StaticClass.isPlayerMove = true;
     }
 }

@@ -301,6 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1db75fe7573d844783364981a181096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogPrefab: {fileID: 7984183490528427307, guid: 06035669a5dd134448e6bdcfb310af3c, type: 3}
+  timer: 0
+  resTime: 2
 --- !u!225 &-2556939657659298082
 CanvasGroup:
   m_ObjectHideFlags: 0
