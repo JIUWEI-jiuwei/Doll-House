@@ -12,17 +12,23 @@ class StartGame : MonoBehaviour
     /// <summary>要切换的场景 </summary>
     public string sceneName;
     /// <summary>黑幕渐变的时间 </summary>
-    public float timeout = 3f;
+    public float timeout = 2f;
     /// <summary>黑幕 </summary>
     public GameObject alfa_black;
+    public Animator headline;
 
     public void OnStartButton()
     {
-        videoPlayer.Pause();
-        StaticClass.alfa = true;
+        headline.SetBool("reverse", true);
+               
     }
     private void Update()
     {
+        if (headline.GetCurrentAnimatorStateInfo(0).IsName("stop"))
+        {
+            videoPlayer.Pause();
+            StaticClass.alfa = true;
+        }
         if (StaticClass.alfa == true)
         {
             AlfaChange();

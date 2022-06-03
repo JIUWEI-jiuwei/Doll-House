@@ -15,5 +15,8 @@ using UnityEngine;
     public static bool isDoorClick = false;
     public static bool isItemClick = false;
     public static bool isHeartBoxClick = false;
+    public static int isMoveTarget = 0;
+    public static int isMoveTarget2 = 0;
+
 
 }

@@ -66,7 +66,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         panel2.SetActive(false);
 
     }
-    public void blackPanelOpen()
+    public static void blackPanelOpen()
     {
         blackpanel.SetActive(true);
     }
@@ -95,12 +95,12 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
             {
                 if (ButtonManager.isGetRawMeat)
                 {
-                    ButtonDown(eventData);
+                    //ButtonDown(eventData.pointerPress);
                 }               
             }
             else
             {
-                ButtonDown(eventData);
+                ButtonDown(eventData.pointerPress);
             }
         }
     }
@@ -108,13 +108,13 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     /// 生成物品栏物品
     /// </summary>
     /// <param name="eventData"></param>
-    private void ButtonDown(PointerEventData eventData)
+    public static void ButtonDown(GameObject c)
     {
-        Destroy(eventData.pointerPress.gameObject);
+        Destroy(c);
         itemPanel.itemPanelAnim.SetBool("up", true);
         blackPanelOpen();
 
-        ChangeItemPanel(eventData.pointerPress.gameObject.name);
+        ChangeItemPanel(c.name);
 
         StaticClass.isPlayerMove = false;
         StaticClass.isItemClick = false;

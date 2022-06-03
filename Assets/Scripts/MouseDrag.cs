@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using RenderHeads.Media.AVProVideo;
 
 /// <summary>
 /// 鼠标拖拽物品栏的物品
@@ -39,6 +38,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         if (dialog != null)
         {
             dialog.transform.position = dialogPos.position;
+        }
+        if (StaticClass.isMoveTarget==2)
+        {
+            Goose.goose.SetBool("closemouth", true);
+            player.SetActive(false);
+            //视频播放完毕，将物体显现
+            Invoke("MediaVideoFinished", 8f);
         }
     }
     /// <summary>
@@ -91,24 +97,16 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     {
         BackToItemPanel();
         this.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        //射线检测
-        /*RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.collider.name);
-        }*/
 
         TextShow.text_name.gameObject.SetActive(true);
         //判断鼠标拖拽的物体和鼠标松开的物体
         if (this.GetComponent<Image>().sprite.name == "ribbon" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//丝带+鹅身上
             //播放绑嘴动画
-            player.SetActive(false);
-            paiting.SetActive(false);
-            Goose.goose.SetBool("closemouth", true);
-
-            //视频播放完毕，将物体显现
-            Invoke("MediaVideoFinished", 8f);
+            StaticClass.isMoveTarget = 1;
+            Destroy(this.gameObject);
+            
+            
         }
         else if (this.GetComponent<Image>().sprite.name == "xisheng" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//细绳+鹅
@@ -226,7 +224,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             //物品栏回归并且物品名字出现
             ItemPanelClick.ItemPanelKing();
-            itemPanelClick.blackPanelOpen();
+            ItemPanelClick.blackPanelOpen();
 
         }
     }
