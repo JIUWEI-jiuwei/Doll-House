@@ -17,7 +17,7 @@ static class ItemText
     public static string zhongzi = "普通的种子，不过有些似曾相识";
     public static string shengrou = "总会引起各种各样的贪婪念头";
     public static string meatshu = "恰到好处的火候，垂涎欲滴的美味";
-    public static string shaojiaoderou = "又黑又硬，牙齿的灾难";
+    public static string boiledmeat = "又黑又硬，牙齿的灾难";
     public static string cup = "做工精良，但依然只能盛液体";
     public static string shuidebeizi = "只是……水？";
     public static string tuoyedebeizi = "……说不定有点用呢？";
@@ -58,6 +58,7 @@ static class ItemText
     public static string meatshu01 = "烤熟的肉";
     public static string rawmeat01 = "生肉";
     public static string cattuoye01 = "狞猫的唾液";
+    public static string boiledmeat01 = "烧焦的肉";
 
     public static string ShowTextByItemName(string itemName)
     {
@@ -78,6 +79,7 @@ static class ItemText
         if (itemName == "shuidebeizi") return shuidebeizi;
         if (itemName == "meatshu") return meatshu;
         if (itemName == "rawmeat") return rawmeat;
+        if (itemName == "boiledmeat") return boiledmeat;
 
 
         return itemName;
@@ -101,6 +103,7 @@ static class ItemText
         if (itemName == "meatshu01") return meatshu01;
         if (itemName == "rawmeat01") return rawmeat01;
         if (itemName == "cattuoye01") return cattuoye01;
+        if (itemName == "boiledmeat01") return boiledmeat01;
 
         return itemName;
     }

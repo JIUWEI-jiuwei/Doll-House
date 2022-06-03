@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - dialogPrefab: {fileID: 7984183490528427307, guid: 06035669a5dd134448e6bdcfb310af3c, type: 3}
+  - itemImage: {fileID: 4456219141865391425, guid: 6bc165734045ce842bf3315fa41eecb0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

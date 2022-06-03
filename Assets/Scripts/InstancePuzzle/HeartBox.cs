@@ -60,6 +60,9 @@ class HeartBox : MonoBehaviour
             if (isFirst)//第一次点击
             {
                 heartVideo.Play();
+                //获得项链
+                GameObject a = Instantiate(itemImage);
+                a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("ribbon");
                 Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
                 isFirst = false;
             }
@@ -107,6 +110,7 @@ class HeartBox : MonoBehaviour
                         a.transform.SetParent(ItemPanelClick.panel2.transform);
                         a.transform.localScale = new Vector3(1, 1, 1);
                         ItemPanelClick.panel1.SetActive(false);
+                        ItemPanelClick.panel2.SetActive(true);
                     }
                 }
             }

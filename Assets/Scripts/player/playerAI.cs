@@ -37,7 +37,7 @@ class playerAI : MonoBehaviour
         if (agent.isOnNavMesh)
         {
             //开始走路
-            if (Input.GetMouseButtonUp(0)&&StaticClass.isPlayerMove)
+            if (Input.GetMouseButtonUp(0)&&StaticClass.isPlayerMove==true)
             {
                 player.SetBool("startwalk",true);
                 player.SetBool("walk",true);

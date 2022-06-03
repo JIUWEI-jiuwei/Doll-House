@@ -91,21 +91,13 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     {
         if (StaticClass.isFinishedMove&&eventData.pointerPress.gameObject.layer==6)//&& StaticClass.isItemClick
         {
-            if (eventData.pointerPress.name == "rawmeat")
+            if (eventData.pointerPress.name == "rawmeat"&& ButtonManager.isGetRawMeat==true)
             {
-                if (!ButtonManager.isGetRawMeat) return;
-               /* //½ÇÉ«×´Ì¬¸Ä±ä
-                playerAI.player.SetBool("stop", false);
-                playerAI.player.SetBool("backidle", false);
-                playerAI.player.SetBool("startwalk", true);
-                playerAI.player.SetBool("walk", true);
-                playerAI.player.SetBool("climb", true);*/
-
                 ButtonDown(eventData);
             }
             else
             {
-            ButtonDown(eventData);
+                ButtonDown(eventData);
             }
         }
     }
@@ -136,6 +128,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
                 a.transform.SetParent(panel2.transform);
                 a.transform.localScale = new Vector3(1, 1, 1);
                 panel1.SetActive(false);
+                panel2.SetActive(true);
             }
         }
 

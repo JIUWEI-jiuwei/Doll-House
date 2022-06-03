@@ -26,6 +26,8 @@ class TextShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         text_name = child1.GetComponent<Text>();        
         text_name.text = ItemText.ShowItemName(this.gameObject.GetComponentInChildren<Image>().sprite.name + "01");
         child0.gameObject.SetActive(false);
+        child1.gameObject.SetActive(true);
+
     }
 
     //鼠标悬停
@@ -33,7 +35,8 @@ class TextShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         //eventData.pointerCurrentRaycast 是指包含当前响应射线检测事件的信息，可以用它来获取当前物体
         text_details.text = ItemText.ShowTextByItemName(eventData.pointerCurrentRaycast.gameObject.GetComponentInChildren<Image>().sprite.name);
-        if (eventData.pointerCurrentRaycast.gameObject.name == "item(Clone)")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "item(Clone)"||eventData.pointerCurrentRaycast.gameObject.name == "item1(Clone)"
+            ||eventData.pointerCurrentRaycast.gameObject.name == "item(Clone)(Clone)" ||eventData.pointerCurrentRaycast.gameObject.name == "item1(Clone)(Clone)"  )
         {
             temp = eventData.pointerCurrentRaycast.gameObject;
             eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).gameObject.SetActive(true);
