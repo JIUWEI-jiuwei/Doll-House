@@ -79,9 +79,9 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 ItemPanelClick.ItemPanelDown();
                 itemPanelClick.blackPanelClose();
             }
-        }                
+        }
         //
-        
+
     }
     /// <summary>
     /// 拖拽结束
@@ -106,7 +106,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             player.SetActive(false);
             paiting.SetActive(false);
             Goose.goose.SetBool("closemouth", true);
-                                  
+
             //视频播放完毕，将物体显现
             Invoke("MediaVideoFinished", 8f);
         }
@@ -120,7 +120,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 player.SetActive(false);
 
                 //视频播放完毕，将物体显现
-                Invoke("MediaVideoFinished2", 6.5f);
+                Invoke("MediaVideoFinished2", 8f);
             }
             else
             {
@@ -130,81 +130,96 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                     {
                         dialog = Instantiate(dialogPrefab, canvas.transform);
                         dialog.transform.GetChild(0).GetComponent<Text>().text = "这根绳太细了，得找更坚固的东西。";
-                        Invoke("DestroyDialog", 2f);                        
+                        Invoke("DestroyDialog", 2f);
                     }
                 }
-                
+
             }
         }
         //蜡烛+生肉=》熟肉
-        else if (this.GetComponent<Image>().sprite.name == "candle"&& eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "rawmeat")
-        {            
+        else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "rawmeat")
+        {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
-            CreateNewItem("meatshu");
+            ItemPanelClick.ChangeItemPanel("meatshu");
         }
         //蜡烛+生肉=》熟肉2 
         else if (this.GetComponent<Image>().sprite.name == "rawmeat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
-        {           
+        {
             Destroy(this.gameObject);
-            CreateNewItem("meatshu");
+            ItemPanelClick.ChangeItemPanel("meatshu");
         }
         //熟肉+猫=》唾液
         else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
-        {            
-            CreateNewItem("cattuoye");
+        {
+            ItemPanelClick.ChangeItemPanel("cattuoye");
         }
         //熟肉+猫=》唾液2
         else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "meatshu")
-        {            
-            CreateNewItem("cattuoye");
+        {
+            ItemPanelClick.ChangeItemPanel("cattuoye");
         }
         //蜡烛+熟肉=》烧焦的肉
-        else if (this.GetComponent<Image>().sprite.name == "candle"&& eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "meatshu")
-        {            
+        else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "meatshu")
+        {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
-            CreateNewItem("boiledmeat");
+            ItemPanelClick.ChangeItemPanel("boiledmeat");
         }
         //蜡烛+熟肉=》烧焦的肉2
         else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
-        {            
+        {
             Destroy(this.gameObject);
-            CreateNewItem("boiledmeat");
+            ItemPanelClick.ChangeItemPanel("boiledmeat");
         }
         //烧焦的肉+猫=>断齿
         else if (this.GetComponent<Image>().sprite.name == "boiledmeat" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
-        { 
+        {
             Destroy(this.gameObject);
-            CreateNewItem("cattooth");
+            ItemPanelClick.ChangeItemPanel("cattooth");
         }
         //烧焦的肉+猫=>断齿2
         else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "boiledmeat")
-        { 
+        {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
-            CreateNewItem("cattooth");
+            ItemPanelClick.ChangeItemPanel("cattooth");
         }
         //项链+剪刀=》细绳
         else if (this.GetComponent<Image>().sprite.name == "necklace" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "scissor")
-        { 
+        {
             Destroy(this.gameObject);
-            CreateNewItem("xisheng");
+            ItemPanelClick.ChangeItemPanel("xisheng");
+
         }
         //项链+剪刀=》细绳2
         else if (this.GetComponent<Image>().sprite.name == "scissor" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "necklace")
-        { 
+        {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
-            CreateNewItem("xisheng");
+            ItemPanelClick.ChangeItemPanel("xisheng");
         }
         //唾液+杯子=》盛唾液的杯子
         else if (this.GetComponent<Image>().sprite.name == "cattuoye" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "cup")
-        { 
+        {
             Destroy(this.gameObject);
-            CreateNewItem("xisheng");
+            ItemPanelClick.ChangeItemPanel("tuoyedebeizi");
         }
         //唾液+杯子=》盛唾液的杯子2
         else if (this.GetComponent<Image>().sprite.name == "cup" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "cattuoye")
-        { 
+        {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
-            CreateNewItem("xisheng");
+            ItemPanelClick.ChangeItemPanel("tuoyedebeizi");
+        }
+        //蜡烛+纸条1
+        else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "note1")
+        {
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            //获得丝带
+            ItemPanelClick.ChangeItemPanel("note1_b");
+        }
+        //蜡烛+纸条1 2
+        else if (this.GetComponent<Image>().sprite.name == "note1" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
+        {
+            Destroy(this.gameObject);
+            //获得丝带
+            ItemPanelClick.ChangeItemPanel("note1_b");
         }
 
         else
@@ -212,29 +227,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //物品栏回归并且物品名字出现
             ItemPanelClick.ItemPanelKing();
             itemPanelClick.blackPanelOpen();
-            
-        }
-    }
-    /// <summary>
-    /// 生成新的物体
-    /// </summary>
-    private void CreateNewItem(string itemName)
-    {
-        GameObject a = Instantiate(itemImage);
-        a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>(itemName);
-        //如果物品栏第一页未满
-        if (ItemPanelClick.panel1.transform.childCount <= 5)
-        {
-            a.transform.SetParent(ItemPanelClick.panel1.transform);
-            a.transform.localScale = new Vector3(1, 1, 1);
 
-        }
-        else//如果物品栏第一页满了
-        {
-            a.transform.SetParent(ItemPanelClick.panel2.transform);
-            a.transform.localScale = new Vector3(1, 1, 1);
-            ItemPanelClick.panel1.SetActive(false);
-            ItemPanelClick.panel2.SetActive(true);
         }
     }
 
@@ -270,12 +263,12 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     {
         player.SetActive(true);
         paiting.SetActive(true);
-        ButtonManager. note2.SetActive(true);
+        ButtonManager.note2.SetActive(true);
     }
     private void MediaVideoFinished2()
     {
         player.SetActive(true);
-        
+
         ButtonManager.yumao.SetActive(true);
     }
 
@@ -292,6 +285,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             ItemPanelClick.panel2.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
         }
+        for (int i = 0; i < ItemPanelClick.panel3.transform.childCount; i++)
+        {
+            ItemPanelClick.panel3.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
+        }
+
     }
 }
 

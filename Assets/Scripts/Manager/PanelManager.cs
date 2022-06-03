@@ -8,7 +8,9 @@ using UnityEngine;
 class PanelManager : MonoBehaviour
 {
     private int num = 0;
+    private int itemNum = 0;
     public Transform[] panels1;
+    public Transform[] itemPanels;
 
     private void Start()
     {
@@ -16,7 +18,9 @@ class PanelManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CloseAllPanels(num);
+        CloseAllPanels(panels1,num);
+        CloseAllPanels(itemPanels,itemNum);
+
     }
     /// <summary>
     /// 打开第一个panel
@@ -35,13 +39,13 @@ class PanelManager : MonoBehaviour
     /// 只显示当前panel
     /// </summary>
     /// <param name="currentPanel"></param>
-    public void CloseAllPanels(int currentPanel)
+    public void CloseAllPanels(Transform[] panels, int currentPanel)
     {
-        for(int i = 0; i < panels1.Length; i++)
+        for(int i = 0; i < panels.Length; i++)
         {
-            panels1[i].gameObject.SetActive(false);
+            panels[i].gameObject.SetActive(false);
         }
-        panels1[currentPanel].gameObject.SetActive(true);
+        panels[currentPanel].gameObject.SetActive(true);
     }
     public void RightButton()
     {
@@ -58,4 +62,21 @@ class PanelManager : MonoBehaviour
             num--;
         }
     }
+    public void ItemRightButton()
+    {
+        if (itemNum < 2)
+        {
+            itemNum++;
+        }
+    }
+
+    public void ItemLeftButton()
+    {
+        if (itemNum > 0)
+        {
+            itemNum--;
+        }
+    }
+
+
 }

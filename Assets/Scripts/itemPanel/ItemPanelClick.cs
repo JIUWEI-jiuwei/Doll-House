@@ -11,12 +11,16 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public static GameObject panel;
     public static GameObject panel1;
     public static GameObject panel2;
+    public static GameObject panel3;
+    
+
     public static GameObject panelStd;
     public static GameObject blackpanel;
     /// <summary>获取到物品栏身上的动画</summary>
     public static itemPanel itemPanel;
     /// <summary>预制体本身</summary>
     public GameObject itemImage;
+    public static GameObject s_item;
     public float timer = 0.2f;
 
     private void Awake()
@@ -25,12 +29,16 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         panel = GameObject.FindGameObjectWithTag("panel");
         panel1 = GameObject.FindGameObjectWithTag("panel1");
         panel2 = GameObject.FindGameObjectWithTag("panel2");
+        panel3 = GameObject.FindGameObjectWithTag("panel3");
+
         panelStd = GameObject.FindGameObjectWithTag("panelStd");
         blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
+        s_item = itemImage;
     }
     private void Start()
     {
         panel2.SetActive(false);
+        panel3.SetActive(false);
         itemPanel = panel.GetComponent<itemPanel>();
         blackpanel.SetActive(false);
     }
@@ -50,21 +58,13 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         itemPanel.itemPanelAnim.SetBool("up", true);
         StaticClass.isPlayerMove = false;
     }
-    /// <summary>
-    /// 物品栏下一页
-    /// </summary>
-    public void ItemPanelRight()
+    
+    public void CloseAllPanels(int num)
     {
         panel1.SetActive(false);
-        panel2.SetActive(true);
-    }
-    /// <summary>
-    /// 物品栏上一页
-    /// </summary>
-    public void ItemPanelLeft()
-    {
-        panel1.SetActive(true);
+        panel3.SetActive(false);
         panel2.SetActive(false);
+
     }
     public void blackPanelOpen()
     {
@@ -88,12 +88,15 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
-    {
-        if (StaticClass.isFinishedMove&&eventData.pointerPress.gameObject.layer==6)//&& StaticClass.isItemClick
+    {       
+        if (StaticClass.isFinishedMove&&eventData.pointerPress.gameObject.layer==6)
         {
-            if (eventData.pointerPress.name == "rawmeat"&& ButtonManager.isGetRawMeat==true)
+            if (eventData.pointerPress.name == "rawmeat")
             {
-                ButtonDown(eventData);
+                if (ButtonManager.isGetRawMeat)
+                {
+                    ButtonDown(eventData);
+                }               
             }
             else
             {
@@ -111,11 +114,22 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         itemPanel.itemPanelAnim.SetBool("up", true);
         blackPanelOpen();
 
-        if (Resources.Load(eventData.pointerPress.gameObject.name) != null)
+        ChangeItemPanel(eventData.pointerPress.gameObject.name);
+
+        StaticClass.isPlayerMove = false;
+        StaticClass.isItemClick = false;
+    }
+    /// <summary>
+    /// 切换物品栏的panel
+    /// </summary>
+    /// <param name="name"></param>
+    public static void ChangeItemPanel(string name)
+    {
+        if (Resources.Load(name) != null)
         {
             //实例化resources里面的“预制体”，Instantiate实例化的必须是预制体
-            GameObject a = Instantiate(itemImage);
-            a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>(eventData.pointerPress.gameObject.name);
+            GameObject a = Instantiate(s_item);
+            a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>(name);
             //如果物品栏第一页未满
             if (panel1.transform.childCount <= 5)
             {
@@ -123,16 +137,23 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
                 a.transform.localScale = new Vector3(1, 1, 1);
 
             }
-            else//如果物品栏第一页满了
+            else if (panel2.transform.childCount <= 5)
             {
                 a.transform.SetParent(panel2.transform);
                 a.transform.localScale = new Vector3(1, 1, 1);
                 panel1.SetActive(false);
+                panel3.SetActive(false);
                 panel2.SetActive(true);
+
+            }
+            else//如果物品栏第一页满了
+            {
+                a.transform.SetParent(panel3.transform);
+                a.transform.localScale = new Vector3(1, 1, 1);
+                panel1.SetActive(false);
+                panel2.SetActive(false);
+                panel3.SetActive(true);
             }
         }
-
-        StaticClass.isPlayerMove = false;
-        StaticClass.isItemClick = false;
     }
 }

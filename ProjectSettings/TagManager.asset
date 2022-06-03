@@ -17,6 +17,7 @@ TagManager:
   - heartbookPanel
   - mimahe
   - itemblackpanel
+  - panel3
   layers:
   - Default
   - TransparentFX

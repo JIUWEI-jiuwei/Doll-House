@@ -37,6 +37,7 @@ static class ItemText
     public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
     public static string rawmeat = "生肉";
     public static string cattuoye = "狞猫的唾液";
+    public static string note1_b = "纸条上出现了发黄的字迹，看着像数字2";
 
 
     public static string lip01 = "口红";
@@ -59,6 +60,8 @@ static class ItemText
     public static string rawmeat01 = "生肉";
     public static string cattuoye01 = "狞猫的唾液";
     public static string boiledmeat01 = "烧焦的肉";
+    public static string note1_b01 = "梳妆台上的纸条";
+
 
     public static string ShowTextByItemName(string itemName)
     {
@@ -69,6 +72,7 @@ static class ItemText
         if (itemName == "ribbon") return ribbon;
         if (itemName == "bottle") return bottle;
         if (itemName == "note1") return note1;
+        if (itemName == "note1_b") return note1;
         if (itemName == "note2") return note2;
         if (itemName == "note3") return note3;
         if (itemName == "yumao") return yumao;
@@ -104,6 +108,7 @@ static class ItemText
         if (itemName == "rawmeat01") return rawmeat01;
         if (itemName == "cattuoye01") return cattuoye01;
         if (itemName == "boiledmeat01") return boiledmeat01;
+        if (itemName == "note1_b01") return note1_b01;
 
         return itemName;
     }

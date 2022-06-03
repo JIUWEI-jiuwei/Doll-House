@@ -60,9 +60,8 @@ class HeartBox : MonoBehaviour
             if (isFirst)//第一次点击
             {
                 heartVideo.Play();
-                //获得项链
-                GameObject a = Instantiate(itemImage);
-                a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("ribbon");
+                //获得丝带
+                ItemPanelClick.ChangeItemPanel("ribbon");
                 Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
                 isFirst = false;
             }
@@ -96,22 +95,7 @@ class HeartBox : MonoBehaviour
                     //密码盒不可再交互
                     GetComponent<Button>().interactable = false;
                     //获得项链
-                    GameObject a = Instantiate(itemImage);
-                    a.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("necklace");
-                    //如果物品栏第一页未满
-                    if (ItemPanelClick.panel1.transform.childCount <= 5)
-                    {
-                        a.transform.SetParent(ItemPanelClick.panel1.transform);
-                        a.transform.localScale = new Vector3(1, 1, 1);
-
-                    }
-                    else//如果物品栏第一页满了
-                    {
-                        a.transform.SetParent(ItemPanelClick.panel2.transform);
-                        a.transform.localScale = new Vector3(1, 1, 1);
-                        ItemPanelClick.panel1.SetActive(false);
-                        ItemPanelClick.panel2.SetActive(true);
-                    }
+                    ItemPanelClick.ChangeItemPanel("necklace");
                 }
             }
         }

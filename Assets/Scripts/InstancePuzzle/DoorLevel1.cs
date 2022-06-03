@@ -67,7 +67,7 @@ class DoorLevel1 : MonoBehaviour
     /// </summary>
     private void SwapSprite()
     {
-        this.GetComponent<Image>().sprite = Resources.Load<Sprite>("黑色的门");
+        this.GetComponent<Image>().sprite = Resources.Load<Sprite>("door");
         spriteStatus.highlightedSprite = Resources.Load<Sprite>("黑色的门");
         spriteStatus.pressedSprite = Resources.Load<Sprite>("黑色的门");
         spriteStatus.selectedSprite = Resources.Load<Sprite>("黑色的门");
