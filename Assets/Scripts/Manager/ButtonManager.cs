@@ -23,6 +23,8 @@ class ButtonManager : MonoBehaviour
     public static GameObject note2;
     public static GameObject yumao;
     public static bool isGetRawMeat = false;
+    private int diaryNum = 0;
+         
 
     private void Start()
     {
@@ -90,12 +92,20 @@ class ButtonManager : MonoBehaviour
     /// </summary>
     public void Diary()
     {
-        diaryPanel.SetActive(true);
-        StaticClass.isPlayerMove = false;
+        diaryNum++;
+        if (diaryNum % 2 == 0)
+        {
+            blackPanel.SetActive(false);
+            StaticClass.isPlayerMove = true;
+        }
+        else
+        {
+            diaryPanel.SetActive(true);
+            StaticClass.isPlayerMove = false;
+        }               
     }
     public void CloseBlackPanel()
     {
-        blackPanel.SetActive(false);
-        StaticClass.isPlayerMove = true;
+        
     }
 }
