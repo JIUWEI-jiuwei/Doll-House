@@ -62,6 +62,7 @@ class HeartBox : MonoBehaviour
                 heartVideo.Play();
                 //获得丝带
                 ItemPanelClick.ChangeItemPanel("ribbon");
+                ItemPanelClick.ChangeItemPanel("note4");
                 Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
                 isFirst = false;
             }
@@ -81,24 +82,28 @@ class HeartBox : MonoBehaviour
     /// </summary>
     private void OpenBoxWin()
     {
-        if (num1 == 0 && num2 == 8 && num3 == 1 && num4 == 4)
+        if (StaticClass.isHearBoxFirstPlay == false)
         {
-            necklaceVideo.Play();
-            if (necklaceVideo.isPlaying)
+            if (num1 == 0 && num2 == 8 && num3 == 1 && num4 == 4)
             {
-                //判断视频是否播放完成
-                if ((int)necklaceVideo.frame >= (int)necklaceVideo.frameCount - 1)
+                necklaceVideo.Play();
+                if (necklaceVideo.isPlaying)
                 {
-                    necklaceVideo.gameObject.SetActive(false);
-                    mimaPanel0.gameObject.SetActive(false);
-                    StaticClass.isPlayerMove = true;
-                    //密码盒不可再交互
-                    GetComponent<Button>().interactable = false;
-                    //获得项链
-                    ItemPanelClick.ChangeItemPanel("necklace");
+                    //判断视频是否播放完成
+                    if ((int)necklaceVideo.frame >= (int)necklaceVideo.frameCount - 1)
+                    {
+                        necklaceVideo.gameObject.SetActive(false);
+                        mimaPanel0.gameObject.SetActive(false);
+                        StaticClass.isPlayerMove = true;
+                        //密码盒不可再交互
+                        GetComponent<Button>().interactable = false;
+                        //获得项链
+                        ItemPanelClick.ChangeItemPanel("necklace");
+                        StaticClass.isHearBoxFirstPlay = true;
+                    }
                 }
             }
-        }
+        }        
     }
 
     /// <summary>

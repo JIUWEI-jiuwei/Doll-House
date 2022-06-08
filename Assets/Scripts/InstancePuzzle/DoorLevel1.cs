@@ -42,7 +42,7 @@ class DoorLevel1 : MonoBehaviour
             if ((int)doorOpen.frame >= (int)doorOpen.frameCount - 1)
             {
                 doorOpen.gameObject.SetActive(false);
-
+                StaticClass.isPlayerMove = true;
             }
         }
         //点击门按钮的效果

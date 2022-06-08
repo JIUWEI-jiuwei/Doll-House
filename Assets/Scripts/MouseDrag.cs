@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Video;
 
 /// <summary>
 /// 鼠标拖拽物品栏的物品
@@ -12,6 +13,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private Transform freePanel;
     private ItemPanelClick itemPanelClick;
     private VideoClips videoClips;
+    public static VideoPlayer videoPlayer;
 
     private GameObject player;
     public GameObject dialogPrefab;
@@ -30,22 +32,19 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         FindGrid();
         player = GameObject.Find("Player");
         itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();
-        videoClips = GameObject.Find("VideoClips").GetComponent<VideoClips>();
-        dialogPos = player.transform.GetChild(0);
+        videoPlayer = GameObject.Find("VideoClips").GetComponent<VideoPlayer>();
+        if (player != null)
+        {
+            dialogPos = player.transform.GetChild(0);
+        }
     }
     private void FixedUpdate()
     {
-        if (dialog != null)
+        if (dialog != null&&dialogPos!=null)
         {
             dialog.transform.position = dialogPos.position;
         }
-        if (StaticClass.isMoveTarget==2)
-        {
-            Goose.goose.SetBool("closemouth", true);
-            player.SetActive(false);
-            //视频播放完毕，将物体显现
-            Invoke("MediaVideoFinished", 8f);
-        }
+        
     }
     /// <summary>
     /// 开始拖拽
@@ -72,8 +71,12 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             }
         }
         //物品栏下降+物品名字消失+物品介绍消失
-        TextShow.child0.gameObject.SetActive(false);
-        TextShow.text_name.gameObject.SetActive(false);
+        if (TextShow.child0.gameObject != null)
+        {
+            TextShow.child0.gameObject.SetActive(false);
+            TextShow.text_name.gameObject.SetActive(false);
+        }
+        
 
         if (eventData.pointerCurrentRaycast.gameObject != null)
         {
@@ -98,27 +101,26 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         BackToItemPanel();
         this.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        TextShow.text_name.gameObject.SetActive(true);
+        if (TextShow.text_name.gameObject != null)
+        {
+            TextShow.text_name.gameObject.SetActive(true);
+        }
         //判断鼠标拖拽的物体和鼠标松开的物体
         if (this.GetComponent<Image>().sprite.name == "ribbon" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//丝带+鹅身上
-            //播放绑嘴动画
+            //控制变量=1，角色移动
             StaticClass.isMoveTarget = 1;
-            Destroy(this.gameObject);
-            
-            
+            //Destroy(this.gameObject);
+                        
         }
         else if (this.GetComponent<Image>().sprite.name == "xisheng" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//细绳+鹅
             //如果鹅嘴已被绑
             if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("Mouseidle"))
             {
-                //播放绑腿动画                
-                Goose.goose.SetBool("closelegs", true);
-                player.SetActive(false);
-
-                //视频播放完毕，将物体显现
-                Invoke("MediaVideoFinished2", 8f);
+                //控制变量=1，角色移动
+                StaticClass.isMoveTarget2 = 1;
+                Destroy(this.gameObject);               
             }
             else
             {
@@ -137,13 +139,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //蜡烛+生肉=》熟肉
         else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "rawmeat")
         {
-            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            //Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("meatshu");
         }
         //蜡烛+生肉=》熟肉2 
         else if (this.GetComponent<Image>().sprite.name == "rawmeat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
             ItemPanelClick.ChangeItemPanel("meatshu");
         }
         //熟肉+猫=》唾液
@@ -257,7 +259,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     /// <summary>
     /// 视频播放完毕，将物体显现
     /// </summary>
-    private void MediaVideoFinished()
+    /*private void MediaVideoFinished()
     {
         player.SetActive(true);
         paiting.SetActive(true);
@@ -268,7 +270,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         player.SetActive(true);
 
         ButtonManager.yumao.SetActive(true);
-    }
+    }*/
 
     /// <summary>
     /// 将物品位置与物品栏位置相匹配

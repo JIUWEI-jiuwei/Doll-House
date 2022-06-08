@@ -13,5 +13,5 @@ EditorBuildSettings:
     guid: 3e9c6771462535144a7dc23ceb26ff21
   - enabled: 1
     path: Assets/Scenes/DollLayer2.unity
-    guid: f2360b17b4d93354c98083cc4712692c
+    guid: fdebcd492e564264c897864fb24ebe87
   m_configObjects: {}

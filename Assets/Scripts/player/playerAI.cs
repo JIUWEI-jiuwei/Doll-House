@@ -44,10 +44,6 @@ class playerAI : MonoBehaviour
         //将鼠标位置设定为target
         target.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, mouseZ); ;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
-        {
-            //Debug.Log(hit.collider.name);
-        }
         if (agent.isOnNavMesh)
         {
             //开始走路
@@ -64,23 +60,25 @@ class playerAI : MonoBehaviour
                         if (ButtonManager.isGetRawMeat)
                         {
                             if (Vector3.Distance(rawmeatPos.position, this.transform.position) <= 1.5)
-                            {
+                            {//到达指定地点
                                 player.gameObject.SetActive(false);
                                 rawmeatAnim.gameObject.SetActive(true);
                             }
                             if (rawmeatAnim.GetCurrentAnimatorStateInfo(0).IsName("climbstop"))
-                            {
+                            {//到达顶端
                                 Destroy(hit.collider.gameObject);
                                 ItemPanelClick.ChangeItemPanel(hit.collider.gameObject.name);
 
                                 rawmeatAnim.SetBool("reverse", true);
+                                //到达底端的函数
+                                Invoke("ArriveDown", 4f);
                             }
-                            if (rawmeatAnim.GetCurrentAnimatorStateInfo(0).IsName("reversestop"))
-                            {
-                                player.gameObject.SetActive(true);
-                                rawmeatAnim.gameObject.SetActive(false);
-                            }
+
                         }
+                    }
+                    else if (hit.collider.gameObject.name == "cat")
+                    {
+                        agent.SetDestination(target.position);
                     }
                 }
                 else
@@ -96,7 +94,7 @@ class playerAI : MonoBehaviour
                 {
                     Flip();
                 }
-                else if(target.position.x < this.gameObject.transform.position.x && !m_FacingRight)
+                else if (target.position.x < this.gameObject.transform.position.x && !m_FacingRight)
                 {
                     Flip();
                 }
@@ -110,25 +108,91 @@ class playerAI : MonoBehaviour
                 player.SetBool("backidle", true);
                 StaticClass.isFinishedMove = true;
             }
-            else if (Vector3.Distance(target.position, this.transform.position) >= distance+2)
+            else if (Vector3.Distance(target.position, this.transform.position) >= distance + 2)
             {
 
                 StaticClass.isFinishedMove = false;
             }
         }
 
-
-        //与鹅交互，角色先走过去
-        if (StaticClass.isMoveTarget==1)
+        GooseAndRibbon();
+        GooseAndXisheng();
+    }
+    /// <summary>
+    /// 细绳与鹅交互
+    /// </summary>
+    private void GooseAndXisheng()
+    {
+        //细绳与鹅交互，角色先走过去
+        if (StaticClass.isMoveTarget2 == 1)
         {
             agent.SetDestination(goosePos.position);
-            if(Vector3.Distance(goosePos.position, this.transform.position) <= distance)
+            if (Vector3.Distance(goosePos.position, this.transform.position) <= 2)
             {
-                StaticClass.isMoveTarget = 2;
-            }            
+                MouseDrag.videoPlayer.clip = MouseDrag.videoPlayer.gameObject.GetComponent<VideoClips>().videoClips[1];
+                MouseDrag.videoPlayer.Play();
+                Goose.goose.SetBool("closelegs", true);
+                StaticClass.isPlayerMove = false;
+                StaticClass.isMoveTarget2 = 2;//防止多次循环播放
+            }
         }
-
+        //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
+        if (MouseDrag.videoPlayer != null)
+        {
+            if (MouseDrag.videoPlayer.isPlaying)
+            {
+                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 1)
+                {
+                    MouseDrag.videoPlayer.Stop();
+                    ButtonManager.yumao.SetActive(true);
+                    StaticClass.isPlayerMove = true;
+                }
+            }
+        }
     }
+
+    /// <summary>
+    /// 丝带与鹅交互
+    /// </summary>
+    private void GooseAndRibbon()
+    {
+        //丝带与鹅交互，角色先走过去
+        if (StaticClass.isMoveTarget == 1)
+        {
+            agent.SetDestination(goosePos.position);
+            if (Vector3.Distance(goosePos.position, this.transform.position) <= 2)
+            {
+                MouseDrag.videoPlayer.Play();
+                Goose.goose.SetBool("closemouth", true);
+                StaticClass.isPlayerMove = false;
+                StaticClass.isMoveTarget = 2;//防止多次循环播放
+            }
+        }
+        //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
+        if (MouseDrag.videoPlayer != null)
+        {
+            if (MouseDrag.videoPlayer.isPlaying)
+            {
+                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 1)
+                {
+                    MouseDrag.videoPlayer.Stop();
+                    ButtonManager.note2.SetActive(true);
+                    StaticClass.isPlayerMove = true;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 到达底端
+    /// </summary>
+    private void ArriveDown()
+    {
+        Flip();
+        player.gameObject.SetActive(true);
+        rawmeatAnim.gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// 翻转图像
     /// </summary>

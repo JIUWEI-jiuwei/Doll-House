@@ -12,7 +12,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public static GameObject panel1;
     public static GameObject panel2;
     public static GameObject panel3;
-    
+
 
     public static GameObject panelStd;
     public static GameObject blackpanel;
@@ -58,7 +58,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         itemPanel.itemPanelAnim.SetBool("up", true);
         StaticClass.isPlayerMove = false;
     }
-    
+
     public void CloseAllPanels(int num)
     {
         panel1.SetActive(false);
@@ -74,34 +74,16 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     {
         blackpanel.SetActive(false);
     }
-    public void Invokeblopen()
-    {
-        Invoke("blackPanelOpen", timer);
-    }
-    public void Invokebjclose()
-    {
-        Invoke("blackPanelClose", timer);
-    }
 
     /// <summary>
     /// 点击交互按钮（需要挂载在按钮身上
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
-    {       
-        if (StaticClass.isFinishedMove&&eventData.pointerPress.gameObject.layer==6)
+    {
+        if (StaticClass.isFinishedMove && eventData.pointerPress.gameObject.layer == 6)
         {
-            if (eventData.pointerPress.name == "rawmeat")
-            {
-                if (ButtonManager.isGetRawMeat)
-                {
-                    //ButtonDown(eventData.pointerPress);
-                }               
-            }
-            else
-            {
-                ButtonDown(eventData.pointerPress);
-            }
+            ButtonDown(eventData.pointerPress);
         }
     }
     /// <summary>

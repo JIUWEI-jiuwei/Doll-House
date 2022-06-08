@@ -17,6 +17,7 @@ using UnityEngine;
     public static bool isHeartBoxClick = false;
     public static int isMoveTarget = 0;
     public static int isMoveTarget2 = 0;
-
+    public static bool isClimb = false;
+    public static bool isHearBoxFirstPlay = false;
 
 }

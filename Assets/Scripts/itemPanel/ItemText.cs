@@ -9,8 +9,8 @@ static class ItemText
 {
     public static string lip = "由崔斯特王子为婚礼精心挑选，优雅的正红色。";
     public static string candle = "有火了";
-    public static string necklace = "资本洗涤过的卑微元素，若隐若现的真情实感";
-    public static string xisheng = "项链上的细绳";
+    public static string necklace = "若隐若现的真情实感";
+    public static string xisheng = "从项链上剪下来的细绳";
     public static string ribbon = "矫饰之物，但或许能派上新的用场";
     public static string yandou = "有了烟斗，怎么能少了烟草呢？";
     public static string scissor = "一把普普通通的剪刀";
@@ -35,8 +35,9 @@ static class ItemText
     public static string note1 = "空白的纸条，但是有一股牛奶味";
     public static string note2 = "纸条上只写着一个数字5";
     public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
-    public static string rawmeat = "生肉";
-    public static string cattuoye = "狞猫的唾液";
+    public static string note4 = "新婚快乐，我的艾尔公主！谨奉盒中之礼以表我心意。对了，密码是你的生日。";
+    public static string rawmeat = "总会引起各种各样的贪婪念头";
+    public static string cattuoye = "……说不定有点用呢？";
     public static string note1_b = "纸条上出现了发黄的字迹，看着像数字2";
 
 
@@ -52,6 +53,7 @@ static class ItemText
     public static string note101 = "梳妆台上的纸条";
     public static string note201 = "掉落的纸条";
     public static string note301 = "地上的纸条";
+    public static string note401 = "珠宝盒内的纸条";
     public static string yumao01 = "羽毛";
     public static string cattooth01 = "狞猫的断齿";
     public static string tuoyedebeizi01 = "盛唾液的杯子";
@@ -75,6 +77,7 @@ static class ItemText
         if (itemName == "note1_b") return note1;
         if (itemName == "note2") return note2;
         if (itemName == "note3") return note3;
+        if (itemName == "note4") return note4;
         if (itemName == "yumao") return yumao;
         if (itemName == "xisheng") return xisheng;
         if (itemName == "cattooth") return cattooth;
@@ -84,6 +87,7 @@ static class ItemText
         if (itemName == "meatshu") return meatshu;
         if (itemName == "rawmeat") return rawmeat;
         if (itemName == "boiledmeat") return boiledmeat;
+        if (itemName == "necklace") return necklace;
 
 
         return itemName;
@@ -97,8 +101,10 @@ static class ItemText
         if (itemName == "ribbon01") return ribbon01;
         if (itemName == "bottle01") return bottle01;
         if (itemName == "note101") return note101;
+        if (itemName == "note1_b01") return note1_b01;
         if (itemName == "note201") return note201;
         if (itemName == "note301") return note301;
+        if (itemName == "note401") return note401;
         if (itemName == "yumao01") return yumao01;
         if (itemName == "xisheng01") return xisheng01;
         if (itemName == "cattooth01") return cattooth01;
@@ -108,7 +114,7 @@ static class ItemText
         if (itemName == "rawmeat01") return rawmeat01;
         if (itemName == "cattuoye01") return cattuoye01;
         if (itemName == "boiledmeat01") return boiledmeat01;
-        if (itemName == "note1_b01") return note1_b01;
+        if (itemName == "necklace01") return necklace01;
 
         return itemName;
     }
