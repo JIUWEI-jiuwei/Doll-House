@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 鼠标拖拽物品栏的物品
@@ -26,13 +27,16 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
 
     private void Start()
     {
-        freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;
-        paiting = GameObject.Find("nonAnim").transform.GetChild(0).gameObject;
+        if (SceneManager.GetActiveScene().name == "DollLayer1")
+        {
+            paiting = GameObject.Find("nonAnim").transform.GetChild(0).gameObject;
+            videoPlayer = GameObject.Find("VideoClips").GetComponent<VideoPlayer>();
+        }
+        freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;       
         rectTrans = GetComponent<RectTransform>();
         FindGrid();
         player = GameObject.Find("Player");
-        itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();
-        videoPlayer = GameObject.Find("VideoClips").GetComponent<VideoPlayer>();
+        itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();        
         if (player != null)
         {
             dialogPos = player.transform.GetChild(0);
@@ -44,7 +48,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             dialog.transform.position = dialogPos.position;
         }
-        
+        if (StaticClass.one && StaticClass.two && StaticClass.three && StaticClass.four)
+        {
+            //播放盒子开启动画，盒子开启，拿取钥匙
+
+        }
     }
     /// <summary>
     /// 开始拖拽
@@ -105,6 +113,8 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             TextShow.text_name.gameObject.SetActive(true);
         }
+
+        #region 第一关的物品拖拽
         //判断鼠标拖拽的物体和鼠标松开的物体
         if (this.GetComponent<Image>().sprite.name == "ribbon" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
         {//丝带+鹅身上
@@ -221,7 +231,45 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //获得丝带
             ItemPanelClick.ChangeItemPanel("note1_b");
         }
+        #endregion
+        
+        #region 第二关物品拖拽
+        //口红+乌龟=》打开panel
+        else if (this.GetComponent<Image>().sprite.name == "lip" && eventData.pointerCurrentRaycast.gameObject.name == "gui")
+        {
+            WuGui.wuGuiPanel.SetActive(true);
+        }
+        //乌龟的壳+盘子1=》吸附
+        else if ((this.GetComponent<Image>().sprite.name == "turtleshell"|| this.GetComponent<Image>().sprite.name == "cattooth"||
+            this.GetComponent<Image>().sprite.name == "lung" || this.GetComponent<Image>().sprite.name == "yumao") && 
+            (eventData.pointerCurrentRaycast.gameObject.name == "plate1"||eventData.pointerCurrentRaycast.gameObject.name == "plate2"||
+            eventData.pointerCurrentRaycast.gameObject.name == "plate3" || eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
+        {
+            this.gameObject.transform.SetParent(JiTai.jitaiPanel.transform);
+            this.gameObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
 
+            if(this.GetComponent<Image>().sprite.name == "yumao"&& eventData.pointerCurrentRaycast.gameObject.name == "plate1")
+            {
+                StaticClass.one = true;
+            }
+            else if(this.GetComponent<Image>().sprite.name == "lung"&& eventData.pointerCurrentRaycast.gameObject.name == "plate2")
+            {
+                StaticClass.two = true;
+            }
+            else if(this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
+            {
+                StaticClass.three= true;
+            }
+            else if(this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
+            {
+                StaticClass.four = true;
+            }
+
+        }
+
+
+
+        #endregion
         else
         {
             //物品栏回归并且物品名字出现
@@ -229,6 +277,9 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             ItemPanelClick.blackPanelOpen();
 
         }
+        
+
+
     }
 
     private void DestroyDialog()

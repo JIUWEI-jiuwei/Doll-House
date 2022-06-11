@@ -12,12 +12,31 @@ using UnityEngine;
     public static bool isPlayerMove = true;
     /// <summary>ÅÐ¶Ï½ÇÉ«ÊÇ·ñÍê³ÉÒÆ¶¯</summary>
     public static bool isFinishedMove = false;
+    /// <summary>ÅÐ¶Ïµã»÷ÃÅ°´Å¥</summary>
     public static bool isDoorClick = false;
+    /// <summary>ÅÐ¶Ï</summary>
     public static bool isItemClick = false;
+    /// <summary>ÅÐ¶Ïµã»÷ÃÜÂëºÐ°´Å¥</summary>
     public static bool isHeartBoxClick = false;
     public static int isMoveTarget = 0;
     public static int isMoveTarget2 = 0;
     public static bool isClimb = false;
     public static bool isHearBoxFirstPlay = false;
+
+    //µÚ¶þ¹Ø
+    /// <summary>ÅÐ¶Ïµã»÷ÎÚ¹ê°´Å¥</summary>
+    public static int isGuiClickNum = 0;
+    public static bool isGuiClick = false;
+    public static bool isGuiWin = false;
+
+    /// <summary>ÅÐ¶Ïµã»÷¼ÀÌ¨°´Å¥</summary>
+    public static bool isJiTaiClick = false;
+    /// <summary>ÅÐ¶Ïµã»÷»¨Åè°´Å¥</summary>
+    public static bool isFlowerPotClick = false;
+
+    public static bool one = false;
+    public static bool two = false;
+    public static bool three = false;
+    public static bool four = false;
 
 }

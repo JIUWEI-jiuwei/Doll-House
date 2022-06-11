@@ -14,23 +14,23 @@ static class ItemText
     public static string ribbon = "矫饰之物，但或许能派上新的用场";
     public static string yandou = "有了烟斗，怎么能少了烟草呢？";
     public static string scissor = "一把普普通通的剪刀";
-    public static string zhongzi = "普通的种子，不过有些似曾相识";
-    public static string shengrou = "总会引起各种各样的贪婪念头";
+    public static string seed = "普通的种子，不过有些似曾相识";
     public static string meatshu = "恰到好处的火候，垂涎欲滴的美味";
     public static string boiledmeat = "又黑又硬，牙齿的灾难";
     public static string cup = "做工精良，但依然只能盛液体";
+
     public static string shuidebeizi = "只是……水？";
     public static string tuoyedebeizi = "……说不定有点用呢？";
     public static string yancao = "弱碱性环境下的作物";
     public static string yan = "伤害与宽慰并存";
     public static string ducao = "种子在强酸性环境下的作物";
     public static string duyao = "纯粹的伤害";
-    public static string mimazhitiao = "上面写着一个奇怪的数字";
     public static string yumao = "干净得不落一粒灰尘，轻盈得让人怜惜";
     public static string cattooth = "为贪欲而付出的代价";
-    public static string hamadefei = "发黑的肺，见证了多少年的忧愁";
-    public static string wuguideke = "身世与荣耀的象征，不过，是假的";
+    public static string lung = "发黑的肺，见证了多少年的忧愁";
+    public static string turtleshell = "身世与荣耀的象征，不过，是假的";
     public static string yaoshi = "逃吧";
+
     public static string bottle = "很沉，说明里面装着不少水";
     public static string note1 = "空白的纸条，但是有一股牛奶味";
     public static string note2 = "纸条上只写着一个数字5";
@@ -39,14 +39,14 @@ static class ItemText
     public static string rawmeat = "总会引起各种各样的贪婪念头";
     public static string cattuoye = "……说不定有点用呢？";
     public static string note1_b = "纸条上出现了发黄的字迹，看着像数字2";
+    public static string zacao = "浪费了一粒种子";
 
-
+    //第一关
     public static string lip01 = "口红";
     public static string candle01 = "蜡烛";
     public static string necklace01 = "项链";
     public static string xisheng01 = "细绳";
     public static string ribbon01 = "丝带";
-    public static string yandou01 = "烟斗";
     public static string scissor01 = "剪刀";
     public static string cup01 = "杯子";
     public static string bottle01 = "水壶";
@@ -63,6 +63,18 @@ static class ItemText
     public static string cattuoye01 = "狞猫的唾液";
     public static string boiledmeat01 = "烧焦的肉";
     public static string note1_b01 = "梳妆台上的纸条";
+
+    //第二关
+    public static string yandou01 = "烟斗";
+    public static string seed01 = "种子";
+    public static string yancao01 = "烟草";
+    public static string yan01 = "烟";
+    public static string ducao01 = "毒草";
+    public static string duyao01 = "毒药";
+    public static string lung01 = "蛤蟆的肺";
+    public static string turtleshell01 = "乌龟的壳";
+    public static string yaoshi01 = "钥匙";
+    public static string zacao01 = "无用的杂草";
 
 
     public static string ShowTextByItemName(string itemName)
@@ -88,6 +100,17 @@ static class ItemText
         if (itemName == "rawmeat") return rawmeat;
         if (itemName == "boiledmeat") return boiledmeat;
         if (itemName == "necklace") return necklace;
+        
+        if (itemName == "yandou") return yandou;
+        if (itemName == "seed") return seed;
+        if (itemName == "yancao") return yancao;
+        if (itemName == "yan") return yan;
+        if (itemName == "ducao") return ducao;
+        if (itemName == "duyao") return duyao;
+        if (itemName == "lung") return lung;
+        if (itemName == "turtleshell") return turtleshell;
+        if (itemName == "yaoshi") return yaoshi;
+        if (itemName == "zacao") return zacao;
 
 
         return itemName;
@@ -115,6 +138,18 @@ static class ItemText
         if (itemName == "cattuoye01") return cattuoye01;
         if (itemName == "boiledmeat01") return boiledmeat01;
         if (itemName == "necklace01") return necklace01;
+        
+        if (itemName == "yandou01") return yandou01;
+        if (itemName == "seed01") return seed01;
+        if (itemName == "yancao01") return yancao01;
+        if (itemName == "yan01") return yan01;
+        if (itemName == "ducao01") return ducao01;
+        if (itemName == "duyao01") return duyao01;
+        if (itemName == "lung01") return lung01;
+        if (itemName == "turtleshell01") return turtleshell01;
+        if (itemName == "yaoshi01") return yaoshi01;
+        if (itemName == "zacao01") return zacao01;
+
 
         return itemName;
     }

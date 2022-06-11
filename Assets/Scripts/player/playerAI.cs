@@ -36,7 +36,6 @@ class playerAI : MonoBehaviour
         /// <summary>获取真正的角色的动画</summary>
         player = this.transform.GetChild(0).GetComponent<Animator>();
         StaticClass.isFinishedMove = false;
-        //rawmeatAnim.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -109,10 +108,10 @@ class playerAI : MonoBehaviour
                 StaticClass.isFinishedMove = true;
             }
             else if (Vector3.Distance(target.position, this.transform.position) >= distance + 2)
-            {
-
+            {               
                 StaticClass.isFinishedMove = false;
             }
+           
         }
 
         GooseAndRibbon();

@@ -18,9 +18,11 @@ class PanelManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CloseAllPanels(panels1,num);
-        CloseAllPanels(itemPanels,itemNum);
-
+        if (panels1 != null)
+        {
+            CloseAllPanels(panels1, num);
+            CloseAllPanels(itemPanels, itemNum);
+        }
     }
     /// <summary>
     /// 打开第一个panel

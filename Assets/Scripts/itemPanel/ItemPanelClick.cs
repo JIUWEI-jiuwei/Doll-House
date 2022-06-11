@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 ///<summary>
 ///物品栏点击交互
@@ -25,21 +26,28 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
-        panel = GameObject.FindGameObjectWithTag("panel");
-        panel1 = GameObject.FindGameObjectWithTag("panel1");
-        panel2 = GameObject.FindGameObjectWithTag("panel2");
-        panel3 = GameObject.FindGameObjectWithTag("panel3");
-
-        panelStd = GameObject.FindGameObjectWithTag("panelStd");
         blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
-        s_item = itemImage;
+
+        if (SceneManager.GetActiveScene().name== "DollLayer1")
+        {
+            //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
+            panel = GameObject.FindGameObjectWithTag("panel");
+            panel1 = GameObject.FindGameObjectWithTag("panel1");
+            panel2 = GameObject.FindGameObjectWithTag("panel2");
+            panel3 = GameObject.FindGameObjectWithTag("panel3");
+
+            panelStd = GameObject.FindGameObjectWithTag("panelStd");
+            s_item = itemImage;
+        }      
     }
     private void Start()
     {
-        panel2.SetActive(false);
-        panel3.SetActive(false);
-        itemPanel = panel.GetComponent<itemPanel>();
+        if (SceneManager.GetActiveScene().name == "DollLayer1")
+        {
+            panel2.SetActive(false);
+            panel3.SetActive(false);
+            itemPanel = panel.GetComponent<itemPanel>();
+        }           
         blackpanel.SetActive(false);
     }
     /// <summary>
@@ -84,6 +92,16 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         if (StaticClass.isFinishedMove && eventData.pointerPress.gameObject.layer == 6)
         {
             ButtonDown(eventData.pointerPress);
+        }
+        else if (StaticClass.isFinishedMove && eventData.pointerPress.name=="seed")
+        {
+            itemPanel.itemPanelAnim.SetBool("up", true);
+            blackPanelOpen();
+
+            ChangeItemPanel(eventData.pointerPress.name);
+
+            StaticClass.isPlayerMove = false;
+            StaticClass.isItemClick = false;
         }
     }
     /// <summary>

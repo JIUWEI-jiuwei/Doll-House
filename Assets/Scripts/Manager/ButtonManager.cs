@@ -16,14 +16,11 @@ class ButtonManager : MonoBehaviour
     private Animator rightCase1;
     private Animator rightCase2;
     private Animator rightCase3;
-
-    private GameObject diaryPanel;
     private GameObject blackPanel;
 
     public static GameObject note2;
     public static GameObject yumao;
     public static bool isGetRawMeat = false;
-    private int diaryNum = 0;
          
 
     private void Start()
@@ -32,8 +29,6 @@ class ButtonManager : MonoBehaviour
         rightCase1 = GameObject.FindGameObjectWithTag("CT1").GetComponent<Animator>();
         rightCase2 = GameObject.FindGameObjectWithTag("CT2").GetComponent<Animator>();
         rightCase3 = GameObject.FindGameObjectWithTag("CT3").GetComponent<Animator>();
-
-        diaryPanel = GameObject.Find("diary").transform.GetChild(0).gameObject;
 
         yumao = GameObject.Find("yumao");
         yumao.SetActive(false);
@@ -87,23 +82,7 @@ class ButtonManager : MonoBehaviour
         numTre3++;
         rightCase3.SetInteger("CT3INT", numTre3 % 4);
     }
-    /// <summary>
-    /// 日记本按钮
-    /// </summary>
-    public void Diary()
-    {
-        diaryNum++;
-        if (diaryNum % 2 == 0)
-        {
-            blackPanel.SetActive(false);
-            StaticClass.isPlayerMove = true;
-        }
-        else
-        {
-            diaryPanel.SetActive(true);
-            StaticClass.isPlayerMove = false;
-        }               
-    }
+    
     public void CloseBlackPanel()
     {
         
