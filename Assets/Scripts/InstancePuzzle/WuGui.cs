@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
-///
+///ÎÚ¹ê
 ///</summary>
 class WuGui : MonoBehaviour
 {

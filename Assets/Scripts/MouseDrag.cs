@@ -25,6 +25,9 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private Transform dialogPos;
     private GameObject paiting;
 
+    public GameObject jitaiItemPrefab;
+    public GameObject seedPrefab;
+
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "DollLayer1")
@@ -48,11 +51,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             dialog.transform.position = dialogPos.position;
         }
-        if (StaticClass.one && StaticClass.two && StaticClass.three && StaticClass.four)
-        {
-            //播放盒子开启动画，盒子开启，拿取钥匙
-
-        }
+       
     }
     /// <summary>
     /// 开始拖拽
@@ -79,7 +78,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             }
         }
         //物品栏下降+物品名字消失+物品介绍消失
-        if (TextShow.child0.gameObject != null)
+        if (TextShow.child0 != null)
         {
             TextShow.child0.gameObject.SetActive(false);
             TextShow.text_name.gameObject.SetActive(false);
@@ -109,7 +108,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         BackToItemPanel();
         this.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        if (TextShow.text_name.gameObject != null)
+        if (TextShow.text_name != null)
         {
             TextShow.text_name.gameObject.SetActive(true);
         }
@@ -231,40 +230,144 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //获得丝带
             ItemPanelClick.ChangeItemPanel("note1_b");
         }
+        //杯子+水壶=》水杯
+        else if (this.GetComponent<Image>().sprite.name == "cup" && eventData.pointerCurrentRaycast.gameObject.name == "bottle")
+        {
+            ItemPanelClick.ChangeItemPanel("shuidebeizi");
+        }
+
         #endregion
-        
+
         #region 第二关物品拖拽
         //口红+乌龟=》打开panel
         else if (this.GetComponent<Image>().sprite.name == "lip" && eventData.pointerCurrentRaycast.gameObject.name == "gui")
         {
             WuGui.wuGuiPanel.SetActive(true);
         }
+        //种植种子
+        else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "red")
+        {
+            Destroy(this.gameObject);
+            GameObject s = Instantiate(seedPrefab);
+            s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+        }
+        else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "yellow")
+        {
+            Destroy(this.gameObject);
+            GameObject s = Instantiate(seedPrefab);
+            s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+        }
+        else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "green")
+        {
+            Destroy(this.gameObject);
+            GameObject s = Instantiate(seedPrefab);
+            s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+        }
+        else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "purple")
+        {
+            Destroy(this.gameObject);
+            GameObject s = Instantiate(seedPrefab);
+            s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+        }
+        //烟斗+烟草=》烟
+        else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yandou")
+        {
+            Destroy(this.gameObject);
+            ItemPanelClick.ChangeItemPanel("yan");
+        }
+        //烟斗+烟草=》烟
+        else if (this.GetComponent<Image>().sprite.name == "yandou" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yancao")
+        {
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            ItemPanelClick.ChangeItemPanel("yan");
+        }
+         //毒草+水杯=》毒药
+        else if (this.GetComponent<Image>().sprite.name == "ducao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "shuidebeizi")
+        {
+            Destroy(this.gameObject);
+            ItemPanelClick.ChangeItemPanel("duyao");
+        }
+        //毒草+水杯=》毒药
+        else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "ducao")
+        {
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            ItemPanelClick.ChangeItemPanel("duyao");
+        }
+         //毒药+蛤蟆=》蛤蟆的肺
+        else if (this.GetComponent<Image>().sprite.name == "duyao" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
+        {
+            Destroy(this.gameObject);
+            ItemPanelClick.ChangeItemPanel("lung");
+        }
+        //水杯+蛤蟆=》
+        else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
+        {
+            Destroy(this.gameObject);
+            ItemPanelClick.ChangeItemPanel("lung");
+        }
+        //盛唾液的杯子+种子=》浇灌
+        else if (this.GetComponent<Image>().sprite.name == "tuoyedebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
+        {
+            eventData.pointerCurrentRaycast.gameObject.GetComponent<Animator>().SetBool("grow", true);
+            eventData.pointerCurrentRaycast.gameObject.GetComponent<Seed>().isTuoYe = true;
+        }
+        //盛水的杯子+种子=》浇灌
+        else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
+        {
+            eventData.pointerCurrentRaycast.gameObject.GetComponent<Animator>().SetBool("grow", true);
+            eventData.pointerCurrentRaycast.gameObject.GetComponent<Seed>().isWater= true;
+        }
+        //烟草+烟斗=》有烟草的烟斗
+        else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.name == "yandou")
+        {
+            
+        }
+        //烟草+烟斗=》有烟草的烟斗
+        else if (this.GetComponent<Image>().sprite.name == "yandou" && eventData.pointerCurrentRaycast.gameObject.name == "yancao")
+        {
+            
+        }
+
+
+
         //乌龟的壳+盘子1=》吸附
         else if ((this.GetComponent<Image>().sprite.name == "turtleshell"|| this.GetComponent<Image>().sprite.name == "cattooth"||
             this.GetComponent<Image>().sprite.name == "lung" || this.GetComponent<Image>().sprite.name == "yumao") && 
             (eventData.pointerCurrentRaycast.gameObject.name == "plate1"||eventData.pointerCurrentRaycast.gameObject.name == "plate2"||
             eventData.pointerCurrentRaycast.gameObject.name == "plate3" || eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
         {
-            this.gameObject.transform.SetParent(JiTai.jitaiPanel.transform);
-            this.gameObject.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
-
-            if(this.GetComponent<Image>().sprite.name == "yumao"&& eventData.pointerCurrentRaycast.gameObject.name == "plate1")
+            if (this.GetComponent<Image>().sprite.name == "yumao" && eventData.pointerCurrentRaycast.gameObject.name == "plate1")
             {
                 StaticClass.one = true;
+                Debug.Log("yumao");
             }
-            else if(this.GetComponent<Image>().sprite.name == "lung"&& eventData.pointerCurrentRaycast.gameObject.name == "plate2")
+            else if (this.GetComponent<Image>().sprite.name == "lung" && eventData.pointerCurrentRaycast.gameObject.name == "plate2")
             {
                 StaticClass.two = true;
             }
-            else if(this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
+            else if (this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
             {
-                StaticClass.three= true;
+                StaticClass.three = true;
             }
-            else if(this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
+            else if (this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
             {
                 StaticClass.four = true;
             }
-
+            Destroy(this.gameObject);
+            GameObject a = Instantiate(jitaiItemPrefab);
+            a.GetComponent<Image>().sprite = Resources.Load<Sprite>(this.GetComponent<Image>().sprite.name + "00");
+            a.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+            //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
+            a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
         }
 
 
@@ -275,11 +378,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //物品栏回归并且物品名字出现
             ItemPanelClick.ItemPanelKing();
             ItemPanelClick.blackPanelOpen();
-
         }
-        
-
-
     }
 
     private void DestroyDialog()

@@ -7216,6 +7216,8 @@ MonoBehaviour:
   itemImage: {fileID: 0}
   timer: 0
   resTime: 2
+  jitaiItemPrefab: {fileID: 0}
+  seedPrefab: {fileID: 0}
 --- !u!1 &1010172773
 GameObject:
   m_ObjectHideFlags: 0
@@ -11478,7 +11480,6 @@ GameObject:
   - component: {fileID: 1858622057}
   - component: {fileID: 1858622056}
   - component: {fileID: 1858622055}
-  - component: {fileID: 1858622054}
   m_Layer: 6
   m_Name: bottle
   m_TagString: Untagged
@@ -11505,20 +11506,6 @@ RectTransform:
   m_AnchoredPosition: {x: 127, y: -163.99857}
   m_SizeDelta: {x: 145, y: 169}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1858622054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858622052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56a43627eee5f014d9a16f6cde819594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemImage: {fileID: 4456219141865391425, guid: 1b549dba952545c47aaa8d4ab3a6e3bd, type: 3}
-  timer: 0.2
 --- !u!114 &1858622055
 MonoBehaviour:
   m_ObjectHideFlags: 0

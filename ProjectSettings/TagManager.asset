@@ -18,6 +18,7 @@ TagManager:
   - mimahe
   - itemblackpanel
   - panel3
+  - video
   layers:
   - Default
   - TransparentFX

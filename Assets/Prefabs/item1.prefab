@@ -305,6 +305,8 @@ MonoBehaviour:
   itemImage: {fileID: 4456219141865391425, guid: 1b549dba952545c47aaa8d4ab3a6e3bd, type: 3}
   timer: 0
   resTime: 2
+  jitaiItemPrefab: {fileID: 4490984714309752072, guid: c787c63ff015d5141b7a911010f32322, type: 3}
+  seedPrefab: {fileID: 5281135910737283818, guid: fcc36956c56df334298a941398d39b7e, type: 3}
 --- !u!225 &-2556939657659298082
 CanvasGroup:
   m_ObjectHideFlags: 0
