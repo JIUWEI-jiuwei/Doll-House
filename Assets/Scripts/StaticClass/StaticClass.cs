@@ -33,6 +33,10 @@ using UnityEngine;
     public static bool isJiTaiClick = false;
     /// <summary>判断点击花盆按钮</summary>
     public static bool isFlowerPotClick = false;
+    /// <summary>判断点击蛤蟆按钮</summary>
+    public static bool isHamaClick = false;
+    /// <summary>判断蛤蟆是想喝水还是抽烟</summary>
+    public static bool isHamaDrinking = false;
 
     public static bool one = false;
     public static bool two = false;

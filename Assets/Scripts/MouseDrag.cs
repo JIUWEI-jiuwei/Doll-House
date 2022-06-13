@@ -304,14 +304,25 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
          //¶¾Ò©+¸òó¡=¡·¸òó¡µÄ·Î
         else if (this.GetComponent<Image>().sprite.name == "duyao" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
-            Destroy(this.gameObject);
-            ItemPanelClick.ChangeItemPanel("lung");
+            if (StaticClass.isHamaDrinking)
+            {//ËÀÍö¾²Ö¡+µã»÷ËÀÍö¾²Ö¡µÃµ½£º¼ôµ¶¾²Ö¡+·Î
+                //ItemPanelClick.ChangeItemPanel("lung");
+                Hama.hama.SetBool("death", true);
+            }            
         }
-        //Ë®±­+¸òó¡=¡·
+        //Ë®±­+¸òó¡=¡·²¥·ÅËµ»°¶¯»­+ÎÄ±¾¿òÌáÊ¾³éÑÌ
         else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
-            Destroy(this.gameObject);
-            ItemPanelClick.ChangeItemPanel("lung");
+            Hama.hama.SetBool("hamatalk", true);
+            Hama.hamaDialog0.SetActive(true);
+            StaticClass.isHamaDrinking = false;
+        }
+        //ÑÌ+¸òó¡=¡·²¥·Å³éÑÌ¶¯»­+ÎÄ±¾¿òÌáÊ¾ºÈË®
+        else if (this.GetComponent<Image>().sprite.name == "yan" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
+        {
+            Hama.hama.SetBool("hamasmoke", true);//1.3f
+            Invoke("HamaDialog1", 1.2f);
+            StaticClass.isHamaDrinking = true;
         }
         //Ê¢ÍÙÒºµÄ±­×Ó+ÖÖ×Ó=¡·½½¹à
         else if (this.GetComponent<Image>().sprite.name == "tuoyedebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
@@ -325,15 +336,17 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Animator>().SetBool("grow", true);
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Seed>().isWater= true;
         }
-        //ÑÌ²Ý+ÑÌ¶·=¡·ÓÐÑÌ²ÝµÄÑÌ¶·
-        else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.name == "yandou")
+        //ÑÌ²Ý+ÑÌ¶·=¡·ÑÌ
+        else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yandou")
         {
-            
+            Destroy(this.gameObject);
+            ItemPanelClick.ChangeItemPanel("yan");
         }
-        //ÑÌ²Ý+ÑÌ¶·=¡·ÓÐÑÌ²ÝµÄÑÌ¶·
-        else if (this.GetComponent<Image>().sprite.name == "yandou" && eventData.pointerCurrentRaycast.gameObject.name == "yancao")
+        //ÑÌ²Ý+ÑÌ¶·=¡·ÑÌ
+        else if (this.GetComponent<Image>().sprite.name == "yandou" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yancao")
         {
-            
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            ItemPanelClick.ChangeItemPanel("yan");
         }
 
 
@@ -440,6 +453,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             ItemPanelClick.panel3.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
         }
 
+    }
+    public void HamaDialog1()
+    {
+        Hama.hamaDialog1.SetActive(true);
+        Hama.hama.SetBool("hamasmoke", false);
     }
 }
 
