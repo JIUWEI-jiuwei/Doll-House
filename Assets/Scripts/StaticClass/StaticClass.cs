@@ -37,6 +37,10 @@ using UnityEngine;
     public static bool isHamaClick = false;
     /// <summary>判断蛤蟆是想喝水还是抽烟</summary>
     public static bool isHamaDrinking = false;
+    /// <summary>判断蛤蟆是否喝了毒药</summary>
+    public static bool isHamaDuyao = false;
+    /// <summary>判断开场视频是否播放了</summary>
+    public static bool isStartCG = false;
 
     public static bool one = false;
     public static bool two = false;

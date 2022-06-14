@@ -51,7 +51,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             dialog.transform.position = dialogPos.position;
         }
-       
+        if (MouseDragForJiTai.videoPlayer2.isPlaying && MouseDragForJiTai.videoPlayer2.clip.name == "¼ô¿ª¸òó¡¶Ç×Ó")
+        {
+            if ((int)MouseDragForJiTai.videoPlayer2.frame >= (int)MouseDragForJiTai.videoPlayer2.frameCount - 1)
+            {
+                MouseDragForJiTai.videoPlayer2.Stop();
+            }
+        }
     }
     /// <summary>
     /// ¿ªÊ¼ÍÏ×§
@@ -301,14 +307,25 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("duyao");
         }
-         //¶¾Ò©+¸òó¡=¡·¸òó¡µÄ·Î
+        //¶¾Ò©+¸òó¡=¡·ËÀÍö¾²Ö¡
         else if (this.GetComponent<Image>().sprite.name == "duyao" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
             if (StaticClass.isHamaDrinking)
-            {//ËÀÍö¾²Ö¡+µã»÷ËÀÍö¾²Ö¡µÃµ½£º¼ôµ¶¾²Ö¡+·Î
-                //ItemPanelClick.ChangeItemPanel("lung");
+            {             
                 Hama.hama.SetBool("death", true);
-            }            
+                StaticClass.isHamaDuyao = true;
+            }                   
+        }
+        //¼ôµ¶+¸òó¡=¡·²¥·Å¼ô¶Ç×ÓÊÓÆµµÃµ½£º¼ôµ¶¾²Ö¡+·Î  
+        else if (this.GetComponent<Image>().sprite.name == "scissor" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
+        {
+            if (StaticClass.isHamaDuyao)
+            {
+                MouseDragForJiTai.videoPlayer2.clip = MouseDragForJiTai.videoPlayer2.GetComponent<VideoClips>().videoClips[2];
+                MouseDragForJiTai.videoPlayer2.Play();
+                Hama.hama.SetBool("sci", true);
+                ItemPanelClick.ChangeItemPanel("lung");
+            }           
         }
         //Ë®±­+¸òó¡=¡·²¥·ÅËµ»°¶¯»­+ÎÄ±¾¿òÌáÊ¾³éÑÌ
         else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "hama")

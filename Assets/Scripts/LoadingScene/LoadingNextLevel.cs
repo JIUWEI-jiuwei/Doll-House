@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 ///</summary>
 class LoadingNextLevel : MonoBehaviour
 {
+    public string sceneName = "DollLayer2";
     public void Next()
     {
-        SceneManager.LoadSceneAsync("DollLayer2");
+        SceneManager.LoadSceneAsync(sceneName);
     }
 }

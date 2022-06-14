@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 467383863}
   - component: {fileID: 467383862}
   - component: {fileID: 467383861}
-  - component: {fileID: 467383860}
   m_Layer: 5
   m_Name: start
   m_TagString: Untagged
@@ -162,23 +161,6 @@ RectTransform:
   m_AnchoredPosition: {x: 2.07e-13, y: -324}
   m_SizeDelta: {x: 396, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &467383860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467383858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec9e65d4890e2b4386ad61f7ee8004d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 1809551036}
-  sceneName: DollLayer1
-  timeout: 3
-  alfa_black: {fileID: 1459943853}
-  headline: {fileID: 2030018403}
 --- !u!114 &467383861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 467383860}
+      - m_Target: {fileID: 1809551039}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
         m_MethodName: OnStartButton
         m_Mode: 1
@@ -533,7 +515,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597500597
 GameObject:
@@ -5337,7 +5319,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1809551035
 GameObject:
@@ -5349,6 +5331,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1809551037}
   - component: {fileID: 1809551036}
+  - component: {fileID: 1809551038}
+  - component: {fileID: 1809551039}
   m_Layer: 0
   m_Name: startCG
   m_TagString: Untagged
@@ -5385,9 +5369,9 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -5403,8 +5387,41 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809551038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809551035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ac489e7e0ca984c82ec3bb0569ea8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoClips:
+  - {fileID: 32900000, guid: aaa475a1f4b64f749888e2a15908aec7, type: 3}
+  - {fileID: 32900000, guid: f201d5caa97bb0248830df159b331278, type: 3}
+  videoPlayer: {fileID: 1809551036}
+--- !u!114 &1809551039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809551035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec9e65d4890e2b4386ad61f7ee8004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 1809551036}
+  timeout: 2
+  alfa_black: {fileID: 1459943853}
+  headline: {fileID: 2030018403}
+  start: {fileID: 467383861}
 --- !u!1 &1917336992
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,7 +5463,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020212142
 GameObject:
@@ -5512,7 +5529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2030018401
 GameObject:
@@ -5614,7 +5631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069101120
 GameObject:
@@ -5709,7 +5726,7 @@ RectTransform:
   m_Children:
   - {fileID: 467383859}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

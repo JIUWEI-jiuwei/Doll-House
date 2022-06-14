@@ -22,7 +22,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Transform jitai;
     private Transform[] plates=new Transform[4];
 
-    private VideoPlayer videoPlayer2;
+    public static VideoPlayer videoPlayer2;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         four4 = grid.transform.GetChild(3);
 
         jitaiF = GameObject.Find("JiTaiF").transform.GetChild(0);
-        jitai=GameObject.Find("祭台").transform.GetChild(0);
+        jitai=GameObject.Find("祭台").transform.GetChild(0);//主场景中的祭品图片
         for (int i = 0; i < 4; i++)
         {
             plates[i] = jitaiF.GetChild(i);
@@ -48,20 +48,43 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         //祭品位置摆放正确
         if (StaticClass.one && StaticClass.two && StaticClass.three && StaticClass.four)
         {
-            //播放盒子开启动画，盒子开启，拿取钥匙
+            //播放盒子开启动画，得到钥匙
             videoPlayer2.Play();
             StaticClass.isPlayerMove = false;
             jitai.gameObject.SetActive(true);
+
         }
-        if (videoPlayer2.isPlaying)
+        if (videoPlayer2.isPlaying&& videoPlayer2.clip.name== "打开祭台盒子的视频")
         {
             if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 1)
             {
                 videoPlayer2.Stop();
+                jitaiF.gameObject.SetActive(false);
                 StaticClass.isPlayerMove = true;
+                //退回场景2清空物品栏只显示钥匙,播放给结尾的mp4
+                ItemPanelClick.DestroyAllItem();
+                ItemPanelClick.ChangeItemPanel("yaoshi");
+                Invoke("PlayEndCGVideo", 1.5f);
+            }
+        }
+        if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
+        {
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 1)
+            {
+                videoPlayer2.Stop();
+                SceneManager.LoadSceneAsync("StartGame");
             }
         }
     }
+    /// <summary>
+    /// 播放endCG视频
+    /// </summary>
+    private void PlayEndCGVideo()
+    {
+        videoPlayer2.clip = videoPlayer2.GetComponent<VideoClips>().videoClips[1];
+        videoPlayer2.Play();
+    }
+
     /// <summary>
     /// 开始拖拽
     /// </summary>

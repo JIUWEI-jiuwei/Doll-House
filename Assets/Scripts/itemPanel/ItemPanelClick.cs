@@ -28,8 +28,8 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     {
         blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
 
-        if (SceneManager.GetActiveScene().name== "DollLayer1")
-        {
+        //if (SceneManager.GetActiveScene().name== "DollLayer1")
+        //{
             //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
             panel = GameObject.FindGameObjectWithTag("panel");
             panel1 = GameObject.FindGameObjectWithTag("panel1");
@@ -38,16 +38,13 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
 
             panelStd = GameObject.FindGameObjectWithTag("panelStd");
             s_item = itemImage;
-        }      
+       // }      
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "DollLayer1")
-        {
-            panel2.SetActive(false);
-            panel3.SetActive(false);
-            itemPanel = panel.GetComponent<itemPanel>();
-        }           
+        panel2.SetActive(false);
+        panel3.SetActive(false);
+        itemPanel = panel.GetComponent<itemPanel>();
         blackpanel.SetActive(false);
     }
     /// <summary>
@@ -118,6 +115,34 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
 
         StaticClass.isPlayerMove = false;
         StaticClass.isItemClick = false;
+    }
+    /// <summary>
+    /// 清空物品栏
+    /// </summary>
+    public static void DestroyAllItem()
+    {
+        if (panel1.transform.childCount != 0)
+        {
+            for (int i = 0; i < panel1.transform.childCount; i++)
+            {
+                Destroy(panel1.transform.GetChild(i).gameObject);
+            }
+        }
+        if (panel2.transform.childCount != 0)
+        {
+            for (int i = 0; i < panel2.transform.childCount; i++)
+            {
+                Destroy(panel2.transform.GetChild(i).gameObject);
+            }
+        }
+        if (panel3.transform.childCount != 0)
+        {
+            for (int i = 0; i < panel3.transform.childCount; i++)
+            {
+                Destroy(panel3.transform.GetChild(i).gameObject);
+            }
+        }
+        
     }
     /// <summary>
     /// 切换物品栏的panel

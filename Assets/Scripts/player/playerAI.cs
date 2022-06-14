@@ -102,7 +102,7 @@ class playerAI : MonoBehaviour
             if (Vector3.Distance(target.position, this.transform.position) <= distance)
             {
                 player.SetBool("startwalk", false);
-                player.SetBool("walk", false);
+                player.SetBool("walk", true);
                 player.SetBool("stop", true);
                 player.SetBool("backidle", true);
                 StaticClass.isFinishedMove = true;

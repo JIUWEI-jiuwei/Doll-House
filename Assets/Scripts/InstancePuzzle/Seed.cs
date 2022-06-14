@@ -19,13 +19,19 @@ class Seed : MonoBehaviour, IPointerClickHandler
         //创建一个新的SpriteState（唯一可行的修改SpriteState的方法）
         spriteStatus = new SpriteState();
     }
+    private void FixedUpdate()
+    {
+        if (seed.GetCurrentAnimatorStateInfo(0).IsName("seedstop"))
+        {
+            SwapSprite();
+        }
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         //种子+绿盆+水=烟草；种子+红盆+狞猫的唾液=毒草；其余任何方式都只会种出杂草
         if (seed.GetCurrentAnimatorStateInfo(0).IsName("seedstop"))
         {
             Destroy(this.gameObject);
-            SwapSprite();
             if (isWater == true&& this.transform.parent.name == "green")
             {                
                 ItemPanelClick.ChangeItemPanel("yancao");
