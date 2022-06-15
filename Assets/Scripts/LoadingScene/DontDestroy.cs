@@ -10,6 +10,7 @@ class DontDestroy : MonoBehaviour
     public static bool isHave = false;
     private GameObject clone;//克隆的不销毁物体
     private GameObject item;
+    public static int has=0;
     /*private void Awake()
     {
         //item = GameObject.Find("itemmmm");
@@ -31,12 +32,12 @@ class DontDestroy : MonoBehaviour
         DontDestroyOnLoad(clone);//切换场景不销毁clone
     }*/
 
-    private void Start()
+    private void Awake()
     {
-        if (!isHave)
+        if (has<2)
         {
             DontDestroyOnLoad(this.gameObject);
-            isHave = true;
+            has++;
         }
         
     }

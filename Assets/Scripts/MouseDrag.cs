@@ -100,7 +100,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             if (eventData.pointerCurrentRaycast.gameObject.name == "blackPanel")
             {
                 ItemPanelClick.ItemPanelDown();
-                itemPanelClick.blackPanelClose();
+                ItemPanelClick.blackPanelClose();
             }
         }
     }
@@ -466,15 +466,20 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             ItemPanelClick.panel1.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
         }
-        for (int i = 0; i < ItemPanelClick.panel2.transform.childCount; i++)
+        if (ItemPanelClick.panel2 != null)
         {
-            ItemPanelClick.panel2.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
+            for (int i = 0; i < ItemPanelClick.panel2.transform.childCount; i++)
+            {
+                ItemPanelClick.panel2.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
+            }
         }
-        for (int i = 0; i < ItemPanelClick.panel3.transform.childCount; i++)
+        if(ItemPanelClick.panel3 != null)
         {
-            ItemPanelClick.panel3.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
-        }
-
+            for (int i = 0; i < ItemPanelClick.panel3.transform.childCount; i++)
+            {
+                ItemPanelClick.panel3.transform.GetChild(i).position = ItemPanelClick.panelStd.transform.GetChild(i).position;
+            }
+        }        
     }
     public void HamaDialog1()
     {

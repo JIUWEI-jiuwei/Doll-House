@@ -68,3 +68,6 @@ TagManager:
   - name: mask
     uniqueID: 2556079159
     locked: 0
+  - name: start
+    uniqueID: 4013387537
+    locked: 0

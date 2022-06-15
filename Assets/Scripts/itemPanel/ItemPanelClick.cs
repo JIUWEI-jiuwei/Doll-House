@@ -26,27 +26,32 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
+        if(SceneManager.GetActiveScene().name!= "StartGame")
+        {
+            blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
 
-        //if (SceneManager.GetActiveScene().name== "DollLayer1")
-        //{
-            //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
-            panel = GameObject.FindGameObjectWithTag("panel");
-            panel1 = GameObject.FindGameObjectWithTag("panel1");
-            panel2 = GameObject.FindGameObjectWithTag("panel2");
-            panel3 = GameObject.FindGameObjectWithTag("panel3");
+            
 
             panelStd = GameObject.FindGameObjectWithTag("panelStd");
             s_item = itemImage;
-       // }      
+            itemPanel = panel.GetComponent<itemPanel>();
+            blackpanel.SetActive(false);
+        }
+
     }
     private void Start()
     {
-        panel2.SetActive(false);
-        panel3.SetActive(false);
-        itemPanel = panel.GetComponent<itemPanel>();
-        blackpanel.SetActive(false);
-
+        //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
+        panel = GameObject.FindGameObjectWithTag("panel");
+        panel1 = GameObject.FindGameObjectWithTag("panel1");
+        panel2 = GameObject.FindGameObjectWithTag("panel2");
+        panel3 = GameObject.FindGameObjectWithTag("panel3");
+        if (panel2 != null)
+        {
+            panel2.SetActive(false);
+            panel3.SetActive(false);
+            
+        }                
         if (PlayerPrefs.GetInt(this.name) == 1)
         {//销毁该物体
             Destroy(this.gameObject);
@@ -81,7 +86,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     {
         blackpanel.SetActive(true);
     }
-    public void blackPanelClose()
+    public static void blackPanelClose()
     {
         blackpanel.SetActive(false);
     }

@@ -86,7 +86,7 @@ static class ItemText
         if (itemName == "ribbon") return ribbon;
         if (itemName == "bottle") return bottle;
         if (itemName == "note1") return note1;
-        if (itemName == "note1_b") return note1;
+        if (itemName == "note1_b") return note1_b;
         if (itemName == "note2") return note2;
         if (itemName == "note3") return note3;
         if (itemName == "note4") return note4;
