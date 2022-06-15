@@ -25,14 +25,14 @@ class WuGui : MonoBehaviour
     {
         if (StaticClass.isFinishedMove&& StaticClass.isGuiClick)
         {
-            if(StaticClass.isGuiClickNum == 1)
+            if(PlayerPrefs.GetInt("isGuiClickNum") == 1)
             {
                 guiDialog0.SetActive(true);
                 
             }
-            else if(StaticClass.isGuiClickNum >= 2)
+            else if(PlayerPrefs.GetInt("isGuiClickNum") >= 2)
             {
-                if (StaticClass.isGuiWin)
+                if (PlayerPrefs.GetInt("isGuiWin") == 1)
                 {
                     guiDialog2.SetActive(true);
                     Invoke("DestroyDialog", 2f);
@@ -52,21 +52,20 @@ class WuGui : MonoBehaviour
                 guiDialog1.SetActive(false);
             }
         }
-
     }
     public void OpenPanel()
     {
         StaticClass.isGuiClickNum++;
+        PlayerPrefs.SetInt("isGuiClickNum", StaticClass.isGuiClickNum);
         StaticClass.isGuiClick = true;
     }
     public void ExitPanel()
     {
         wuGuiPanel.SetActive(false);
-
     }
     public void ButtonWin()
     {
-        StaticClass.isGuiWin = true;
+        PlayerPrefs.SetInt("isGuiWin", 1);
     }
     public void DestroyDialog()
     {

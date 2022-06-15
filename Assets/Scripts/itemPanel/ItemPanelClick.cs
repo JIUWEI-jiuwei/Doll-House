@@ -46,6 +46,12 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         panel3.SetActive(false);
         itemPanel = panel.GetComponent<itemPanel>();
         blackpanel.SetActive(false);
+
+        if (PlayerPrefs.GetInt(this.name) == 1)
+        {//销毁该物体
+            Destroy(this.gameObject);
+            //ChangeItemPanel(this.gameObject.name);
+        }
     }
     /// <summary>
     /// 物品栏下降动画
@@ -89,6 +95,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         if (StaticClass.isFinishedMove && eventData.pointerPress.gameObject.layer == 6)
         {
             ButtonDown(eventData.pointerPress);
+            PlayerPrefs.SetInt(eventData.pointerPress.name, 1);
         }
         else if (StaticClass.isFinishedMove && eventData.pointerPress.name=="seed")
         {

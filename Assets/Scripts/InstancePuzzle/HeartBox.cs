@@ -26,7 +26,7 @@ class HeartBox : MonoBehaviour
     /// <summary>密码盒按钮的SpriteState</summary>
     private SpriteState spriteStatus;
     /// <summary>是否为第一次点击按钮</summary>
-    private bool isFirst = true;
+    //private bool isFirst = true;
 
     private void Start()
     {
@@ -41,6 +41,10 @@ class HeartBox : MonoBehaviour
         mimaPanel0.gameObject.SetActive(false);
         //创建一个新的SpriteState（唯一可行的修改SpriteState的方法）
         spriteStatus = new SpriteState();
+        if (PlayerPrefs.GetInt("HeartBox") == 1)
+        {
+            SwapSprite();
+        }
     }
     private void Update()
     {
@@ -57,14 +61,14 @@ class HeartBox : MonoBehaviour
         //点击密码盒按钮
         if (StaticClass.isFinishedMove && StaticClass.isHeartBoxClick)
         {
-            if (isFirst)//第一次点击
+            if (PlayerPrefs.GetInt("HeartBox")==0)//第一次点击
             {
                 heartVideo.Play();
                 //获得丝带
                 ItemPanelClick.ChangeItemPanel("ribbon");
                 ItemPanelClick.ChangeItemPanel("note4");
                 Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
-                isFirst = false;
+                PlayerPrefs.SetInt("HeartBox", 1);
             }
             else//第二次及以后点击
             {
@@ -82,7 +86,7 @@ class HeartBox : MonoBehaviour
     /// </summary>
     private void OpenBoxWin()
     {
-        if (StaticClass.isHearBoxFirstPlay == false)
+        if (PlayerPrefs.GetInt("isHearBoxFirstPlay")==0)
         {
             if (num1 == 0 && num2 == 8 && num3 == 1 && num4 == 4)
             {
@@ -99,7 +103,7 @@ class HeartBox : MonoBehaviour
                         GetComponent<Button>().interactable = false;
                         //获得项链
                         ItemPanelClick.ChangeItemPanel("necklace");
-                        StaticClass.isHearBoxFirstPlay = true;
+                        PlayerPrefs.SetInt("isHearBoxFirstPlay", 1);
                     }
                 }
             }

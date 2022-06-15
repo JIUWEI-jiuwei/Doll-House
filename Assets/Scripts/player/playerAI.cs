@@ -133,6 +133,7 @@ class playerAI : MonoBehaviour
                 Goose.goose.SetBool("closelegs", true);
                 StaticClass.isPlayerMove = false;
                 StaticClass.isMoveTarget2 = 2;//防止多次循环播放
+                PlayerPrefs.SetInt("isGoose1", 2);
             }
         }
         //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
@@ -165,6 +166,7 @@ class playerAI : MonoBehaviour
                 Goose.goose.SetBool("closemouth", true);
                 StaticClass.isPlayerMove = false;
                 StaticClass.isMoveTarget = 2;//防止多次循环播放
+                PlayerPrefs.SetInt("isGoose1", 1);
             }
         }
         //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
@@ -172,7 +174,7 @@ class playerAI : MonoBehaviour
         {
             if (MouseDrag.videoPlayer.isPlaying)
             {
-                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 1)
+                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 3)
                 {
                     MouseDrag.videoPlayer.Stop();
                     ButtonManager.note2.SetActive(true);

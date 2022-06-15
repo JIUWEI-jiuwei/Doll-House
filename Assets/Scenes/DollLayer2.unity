@@ -977,7 +977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 56146784}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 176514658}
   - component: {fileID: 176514657}
   - component: {fileID: 176514660}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: plate1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 206536803}
   - component: {fileID: 206536802}
   - component: {fileID: 206536801}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,7 +1682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 221629442}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: FlowerF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1801,7 +1801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1857,7 +1857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 781
+      value: -822
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1878,6 +1878,10 @@ PrefabInstance:
     - target: {fileID: 1129821514809463385, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_Name
       value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129821514809463385, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463391, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1952,6 +1956,10 @@ PrefabInstance:
     - target: {fileID: 7194711505585879004, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_Name
       value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194711505585879004, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_Pivot.x
@@ -2210,7 +2218,7 @@ GameObject:
   - component: {fileID: 298865394}
   - component: {fileID: 298865393}
   - component: {fileID: 298865396}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: plate2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3118,7 +3126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 443812162}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -3842,7 +3850,7 @@ GameObject:
   - component: {fileID: 575618151}
   - component: {fileID: 575618153}
   - component: {fileID: 575618152}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: "\u9F9F\u58F3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3917,7 +3925,6 @@ GameObject:
   - component: {fileID: 616372403}
   - component: {fileID: 616372401}
   - component: {fileID: 616372402}
-  - component: {fileID: 616372405}
   - component: {fileID: 616372404}
   m_Layer: 0
   m_Name: Main Camera
@@ -4007,22 +4014,6 @@ MonoBehaviour:
   grayScaleAmount: 1
   blendTexture: {fileID: 2800000, guid: 6ae1460376e87f2429e8b13fe725ee58, type: 3}
   blendOpacity: 1
---- !u!114 &616372405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616372400}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41c864f7d8b338b438d6758866f7a43f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curShader: {fileID: 4800000, guid: 8c5a61183bfc5254d97e6ca689a30cd7, type: 3}
-  grayScaleAmount: 1
-  blendTexture: {fileID: 2800000, guid: 4ca6b1b24cd90ef43a651e45647ea54e, type: 3}
-  blendOpacity: 0.4
 --- !u!1 &688817371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4035,7 +4026,7 @@ GameObject:
   - component: {fileID: 688817375}
   - component: {fileID: 688817374}
   - component: {fileID: 688817373}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4255,7 +4246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711339157}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -4290,7 +4281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718867732}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4909,7 +4900,7 @@ GameObject:
   - component: {fileID: 875639253}
   - component: {fileID: 875639252}
   - component: {fileID: 875639251}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: PanelCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4966,7 +4957,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 616372401}
+  m_Camera: {fileID: 1274839752}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4974,8 +4965,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 650663079
-  m_SortingOrder: 2
+  m_SortingLayerID: -1738888137
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &875639254
 RectTransform:
@@ -5651,7 +5642,7 @@ GameObject:
   - component: {fileID: 1011927009}
   - component: {fileID: 1011927011}
   - component: {fileID: 1011927010}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,7 +5864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036815221}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GuiF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6580,7 +6571,7 @@ Camera:
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6631,7 +6622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285487201}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -6669,7 +6660,7 @@ GameObject:
   - component: {fileID: 1332812537}
   - component: {fileID: 1332812536}
   - component: {fileID: 1332812535}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6843,7 +6834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347045968}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: JiTaiF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7035,7 +7026,7 @@ GameObject:
   - component: {fileID: 1414301179}
   - component: {fileID: 1414301181}
   - component: {fileID: 1414301180}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: "\u796D\u53F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7115,7 +7106,7 @@ GameObject:
   - component: {fileID: 1415083013}
   - component: {fileID: 1415083015}
   - component: {fileID: 1415083014}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: "\u753B\u9F9F\u58F3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7191,7 +7182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1427422977}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -8085,7 +8076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1492818505}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -9173,7 +9164,7 @@ GameObject:
   - component: {fileID: 1558505008}
   - component: {fileID: 1558505007}
   - component: {fileID: 1558505010}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: plate3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9457,7 +9448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591824103}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -9953,7 +9944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729802655}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -9991,7 +9982,7 @@ GameObject:
   - component: {fileID: 1733120933}
   - component: {fileID: 1733120932}
   - component: {fileID: 1733120931}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10482,7 +10473,7 @@ GameObject:
   - component: {fileID: 1807225417}
   - component: {fileID: 1807225416}
   - component: {fileID: 1807225415}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10698,6 +10689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: left
       objectReference: {fileID: 0}
+    - target: {fileID: 1129821514809463385, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463391, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -10744,7 +10739,7 @@ GameObject:
   - component: {fileID: 1837645479}
   - component: {fileID: 1837645481}
   - component: {fileID: 1837645480}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: "\u82B1\u76C6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10903,7 +10898,7 @@ GameObject:
   - component: {fileID: 1883736575}
   - component: {fileID: 1883736577}
   - component: {fileID: 1883736576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: VideoClips2
   m_TagString: video
   m_Icon: {fileID: 0}
@@ -10952,12 +10947,12 @@ VideoPlayer:
   m_VideoClip: {fileID: 32900000, guid: 3cb05fa2be9ac9b419e6cc36e6a030aa, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
+  m_TargetCamera: {fileID: 1274839752}
   m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
@@ -11666,7 +11661,7 @@ GameObject:
   - component: {fileID: 2026853206}
   - component: {fileID: 2026853205}
   - component: {fileID: 2026853208}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: plate4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

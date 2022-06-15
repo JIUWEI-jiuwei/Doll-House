@@ -20,6 +20,30 @@ class StartGame : MonoBehaviour
     private void Start()
     {
         videoPlayer.Play();
+        PlayerPrefs.SetInt("DoorLevel1", 0);
+        PlayerPrefs.SetInt("HeartBox", 0);
+        PlayerPrefs.SetInt("isHearBoxFirstPlay", 0);
+        PlayerPrefs.SetInt("isGoose1", 0);
+        PlayerPrefs.SetInt("isGui1", 0);
+        PlayerPrefs.SetInt("isGui2", 0);
+        PlayerPrefs.SetInt("isGui3", 0);
+        PlayerPrefs.SetInt("isGui4", 0);
+        PlayerPrefs.SetInt("isGuiClickNum", 0);
+        PlayerPrefs.SetInt("isGuiWin", 0);
+        
+        PlayerPrefs.SetInt("candle", 0);
+        PlayerPrefs.SetInt("lip", 0);
+        PlayerPrefs.SetInt("note1", 0);
+        PlayerPrefs.SetInt("note2", 0);
+        PlayerPrefs.SetInt("note3", 0);
+        PlayerPrefs.SetInt("yumao", 0);
+         PlayerPrefs.SetInt("cup", 0);
+        PlayerPrefs.SetInt("rawmeat", 0);
+        PlayerPrefs.SetInt("scissor", 0);
+        PlayerPrefs.SetInt("yandou", 0);
+
+
+
     }
     public void OnStartButton()
     {
@@ -42,20 +66,16 @@ class StartGame : MonoBehaviour
             alfa_black.SetActive(false);
             start.gameObject.SetActive(false);
             //播放视频，播放完视频，跳转场景
-            if (!StaticClass.isStartCG)
-            {
-                videoPlayer.clip = videoPlayer.GetComponent<VideoClips>().videoClips[1];
-                videoPlayer.Play();
-                StaticClass.isStartCG = true;
-            }           
+
+            videoPlayer.clip = videoPlayer.GetComponent<VideoClips>().videoClips[1];
+            videoPlayer.Play();
+
         }
         if (videoPlayer.isPlaying && videoPlayer.clip.name == "starttoone")
         {
-            Debug.Log("jinqule");
             videoPlayer.isLooping = false;
-            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 1)
+            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
             {
-                Debug.Log("jinqule22");
                 SceneManager.LoadSceneAsync("DollLayer1");
             }
         }
@@ -72,5 +92,9 @@ class StartGame : MonoBehaviour
             alfa_black.GetComponent<SpriteRenderer>().color.b,
             alfa_black.GetComponent<SpriteRenderer>().color.a + Time.deltaTime / timeout
             );
+    }
+    public void  Test()
+    {
+        SceneManager.LoadSceneAsync("DollLayer1");
     }
 }

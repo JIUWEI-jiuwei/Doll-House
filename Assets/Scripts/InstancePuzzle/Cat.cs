@@ -21,13 +21,13 @@ class Cat : MonoBehaviour
         if (StaticClass.isFinishedMove)
         {
             cat.SetBool("catspeak", true);
-            if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("GooseAnim"))
+            if (PlayerPrefs.GetInt("isGoose1") == 0)//Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("GooseAnim")
             {//鹅嘴没被绑
                 catTextBg.GetComponentInChildren<Text>().text = "鹅很吵，想办法让鹅闭嘴";
                 catTextBg.SetActive(true);
                 Invoke("CloseCatText", 2f);
             }
-            else if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("Mouseidle"))
+            else if (PlayerPrefs.GetInt("isGoose1") == 1)
             {//鹅嘴被绑，腿没被绑
                 catTextBg.GetComponentInChildren<Text>().text = "将鹅的腿绑起来或许会好一些";
                 catTextBg.SetActive(true);

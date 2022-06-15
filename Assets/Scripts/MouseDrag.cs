@@ -51,13 +51,16 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             dialog.transform.position = dialogPos.position;
         }
-        if (MouseDragForJiTai.videoPlayer2.isPlaying && MouseDragForJiTai.videoPlayer2.clip.name == "剪开蛤蟆肚子")
+        if (MouseDragForJiTai.videoPlayer2 != null)
         {
-            if ((int)MouseDragForJiTai.videoPlayer2.frame >= (int)MouseDragForJiTai.videoPlayer2.frameCount - 1)
+            if (MouseDragForJiTai.videoPlayer2.isPlaying && MouseDragForJiTai.videoPlayer2.clip.name == "剪开蛤蟆肚子")
             {
-                MouseDragForJiTai.videoPlayer2.Stop();
+                if ((int)MouseDragForJiTai.videoPlayer2.frame >= (int)MouseDragForJiTai.videoPlayer2.frameCount - 3)
+                {
+                    MouseDragForJiTai.videoPlayer2.Stop();
+                }
             }
-        }
+        }        
     }
     /// <summary>
     /// 开始拖拽
@@ -88,9 +91,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             TextShow.child0.gameObject.SetActive(false);
             TextShow.text_name.gameObject.SetActive(false);
-        }
-        
-
+        }        
         if (eventData.pointerCurrentRaycast.gameObject != null)
         {
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
@@ -102,8 +103,6 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 itemPanelClick.blackPanelClose();
             }
         }
-        //
-
     }
     /// <summary>
     /// 拖拽结束
@@ -121,21 +120,24 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
 
         #region 第一关的物品拖拽
         //判断鼠标拖拽的物体和鼠标松开的物体
+        //丝带+鹅身上
         if (this.GetComponent<Image>().sprite.name == "ribbon" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
-        {//丝带+鹅身上
-            //控制变量=1，角色移动
-            StaticClass.isMoveTarget = 1;
-            //Destroy(this.gameObject);
-                        
+        {           
+            if (PlayerPrefs.GetInt("isGoose1") == 0)
+            {
+                //控制变量=1，角色移动
+                StaticClass.isMoveTarget = 1;
+            }                                   
         }
+        //细绳+鹅
         else if (this.GetComponent<Image>().sprite.name == "xisheng" && eventData.pointerCurrentRaycast.gameObject.name == "goose")
-        {//细绳+鹅
-            //如果鹅嘴已被绑
-            if (Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("Mouseidle"))
+        {
+            //如果鹅嘴已被绑,绑腿
+            if (PlayerPrefs.GetInt("isGoose1") == 1)//Goose.goose.GetCurrentAnimatorStateInfo(0).IsName("Mouseidle")
             {
                 //控制变量=1，角色移动
                 StaticClass.isMoveTarget2 = 1;
-                Destroy(this.gameObject);               
+                //Destroy(this.gameObject);               
             }
             else
             {
@@ -368,7 +370,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
 
 
 
-        //乌龟的壳+盘子1=》吸附
+        //祭台：乌龟的壳+盘子1=》吸附
         else if ((this.GetComponent<Image>().sprite.name == "turtleshell"|| this.GetComponent<Image>().sprite.name == "cattooth"||
             this.GetComponent<Image>().sprite.name == "lung" || this.GetComponent<Image>().sprite.name == "yumao") && 
             (eventData.pointerCurrentRaycast.gameObject.name == "plate1"||eventData.pointerCurrentRaycast.gameObject.name == "plate2"||
@@ -376,20 +378,23 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             if (this.GetComponent<Image>().sprite.name == "yumao" && eventData.pointerCurrentRaycast.gameObject.name == "plate1")
             {
-                StaticClass.one = true;
-                Debug.Log("yumao");
+                //StaticClass.one = true;
+                PlayerPrefs.SetInt("isGui1", 1);
             }
             else if (this.GetComponent<Image>().sprite.name == "lung" && eventData.pointerCurrentRaycast.gameObject.name == "plate2")
             {
-                StaticClass.two = true;
+                //StaticClass.two = true;
+                PlayerPrefs.SetInt("isGui2", 1);
             }
             else if (this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
             {
-                StaticClass.three = true;
+                //StaticClass.three = true;
+                PlayerPrefs.SetInt("isGui3", 1);
             }
             else if (this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
             {
-                StaticClass.four = true;
+                //StaticClass.four = true;
+                PlayerPrefs.SetInt("isGui4", 1);
             }
             Destroy(this.gameObject);
             GameObject a = Instantiate(jitaiItemPrefab);

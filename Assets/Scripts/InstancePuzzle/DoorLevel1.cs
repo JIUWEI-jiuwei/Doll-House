@@ -13,7 +13,7 @@ class DoorLevel1 : MonoBehaviour
     /// <summary>开门CG</summary>
     public VideoPlayer doorOpen;
     /// <summary>判断第几次点击门按钮</summary>
-    private bool nextLevel=false;
+    //private bool nextLevel = false;
 
     //密码圆圈的字段
     Vector2 lastPos;//鼠标上次位置
@@ -32,6 +32,10 @@ class DoorLevel1 : MonoBehaviour
     {
         //创建一个新的SpriteState（唯一可行的修改SpriteState的方法）
         spriteStatus = new SpriteState();
+        if(PlayerPrefs.GetInt("DoorLevel1") == 1)
+        {
+            SwapSprite();
+        }
     }
     private void FixedUpdate()
     {
@@ -48,7 +52,7 @@ class DoorLevel1 : MonoBehaviour
         //点击门按钮的效果
         if (StaticClass.isFinishedMove && StaticClass.isDoorClick)
         {
-            if (nextLevel == false)
+            if (PlayerPrefs.GetInt("DoorLevel1") == 0)
             {
                 doorPanel.gameObject.SetActive(true);
             }
@@ -151,7 +155,7 @@ class DoorLevel1 : MonoBehaviour
     /// </summary>
     public void ClickDoor()
     {
-        StaticClass.isDoorClick = true;   
+        StaticClass.isDoorClick = true;
     }
     /// <summary>
     /// 成功解锁
@@ -161,7 +165,7 @@ class DoorLevel1 : MonoBehaviour
         doorPanel.gameObject.SetActive(false);
         doorOpen.Play();
         Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
-        nextLevel = true;
+        PlayerPrefs.SetInt("DoorLevel1", 1);
     }
     public void Back()
     {

@@ -46,17 +46,16 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private void FixedUpdate()
     {
         //祭品位置摆放正确
-        if (StaticClass.one && StaticClass.two && StaticClass.three && StaticClass.four)
+        if (PlayerPrefs.GetInt("isGui1")==1 && PlayerPrefs.GetInt("isGui2") == 1 && PlayerPrefs.GetInt("isGui3") == 1 && PlayerPrefs.GetInt("isGui4") == 1)
         {
             //播放盒子开启动画，得到钥匙
             videoPlayer2.Play();
             StaticClass.isPlayerMove = false;
             jitai.gameObject.SetActive(true);
-
         }
         if (videoPlayer2.isPlaying&& videoPlayer2.clip.name== "打开祭台盒子的视频")
         {
-            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 1)
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
             {
                 videoPlayer2.Stop();
                 jitaiF.gameObject.SetActive(false);
@@ -69,7 +68,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
         {
-            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 1)
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
             {
                 videoPlayer2.Stop();
                 SceneManager.LoadSceneAsync("StartGame");

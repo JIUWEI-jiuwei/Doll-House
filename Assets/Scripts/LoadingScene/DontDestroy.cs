@@ -10,9 +10,9 @@ class DontDestroy : MonoBehaviour
     public static bool isHave = false;
     private GameObject clone;//克隆的不销毁物体
     private GameObject item;
-    private void Awake()
+    /*private void Awake()
     {
-        item = GameObject.Find("itemmmm");
+        //item = GameObject.Find("itemmmm");
         //鼠标位置移动+矫正鼠标偏移
         foreach (Canvas canvas in FindObjectsOfType<Canvas>())
         {
@@ -23,11 +23,21 @@ class DontDestroy : MonoBehaviour
                     clone = Instantiate(MusicBk);
                     clone.transform.SetParent(canvas.transform);
                     clone.transform.localScale = new Vector3(1, 1, 1);
-                    clone.transform.position = item.transform.position;
+                    //clone.transform.position = item.transform.position;
                     isHave = true;
                 }
             }
         }
         DontDestroyOnLoad(clone);//切换场景不销毁clone
+    }*/
+
+    private void Start()
+    {
+        if (!isHave)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            isHave = true;
+        }
+        
     }
 }

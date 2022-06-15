@@ -14,13 +14,19 @@ class PanelManager : MonoBehaviour
 
     private void Start()
     {
-        OpenPanelOnly(panels1);
+        if (panels1.Length > 0)
+        {
+            OpenPanelOnly(panels1);
+        }
     }
     private void FixedUpdate()
     {
-        if (panels1 != null)
+        if (panels1.Length > 0)
         {
-            CloseAllPanels(panels1, num);
+            CloseAllPanels(panels1, num);           
+        }
+        if(itemPanels.Length > 0)
+        {
             CloseAllPanels(itemPanels, itemNum);
         }
     }
