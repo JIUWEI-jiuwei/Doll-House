@@ -130,6 +130,7 @@ class playerAI : MonoBehaviour
             {
                 MouseDrag.videoPlayer.clip = MouseDrag.videoPlayer.gameObject.GetComponent<VideoClips>().videoClips[1];
                 MouseDrag.videoPlayer.Play();
+                AudioManager.audioSource.Stop();
                 Goose.goose.SetBool("closelegs", true);
                 StaticClass.isPlayerMove = false;
                 StaticClass.isMoveTarget2 = 2;//防止多次循环播放
@@ -144,6 +145,7 @@ class playerAI : MonoBehaviour
                 if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 1)
                 {
                     MouseDrag.videoPlayer.Stop();
+                    AudioManager.audioSource.Play();
                     ButtonManager.yumao.SetActive(true);
                     StaticClass.isPlayerMove = true;
                 }
@@ -163,6 +165,7 @@ class playerAI : MonoBehaviour
             if (Vector3.Distance(goosePos.position, this.transform.position) <= 2)
             {
                 MouseDrag.videoPlayer.Play();
+                AudioManager.audioSource.Stop();
                 Goose.goose.SetBool("closemouth", true);
                 StaticClass.isPlayerMove = false;
                 StaticClass.isMoveTarget = 2;//防止多次循环播放
@@ -177,6 +180,7 @@ class playerAI : MonoBehaviour
                 if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 3)
                 {
                     MouseDrag.videoPlayer.Stop();
+                    AudioManager.audioSource.Play();
                     ButtonManager.note2.SetActive(true);
                     StaticClass.isPlayerMove = true;
                 }

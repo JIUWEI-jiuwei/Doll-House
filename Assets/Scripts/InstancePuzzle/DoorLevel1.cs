@@ -47,6 +47,7 @@ class DoorLevel1 : MonoBehaviour
             {
                 doorOpen.gameObject.SetActive(false);
                 StaticClass.isPlayerMove = true;
+                AudioManager.audioSource.Play();
             }
         }
         //点击门按钮的效果
@@ -164,6 +165,7 @@ class DoorLevel1 : MonoBehaviour
     {
         doorPanel.gameObject.SetActive(false);
         doorOpen.Play();
+        AudioManager.audioSource.Stop();
         Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
         PlayerPrefs.SetInt("DoorLevel1", 1);
     }

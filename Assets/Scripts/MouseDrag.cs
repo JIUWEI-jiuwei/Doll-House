@@ -58,6 +58,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 if ((int)MouseDragForJiTai.videoPlayer2.frame >= (int)MouseDragForJiTai.videoPlayer2.frameCount - 3)
                 {
                     MouseDragForJiTai.videoPlayer2.Stop();
+                    AudioManager.audioSource.Play();
                 }
             }
         }        
@@ -103,6 +104,26 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 ItemPanelClick.blackPanelClose();
             }
         }
+        if (eventData.pointerCurrentRaycast.gameObject != null)
+        {
+            //拖动到左箭头翻页
+            if (eventData.pointerCurrentRaycast.gameObject.name == "left_item")
+            {
+                if (PanelManager.itemNum > 0)
+                {
+                    PanelManager.itemNum--;
+                }
+            }
+            //拖动到右箭头翻页
+            else if (eventData.pointerCurrentRaycast.gameObject.name == "right_item")
+            {
+                if (PanelManager.itemNum < 2)
+                {
+                    PanelManager.itemNum++;
+                }
+            }
+        }
+        
     }
     /// <summary>
     /// 拖拽结束
@@ -241,6 +262,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //杯子+水壶=》水杯
         else if (this.GetComponent<Image>().sprite.name == "cup" && eventData.pointerCurrentRaycast.gameObject.name == "bottle")
         {
+            Destroy(this.gameObject);
             ItemPanelClick.ChangeItemPanel("shuidebeizi");
         }
 
@@ -325,6 +347,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 MouseDragForJiTai.videoPlayer2.clip = MouseDragForJiTai.videoPlayer2.GetComponent<VideoClips>().videoClips[2];
                 MouseDragForJiTai.videoPlayer2.Play();
+                AudioManager.audioSource.Stop();
                 Hama.hama.SetBool("sci", true);
                 ItemPanelClick.ChangeItemPanel("lung");
             }           
@@ -404,8 +427,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
             a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
         }
-
-
+        
 
         #endregion
         else

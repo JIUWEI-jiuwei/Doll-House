@@ -16,6 +16,7 @@ class StartGame : MonoBehaviour
     public GameObject alfa_black;
     public Animator headline;
     public Button start;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -69,11 +70,10 @@ class StartGame : MonoBehaviour
 
             videoPlayer.clip = videoPlayer.GetComponent<VideoClips>().videoClips[1];
             videoPlayer.Play();
-
+            audioSource.Stop();
         }
         if (videoPlayer.isPlaying && videoPlayer.clip.name == "starttoone")
-        {
-            videoPlayer.isLooping = false;
+        {            
             if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
             {
                 SceneManager.LoadSceneAsync("DollLayer1");

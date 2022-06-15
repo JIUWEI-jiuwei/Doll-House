@@ -56,6 +56,7 @@ class HeartBox : MonoBehaviour
                 heartVideo.gameObject.SetActive(false);
                 mimaPanel0.gameObject.SetActive(true);
                 StaticClass.isPlayerMove = false;
+                AudioManager.audioSource.Play();
             }
         }
         //点击密码盒按钮
@@ -64,6 +65,7 @@ class HeartBox : MonoBehaviour
             if (PlayerPrefs.GetInt("HeartBox")==0)//第一次点击
             {
                 heartVideo.Play();
+                AudioManager.audioSource.Stop();
                 //获得丝带
                 ItemPanelClick.ChangeItemPanel("ribbon");
                 ItemPanelClick.ChangeItemPanel("note4");
@@ -91,11 +93,13 @@ class HeartBox : MonoBehaviour
             if (num1 == 0 && num2 == 8 && num3 == 1 && num4 == 4)
             {
                 necklaceVideo.Play();
+                AudioManager.audioSource.Stop();
                 if (necklaceVideo.isPlaying)
                 {
                     //判断视频是否播放完成
                     if ((int)necklaceVideo.frame >= (int)necklaceVideo.frameCount - 1)
                     {
+                        AudioManager.audioSource.Play();
                         necklaceVideo.gameObject.SetActive(false);
                         mimaPanel0.gameObject.SetActive(false);
                         StaticClass.isPlayerMove = true;

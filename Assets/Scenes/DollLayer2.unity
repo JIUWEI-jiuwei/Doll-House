@@ -7711,6 +7711,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 76.380005
       objectReference: {fileID: 0}
+    - target: {fileID: 5906914680783548506, guid: 4d75b6a0ef3e2c54fa133d33fb296e9c, type: 3}
+      propertyPath: m_Text
+      value: "Ella's Diary   \r\n\r\nby   \r\n\r\nRebecca"
+      objectReference: {fileID: 0}
     - target: {fileID: 5906914681136809512, guid: 4d75b6a0ef3e2c54fa133d33fb296e9c, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 11.130005

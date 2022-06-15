@@ -50,6 +50,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             //播放盒子开启动画，得到钥匙
             videoPlayer2.Play();
+            AudioManager.audioSource.Stop();
             StaticClass.isPlayerMove = false;
             jitai.gameObject.SetActive(true);
         }
@@ -58,6 +59,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
             {
                 videoPlayer2.Stop();
+                AudioManager.audioSource.Play();
                 jitaiF.gameObject.SetActive(false);
                 StaticClass.isPlayerMove = true;
                 //退回场景2清空物品栏只显示钥匙,播放给结尾的mp4
@@ -71,6 +73,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
             {
                 videoPlayer2.Stop();
+                AudioManager.audioSource.Play();
                 SceneManager.LoadSceneAsync("StartGame");
             }
         }
@@ -82,6 +85,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         videoPlayer2.clip = videoPlayer2.GetComponent<VideoClips>().videoClips[1];
         videoPlayer2.Play();
+        AudioManager.audioSource.Stop();
     }
 
     /// <summary>

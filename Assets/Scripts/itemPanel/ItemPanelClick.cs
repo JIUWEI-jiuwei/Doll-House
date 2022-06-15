@@ -23,29 +23,28 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public GameObject itemImage;
     public static GameObject s_item;
     public float timer = 0.2f;
+    private GameObject rayitem;
 
     private void Awake()
     {
         if(SceneManager.GetActiveScene().name!= "StartGame")
         {
-            blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;
-
+            blackpanel = GameObject.FindGameObjectWithTag("itemblackpanel").transform.GetChild(0).gameObject;            
             
-
-            panelStd = GameObject.FindGameObjectWithTag("panelStd");
             s_item = itemImage;
             itemPanel = panel.GetComponent<itemPanel>();
             blackpanel.SetActive(false);
         }
-
+        panelStd = GameObject.FindGameObjectWithTag("panelStd");
+        rayitem = GameObject.Find("rayitem");
     }
     private void Start()
     {
         //FindGameObjectWithTag必须要active的物体才能找到，所以先找到，再SetActive(false)
         panel = GameObject.FindGameObjectWithTag("panel");
-        panel1 = GameObject.FindGameObjectWithTag("panel1");
-        panel2 = GameObject.FindGameObjectWithTag("panel2");
-        panel3 = GameObject.FindGameObjectWithTag("panel3");
+        panel1 = rayitem.transform.GetChild(5).gameObject;
+        panel2 = rayitem.transform.GetChild(6).gameObject;
+        panel3 = rayitem.transform.GetChild(7).gameObject;
         if (panel2 != null)
         {
             panel2.SetActive(false);
@@ -162,6 +161,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     /// <param name="name"></param>
     public static void ChangeItemPanel(string name)
     {
+        ItemPanelKing();
         if (Resources.Load(name) != null)
         {
             //实例化resources里面的“预制体”，Instantiate实例化的必须是预制体

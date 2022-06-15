@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 692653732}
   - component: {fileID: 692653731}
   m_Layer: 5
-  m_Name: left
+  m_Name: left_item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1094002894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7519,6 +7519,7 @@ MonoBehaviour:
   alfa_black: {fileID: 1459943853}
   headline: {fileID: 2030018403}
   start: {fileID: 467383861}
+  audioSource: {fileID: 519420030}
 --- !u!1 &1850478828
 GameObject:
   m_ObjectHideFlags: 0
@@ -7660,7 +7661,7 @@ GameObject:
   - component: {fileID: 1856979075}
   - component: {fileID: 1856979074}
   m_Layer: 5
-  m_Name: right
+  m_Name: right_item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

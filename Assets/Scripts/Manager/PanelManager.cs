@@ -8,7 +8,7 @@ using UnityEngine;
 class PanelManager : MonoBehaviour
 {
     private int num = 0;
-    private int itemNum = 0;
+    public static int itemNum = 0;
     public Transform[] panels1;
     public Transform[] itemPanels;
 
