@@ -24,7 +24,7 @@ class playerAI : MonoBehaviour
     public bool m_FacingRight = true;
     public Transform goosePos;
     public Transform catPos;
-
+    public GameObject yumao;
 
     private void Start()
     {
@@ -108,10 +108,10 @@ class playerAI : MonoBehaviour
                 StaticClass.isFinishedMove = true;
             }
             else if (Vector3.Distance(target.position, this.transform.position) >= distance + 2)
-            {               
+            {
                 StaticClass.isFinishedMove = false;
             }
-           
+
         }
 
         GooseAndRibbon();
@@ -140,17 +140,17 @@ class playerAI : MonoBehaviour
         //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
         if (MouseDrag.videoPlayer != null)
         {
-            if (MouseDrag.videoPlayer.isPlaying)
+            if (MouseDrag.videoPlayer.isPlaying && MouseDrag.videoPlayer.clip.name == "绑腿")
             {
-                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 1)
+                if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 5)
                 {
                     MouseDrag.videoPlayer.Stop();
                     AudioManager.audioSource.Play();
-                    ButtonManager.yumao.SetActive(true);
+                    ButtonManager.note2.SetActive(true);
                     StaticClass.isPlayerMove = true;
                 }
             }
-        }
+        }            
     }
 
     /// <summary>
@@ -175,13 +175,13 @@ class playerAI : MonoBehaviour
         //判断视频是否播放完成(注意：一定要放在update里面，才可以判断视频当前帧数)
         if (MouseDrag.videoPlayer != null)
         {
-            if (MouseDrag.videoPlayer.isPlaying)
+            if (MouseDrag.videoPlayer.isPlaying && MouseDrag.videoPlayer.clip.name == "丝带动画")
             {
                 if ((int)MouseDrag.videoPlayer.frame >= (int)MouseDrag.videoPlayer.frameCount - 3)
                 {
                     MouseDrag.videoPlayer.Stop();
                     AudioManager.audioSource.Play();
-                    ButtonManager.note2.SetActive(true);
+                    yumao.SetActive(true);
                     StaticClass.isPlayerMove = true;
                 }
             }

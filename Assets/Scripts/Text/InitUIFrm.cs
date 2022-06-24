@@ -13,20 +13,20 @@ public class InitUIFrm : MonoBehaviour
 
     // 介绍的内容
     string[] m_IntroContent = {//10space
-            "我曾经有个家庭。          " ,
-            "我们会围坐在大桌旁。          " ,
-            "妈妈总是停不下嘴。她热衷于抱怨一些琐事。          " ,
-            "爸爸与烟斗形影不离，即使在餐桌上。          " ,
-            "爷爷总会记得帮奶奶夹菜，他仍然认为她还没死。          " ,
-            "除此以外，他就是在谈论祖上的功绩和荣耀。          " ,
-            "阿比盖尔永远会在厨房里忙活。          " ,
-            "一天，我又听见妈妈在叫唤。这次格外刺耳。          " ,
-            "我走出房门，看见妈妈狠狠地扇了阿比盖尔一巴掌          " ,
-            "爸爸坐在旁边，用手捂住脸。他上身光着。          " ,
-            "我再也没见到妈妈。爸爸叫我别再提起这件事          " ,
-            "从那天起，奇怪的事发生了。          " ,
-            "我开始听见奇怪的声响。          " ,
-            "我的家人也是。          "
+            "我曾经有个家庭。    " ,
+            "我们会围坐在大桌旁。    " ,
+            "妈妈总是停不下嘴。她热衷于抱怨一些琐事。    " ,
+            "爸爸与烟斗形影不离，即使在餐桌上。    " ,
+            "爷爷总会记得帮奶奶夹菜，他仍然认为她还没死。    " ,
+            "除此以外，他就是在谈论祖上的功绩和荣耀。       " ,
+            "阿比盖尔永远会在厨房里忙活。        " ,
+            "一天，我又听见妈妈在叫唤。这次格外刺耳。       " ,
+            "我走出房门，看见妈妈狠狠地扇了阿比盖尔一巴掌      " ,
+            "爸爸坐在旁边，用手捂住脸。他上身光着。       " ,
+            "我再也没见到妈妈。爸爸叫我别再提起这件事        " ,
+            "从那天起，奇怪的事发生了。      " ,
+            "我开始听见奇怪的声响。    " ,
+            "我的家人也是。      "
         };
 
     int m_AlphaSpan = 30;//每个渐变颜色之间的间隔
@@ -40,7 +40,7 @@ public class InitUIFrm : MonoBehaviour
     float m_Timer = 0;//计时器
 
     bool m_IsPrint = false;//是否打印
-    bool m_IsEnd = false;//是否打印结束
+    //bool m_IsEnd = false;//是否打印结束
 
     private void Awake()
     {
@@ -101,6 +101,7 @@ public class InitUIFrm : MonoBehaviour
                 m_TextValue.color = new Color(m_TextValue.color.r, m_TextValue.color.g, m_TextValue.color.b, 1);
                 //Debug.Log("这段已经打完了");
                 return;
+
             }
 
             for (int i = m_BeginIndex; i < m_TextIndex; i++)
@@ -142,11 +143,27 @@ public class InitUIFrm : MonoBehaviour
         {
             //Debug.Log("打印完所有的内容");
             //隐藏text和放大的图片
-            PictureClick.child0.SetActive(false);
+            //PictureClick.child0.SetActive(false);
             PictureClick.text1.SetActive(false);
             StaticClass.isPlayerMove = true;
         }
     }
+
+   /* private void PrintNext()
+    {
+        //打印完一段
+        m_TextValue.color = new Color(m_TextValue.color.r, m_TextValue.color.g, m_TextValue.color.b, 0);
+        //清空text的值，等下一轮打印
+        m_NowPrintIndex++;
+        //数据初始化
+        m_TextValue.text = "";
+        m_BeginIndex = 0;
+        m_TextIndex = 0;
+        m_AlphaLine.Clear();
+        m_TextValue.color = new Color(m_TextValue.color.r, m_TextValue.color.g, m_TextValue.color.b, 1);
+        //Debug.Log("这段已经打完了");
+        return;
+    }*/
 
     public void Update()
     {

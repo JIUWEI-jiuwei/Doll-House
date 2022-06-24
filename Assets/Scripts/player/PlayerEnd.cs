@@ -53,15 +53,16 @@ class PlayerEnd : MonoBehaviour
                 }
             }
             //½áÊø×ßÂ·
-            if (Vector3.Distance(target.position, this.transform.position) <= distance-2)
+            if (Vector3.Distance(target.position, this.transform.position) <= distance)
             {
-                playerEnd.SetBool("beginWalk", false);              
-            }
-            else if(Vector3.Distance(target.position, this.transform.position) <= distance)
-            {
+                playerEnd.SetBool("beginWalk", false);
                 StaticClass.isFinishedMove = true;
             }
-            else if (Vector3.Distance(target.position, this.transform.position) >= distance + 2)
+            /*else if(Vector3.Distance(target.position, this.transform.position) <= distance)
+            {
+                
+            }*/
+            else if (Vector3.Distance(target.position, this.transform.position) >= distance+2)
             {
                 StaticClass.isFinishedMove = false;
             }

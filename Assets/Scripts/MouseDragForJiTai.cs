@@ -48,6 +48,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         //祭品位置摆放正确
         if (PlayerPrefs.GetInt("isGui1")==1 && PlayerPrefs.GetInt("isGui2") == 1 && PlayerPrefs.GetInt("isGui3") == 1 && PlayerPrefs.GetInt("isGui4") == 1)
         {
+            
             //播放盒子开启动画，得到钥匙
             videoPlayer2.Play();
             AudioManager.audioSource.Stop();
@@ -132,38 +133,46 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             if (this.GetComponent<Image>().sprite.name == "yumao00"&& eventData.pointerCurrentRaycast.gameObject.name == "plate1")
             {
                 StaticClass.one = true;
+                PlayerPrefs.SetInt("isGui1", 1);
             }
             else if(this.GetComponent<Image>().sprite.name == "lung00"&& eventData.pointerCurrentRaycast.gameObject.name == "plate2")
             {
                 StaticClass.two = true;
+                PlayerPrefs.SetInt("isGui2", 1);
             }
             else if(this.GetComponent<Image>().sprite.name == "turtleshell00" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
             {
                 StaticClass.three= true;
+                PlayerPrefs.SetInt("isGui3", 1);
             }
             else if(this.GetComponent<Image>().sprite.name == "cattooth00" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
             {
                 StaticClass.four = true;
+                PlayerPrefs.SetInt("isGui4", 1);
             }
             else if(this.GetComponent<Image>().sprite.name == "yumao00" &&(eventData.pointerCurrentRaycast.gameObject.name == "plate2"
                 ||eventData.pointerCurrentRaycast.gameObject.name == "plate3"||eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
             {
                 StaticClass.one = false;
+                PlayerPrefs.SetInt("isGui1", 2);
             }
             else if(this.GetComponent<Image>().sprite.name == "lung00" && (eventData.pointerCurrentRaycast.gameObject.name == "plate1"
                 ||eventData.pointerCurrentRaycast.gameObject.name == "plate3"||eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
             {
                 StaticClass.one = false;
+                PlayerPrefs.SetInt("isGui2", 2);
             }
             else if(this.GetComponent<Image>().sprite.name == "turtleshell00" && (eventData.pointerCurrentRaycast.gameObject.name == "plate2"
                 ||eventData.pointerCurrentRaycast.gameObject.name == "plate1"||eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
             {
                 StaticClass.one = false;
+                PlayerPrefs.SetInt("isGui3", 2);
             }
             else if(this.GetComponent<Image>().sprite.name == "cattooth00" && (eventData.pointerCurrentRaycast.gameObject.name == "plate2"
                 ||eventData.pointerCurrentRaycast.gameObject.name == "plate3"||eventData.pointerCurrentRaycast.gameObject.name == "plate1"))
             {
                 StaticClass.one = false;
+                PlayerPrefs.SetInt("isGui4", 2);
             }
             #endregion
         }        

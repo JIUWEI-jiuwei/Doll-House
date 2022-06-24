@@ -13,17 +13,17 @@ public class Text3 : MonoBehaviour
 
     // 介绍的内容
     string[] m_IntroContent = {//10space
-            "后来，爷爷不见了。我们哪儿也找不到，却意外发现了墓地里多了一块爷爷的墓碑。          " ,
-            "家里就剩下我和爸爸了。          " ,
-            "爸爸从来没跟我说过他听到了什么          " ,
-            "他不怎么说话，只是不停地抽烟。          " ,
-            "                           " ,
-            "而对我来说，我也不知道自己听到的奇怪声音来自哪里。          " ,
-            "直到我把耳朵凑近了玩偶屋。          " ,
-            "                           " ,
-            "我听见了玩偶在说些什么。          " ,
-            "她在和我说话。          " ,
-            "她叫艾尔，现在是我最好的朋友。          "
+            "后来，爷爷不见了。我们哪儿也找不到，却意外发现了墓地里多了一块爷爷的墓碑。     " ,
+            "家里就剩下我和爸爸了。      " ,
+            "爸爸从来没跟我说过他听到了什么      " ,
+            "他不怎么说话，只是不停地抽烟。      " ,
+            "                    " ,
+            "而对我来说，我也不知道自己听到的奇怪声音来自哪里。     " ,
+            "直到我把耳朵凑近了玩偶屋。     " ,
+            "                     " ,
+            "我听见了玩偶在说些什么。      " ,
+            "她在和我说话。    " ,
+            "她叫艾尔，现在是我最好的朋友。   "
         };
 
     int m_AlphaSpan = 30;//每个渐变颜色之间的间隔
@@ -139,7 +139,7 @@ public class Text3 : MonoBehaviour
         {
             //Debug.Log("打印完所有的内容");
             //隐藏text和放大的图片
-            PictureClick.child0.SetActive(false);
+            //PictureClick.child0.SetActive(false);
             PictureClick.text3.SetActive(false);
             StaticClass.isPlayerMove = true;
         }
