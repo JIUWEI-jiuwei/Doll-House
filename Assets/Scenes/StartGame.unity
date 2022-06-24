@@ -1891,7 +1891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21962afc3e3e356488dd74ea8524ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicBk: {fileID: 0}
 --- !u!81 &1148178229
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7334,7 +7333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21962afc3e3e356488dd74ea8524ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicBk: {fileID: 0}
 --- !u!114 &1721763498
 MonoBehaviour:
   m_ObjectHideFlags: 0

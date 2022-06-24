@@ -6,10 +6,10 @@ using UnityEngine;
 ///</summary>
 class DontDestroy : MonoBehaviour
 {
-    public GameObject MusicBk; //预制体（不销毁的物体（做成预制体））
-    public static bool isHave = false;
-    private GameObject clone;//克隆的不销毁物体
-    private GameObject item;
+    //public GameObject MusicBk; //预制体（不销毁的物体（做成预制体））
+    //public static bool isHave = false;
+    //private GameObject clone;//克隆的不销毁物体
+    //private GameObject item;
     public static int has=0;
     /*private void Awake()
     {

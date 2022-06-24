@@ -61,7 +61,7 @@ class DoorLevel1 : MonoBehaviour
             {
                 SceneManager.LoadSceneAsync("DollLayer2");
             }
-            StaticClass.isPlayerMove = false;
+            //StaticClass.isPlayerMove = false;
             StaticClass.isDoorClick = false;
         }
         //ÃÜÂëµÄ

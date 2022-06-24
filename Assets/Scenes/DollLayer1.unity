@@ -5561,6 +5561,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 377952521}
     m_Modifications:
+    - target: {fileID: 3753955105770348080, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1287546459}
+    - target: {fileID: 3753955105770348080, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Button2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753955105838839735, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1287546459}
+    - target: {fileID: 3753955105838839735, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Button1
+      objectReference: {fileID: 0}
     - target: {fileID: 3753955105889851149, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
       propertyPath: m_Text
       value: '0
@@ -5659,6 +5675,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3753955106374820631, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1287546459}
+    - target: {fileID: 3753955106374820631, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Button3
+      objectReference: {fileID: 0}
     - target: {fileID: 3753955106710794117, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
       propertyPath: m_Text
       value: 0
@@ -5702,6 +5726,14 @@ PrefabInstance:
     - target: {fileID: 3753955106954044367, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
       propertyPath: m_Text
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753955107083595352, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1287546459}
+    - target: {fileID: 3753955107083595352, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Button4
       objectReference: {fileID: 0}
     - target: {fileID: 3753955107219385709, guid: d8860aa1b48d1e44f9376e0b98655d5e, type: 3}
       propertyPath: m_IsActive
