@@ -65,7 +65,12 @@ class DoorLevel1 : MonoBehaviour
             StaticClass.isDoorClick = false;
         }
         //密码的
-        MiMaPan();
+        //MiMaPan();
+        if (circle1.eulerAngles.z % 360 == 0 && circle2.eulerAngles.z % 360 == 330 && circle3.eulerAngles.z % 360 == 270)
+        {//负数也适用
+            //胜利
+            ButtonWin();
+        }
     }
     /// <summary>
     /// 切换按钮的sprite图片
@@ -78,7 +83,24 @@ class DoorLevel1 : MonoBehaviour
         spriteStatus.selectedSprite = Resources.Load<Sprite>("黑色的门");
         this.GetComponent<Button>().spriteState = spriteStatus;
     }
+
     /// <summary>
+    /// 点击按钮1旋转
+    /// </summary>
+    public void ClickToRotate1()
+    {
+        circle1.Rotate(new Vector3(circle1.rotation.x, circle1.rotation.y, -zAngle));
+    }
+     public void ClickToRotate2()
+    {
+        circle2.Rotate(new Vector3(circle2.rotation.x, circle2.rotation.y, -zAngle));
+    }
+     public void ClickToRotate3()
+    {
+        circle3.Rotate(new Vector3(circle3.rotation.x, circle3.rotation.y, -zAngle));
+    }
+
+   /* /// <summary>
     /// 密码盘
     /// </summary>
     private void MiMaPan()
@@ -150,7 +172,7 @@ class DoorLevel1 : MonoBehaviour
             }
 
         }
-    }
+    }*/
     /// <summary>
     /// 点击门
     /// </summary>

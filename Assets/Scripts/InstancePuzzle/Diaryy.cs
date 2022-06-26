@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 ///<summary>
@@ -24,7 +23,7 @@ class Diaryy : MonoBehaviour
         }
     }
     /// <summary>
-    /// 日记本按钮
+    /// 日记本按钮（一二关）
     /// </summary>
     public void Diary()
     {
@@ -39,5 +38,19 @@ class Diaryy : MonoBehaviour
             diaryPanel.SetActive(true);
             StaticClass.isPlayerMove = false;
         }
+    }
+    /// <summary>
+    /// 打开日记本（仅限于第三关）
+    /// </summary>
+    public void OpenDiaryForScene3()
+    {
+        diaryPanel.SetActive(true);
+    }
+    /// <summary>
+    /// 关闭日记本（仅限于第三关）
+    /// </summary>
+    public void BackDiary()
+    {
+        diaryPanel.SetActive(false);
     }
 }

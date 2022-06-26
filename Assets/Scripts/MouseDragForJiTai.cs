@@ -57,7 +57,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         if (videoPlayer2.isPlaying&& videoPlayer2.clip.name== "打开祭台盒子的视频")
         {
-            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 5)
             {
                 videoPlayer2.Stop();
                 AudioManager.audioSource.Play();
@@ -71,11 +71,11 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
         {
-            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 3)
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 10)
             {
                 videoPlayer2.Stop();
                 AudioManager.audioSource.Play();
-                SceneManager.LoadSceneAsync("StartGame");
+                SceneManager.LoadSceneAsync("DollLayer3");
             }
         }
     }

@@ -20,6 +20,7 @@ class PlayerEnd : MonoBehaviour
     public float distance = 1f;
     /// <summary>面向右边</summary>
     public bool m_FacingRight = true;
+    public float x = 0.5f;
 
     private void Start()
     {
@@ -33,12 +34,12 @@ class PlayerEnd : MonoBehaviour
     private void Update()
     {
         //将鼠标位置设定为target
-        target.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, mouseZ); ;
         if (agent.isOnNavMesh)
         {
             //开始走路
             if (Input.GetMouseButtonUp(0) && StaticClass.isPlayerMove == true)
             {
+                target.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, mouseZ); ;
                 playerEnd.SetBool("beginWalk", true);
                 agent.SetDestination(target.position);
                 StaticClass.isFinishedMove = false;
@@ -52,20 +53,22 @@ class PlayerEnd : MonoBehaviour
                     Flip();
                 }
             }
+            //Debug.Log("agent.velocity.x+" + agent.velocity.x);
+            //Debug.Log("agent.velocity+" + agent.velocity);
             //结束走路
-            if (Vector3.Distance(target.position, this.transform.position) <= distance)
+            if (Vector3.Distance(target.position, this.transform.position) <= distance)//|| Mathf.Abs(agent.velocity.x) <= x
             {
                 playerEnd.SetBool("beginWalk", false);
                 StaticClass.isFinishedMove = true;
-            }
+            }            
             /*else if(Vector3.Distance(target.position, this.transform.position) <= distance)
             {
                 
             }*/
-            else if (Vector3.Distance(target.position, this.transform.position) >= distance+2)
+            /*else if (Vector3.Distance(target.position, this.transform.position) >= distance+2)
             {
                 StaticClass.isFinishedMove = false;
-            }
+            }*/
 
         }
     }
