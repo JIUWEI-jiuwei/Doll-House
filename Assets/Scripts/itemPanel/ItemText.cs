@@ -9,26 +9,26 @@ static class ItemText
 {
     public static string lip = "由崔斯特王子为婚礼精心挑选，优雅的正红色。";
     public static string candle = "有火了";
-    public static string necklace = "若隐若现的真情实感";
+    public static string necklace = "若隐若现的真情";
     public static string xisheng = "从项链上剪下来的细绳";
-    public static string ribbon = "矫饰之物，但或许能派上新的用场";
+    public static string ribbon = "从礼物盒上拆下的，或许能派上其他用场";
     public static string yandou = "有了烟斗，怎么能少了烟草呢？";
     public static string scissor = "一把普普通通的剪刀";
-    public static string seed = "普通的种子，不过有些似曾相识";
-    public static string meatshu = "恰到好处的火候，垂涎欲滴的美味";
+    public static string seed = "种子？豆子？有些似曾相识。";
+    public static string meatshu = "令人垂涎";
     public static string boiledmeat = "又黑又硬，牙齿的灾难";
-    public static string cup = "做工精良，但依然只能盛液体";
+    public static string cup = "做工精良，用处朴实";
 
     public static string shuidebeizi = "只是……水？";
     public static string tuoyedebeizi = "……说不定有点用呢？";
     public static string yancao = "弱碱性环境下的作物";
     public static string yan = "伤害与宽慰并存";
-    public static string ducao = "种子在强酸性环境下的作物";
+    public static string ducao = "种子在强酸性环境下的作物，入水即化";
     public static string duyao = "纯粹的伤害";
-    public static string yumao = "干净得不落一粒灰尘，轻盈得让人怜惜";
-    public static string cattooth = "为贪欲而付出的代价";
+    public static string yumao = "干净得不落一粒灰尘";
+    public static string cattooth = "吃肉时磕掉的牙，是为贪欲付出的代价";
     public static string lung = "发黑的肺，见证了多少年的忧愁";
-    public static string turtleshell = "身世与荣耀的象征，不过，是假的";
+    public static string turtleshell = "身世与荣耀的象征，不过，是虚假的";
     public static string yaoshi = "逃吧";
 
     public static string bottle = "很沉，说明里面装着不少水";
@@ -37,7 +37,7 @@ static class ItemText
     public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
     public static string note4 = "新婚快乐，我的艾尔公主！谨奉盒中之礼以表我心意。对了，密码是你的生日。";
     public static string rawmeat = "总会引起各种各样的贪婪念头";
-    public static string cattuoye = "……说不定有点用呢？";
+    public static string cattuoye = "狞猫吃肉时流下的口水沾到了手上";
     public static string note1_b = "纸条上出现了发黄的字迹，看着像数字2";
     public static string zacao = "浪费了一粒种子";
 

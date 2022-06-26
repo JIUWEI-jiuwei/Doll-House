@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b79689f2c1538184dbf57a728debd480
+guid: 4c141be67ab9aee43a83af2536f5de66
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - MusicBk: {fileID: 6154904325070344516, guid: bcf152a2fe4a5f34f96c729bf26d3e1c, type: 3}
+  - dialogPrefab: {fileID: 7984183490528427307, guid: 06035669a5dd134448e6bdcfb310af3c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

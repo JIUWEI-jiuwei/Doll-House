@@ -10,7 +10,7 @@ class DontDestroy : MonoBehaviour
     //public static bool isHave = false;
     //private GameObject clone;//克隆的不销毁物体
     //private GameObject item;
-    public static int has=0;
+    public static int has = 0;
     /*private void Awake()
     {
         //item = GameObject.Find("itemmmm");
@@ -34,11 +34,19 @@ class DontDestroy : MonoBehaviour
 
     private void Awake()
     {
-        if (has<2)
+        if (has < 2)
         {
             DontDestroyOnLoad(this.gameObject);
             has++;
         }
+    }
+    private void Start()
+    {
         
+        if (SceneManager.GetActiveScene().name == "DollLayer3")
+        {
+            Destroy(this.gameObject);
+            Debug.Log("333");
+        }
     }
 }

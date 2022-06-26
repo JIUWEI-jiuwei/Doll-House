@@ -27,9 +27,10 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
 
     public GameObject jitaiItemPrefab;
     public GameObject seedPrefab;
-
+    private GameObject catTextBg;
     private void Start()
     {
+        catTextBg = GameObject.Find("cat").transform.GetChild(0).gameObject;
         if (SceneManager.GetActiveScene().name == "DollLayer1")
         {
             paiting = GameObject.Find("nonAnim").transform.GetChild(0).gameObject;
@@ -103,6 +104,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 ItemPanelClick.ItemPanelDown();
                 ItemPanelClick.blackPanelClose();
             }
+
         }
         if (eventData.pointerCurrentRaycast.gameObject != null)
         {
@@ -111,7 +113,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 if (PanelManager.itemNum > 0)
                 {
-                    PanelManager.itemNum--;
+                    Invoke("ItemNumMinus", 1.5f);
                 }
             }
             //拖动到右箭头翻页
@@ -119,12 +121,23 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 if (PanelManager.itemNum < 2)
                 {
-                    PanelManager.itemNum++;
+                    Invoke("ItemNumPlus", 1.5f);
                 }
             }
         }
         
     }
+
+    private static void ItemNumPlus()
+    {
+        PanelManager.itemNum++;
+    }
+
+    private static void ItemNumMinus()
+    {
+        PanelManager.itemNum--;
+    }
+
     /// <summary>
     /// 拖拽结束
     /// </summary>
@@ -167,7 +180,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                     if (canvas.name == "OtherCanvas")
                     {
                         dialog = Instantiate(dialogPrefab, canvas.transform);
-                        dialog.transform.GetChild(0).GetComponent<Text>().text = "这根绳太细了，得找更坚固的东西。";
+                        dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "这根绳太细了，得找更坚固的东西。";
                         Invoke("DestroyDialog", 2f);
                     }
                 }
@@ -190,12 +203,18 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
         {
             ItemPanelClick.ChangeItemPanel("cattuoye");
+            catTextBg.GetComponentInChildren<Text>().text = "这块肉倒是不错，再找块更熟点的吧";
+            catTextBg.SetActive(true);
+            Invoke("CloseCatText", 8f);
         }
-        //熟肉+猫=》唾液2
-        else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "meatshu")
+        //生肉+猫=》文本
+        else if (this.GetComponent<Image>().sprite.name == "rawmeat" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
         {
-            ItemPanelClick.ChangeItemPanel("cattuoye");
+            catTextBg.GetComponentInChildren<Text>().text = "太生的肉我可不喜欢";
+            catTextBg.SetActive(true);
+            Invoke("CloseCatText", 3f);
         }
+        
         //蜡烛+熟肉=》烧焦的肉
         else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "meatshu")
         {
@@ -213,13 +232,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             Destroy(this.gameObject);
             ItemPanelClick.ChangeItemPanel("cattooth");
+            catTextBg.GetComponentInChildren<Text>().text = "我的牙…";
+            catTextBg.SetActive(true);
+            Invoke("CloseCatText", 8f);
         }
-        //烧焦的肉+猫=>断齿2
-        else if (this.GetComponent<Image>().sprite.name == "cat" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "boiledmeat")
-        {
-            Destroy(eventData.pointerCurrentRaycast.gameObject);
-            ItemPanelClick.ChangeItemPanel("cattooth");
-        }
+        
         //项链+剪刀=》细绳
         else if (this.GetComponent<Image>().sprite.name == "necklace" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "scissor")
         {
@@ -233,7 +250,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("xisheng");
         }
-        //唾液+杯子=》盛唾液的杯子
+        /*//唾液+杯子=》盛唾液的杯子
         else if (this.GetComponent<Image>().sprite.name == "cattuoye" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "cup")
         {
             Destroy(this.gameObject);
@@ -244,7 +261,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("tuoyedebeizi");
-        }
+        }*/
         //蜡烛+纸条1
         else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "note1")
         {
@@ -272,7 +289,12 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //口红+乌龟=》打开panel
         else if (this.GetComponent<Image>().sprite.name == "lip" && eventData.pointerCurrentRaycast.gameObject.name == "gui")
         {
-            WuGui.wuGuiPanel.SetActive(true);
+            if(PlayerPrefs.GetInt("isGuiClickNum") >= 2)
+            {
+                WuGui.wuGuiPanel.SetActive(true);
+                WuGui.wuGuiLeft.SetActive(true);
+                WuGui.cameraBrush.SetActive(true);
+            }
         }
         //种植种子
         else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "red")
@@ -507,6 +529,10 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     {
         Hama.hamaDialog1.SetActive(true);
         Hama.hama.SetBool("hamasmoke", false);
+    }
+    public void CloseCatText()
+    {
+        catTextBg.SetActive(false);
     }
 }
 

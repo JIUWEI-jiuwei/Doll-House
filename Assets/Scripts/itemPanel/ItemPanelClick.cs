@@ -24,6 +24,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public static GameObject s_item;
     public float timer = 0.2f;
     private GameObject rayitem;
+    public static int numDown=0;
 
     private void Awake()
     {
@@ -64,6 +65,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     {
         itemPanel.itemPanelAnim.SetBool("up", false);
         StaticClass.isPlayerMove = true;
+        numDown++;
     }
     /// <summary>
     /// 物品栏上升动画

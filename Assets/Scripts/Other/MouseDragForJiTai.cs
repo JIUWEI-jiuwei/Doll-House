@@ -71,7 +71,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
         {
-            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 10)
+            if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 5)
             {
                 videoPlayer2.Stop();
                 AudioManager.audioSource.Play();

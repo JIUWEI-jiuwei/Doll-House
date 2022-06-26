@@ -15,7 +15,7 @@ class EndCameraMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (player.position.x >= 0)
+        if (player.position.x >= 0&& player.position.x<=145)
         {
             x = player.position.x;
             this.transform.position = new Vector3(x, this.transform.position.y, this.transform.position.z);

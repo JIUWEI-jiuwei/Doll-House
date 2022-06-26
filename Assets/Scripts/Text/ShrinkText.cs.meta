@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: b79689f2c1538184dbf57a728debd480
+guid: 54a876ce177f38441b5bc1e05700910c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - MusicBk: {fileID: 6154904325070344516, guid: bcf152a2fe4a5f34f96c729bf26d3e1c, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
