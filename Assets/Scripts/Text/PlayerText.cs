@@ -7,6 +7,8 @@ using UnityEngine;
 class PlayerText : MonoBehaviour
 {
     private int num = 0;
+    private int num1 = 0;
+    private bool oneTime = false;
     private GameObject dialog;
     private Transform dialogPos;
     private GameObject player;
@@ -29,6 +31,7 @@ class PlayerText : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             num++;
+            num1++;
         }
         if(SceneManager.GetActiveScene().name== "DollLayer3")
         {
@@ -47,7 +50,7 @@ class PlayerText : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "EndGame")
         {
-            if (num == 2)
+            if (num1 == 3&&oneTime==false)
             {
                 foreach (Canvas canvas in FindObjectsOfType<Canvas>())
                 {
@@ -58,11 +61,13 @@ class PlayerText : MonoBehaviour
                         Invoke("DestroyDialog", 2f);
                     }
                 }
+                
             }
         }
     }
     private void DestroyDialog()
     {
         Destroy(dialog);
+        oneTime = true;
     }
 }

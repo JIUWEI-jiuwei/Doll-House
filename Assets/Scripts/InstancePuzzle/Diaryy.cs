@@ -59,7 +59,7 @@ class Diaryy : MonoBehaviour
                 if (canvas.name == "OtherCanvas" && first2 == false)
                 {
                     dialog = Instantiate(dialogPrefab, canvas.transform);
-                    dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "1.拖拽道具至场景中以使用道具。\n2.拖拽道具至物品栏中的其他道具可将其组合使用。\n3.要留意道具的介绍哦。";
+                    dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "1.拖拽道具至场景中以使用道具。\n2.拖拽道具至物品栏中的其他道具可将其组合使用。\n3.新获得的道具会出现在道具栏末尾。\n4.要留意道具的介绍哦。";
                     Invoke("DestroyDialog", 4f);
                     first2 = true;
                 }

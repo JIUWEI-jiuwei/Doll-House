@@ -194,6 +194,10 @@ class DoorLevel1 : MonoBehaviour
     public void Back()
     {
         doorPanel.gameObject.SetActive(false);
+        Invoke("PlayerMove", 1f);
+    }
+    public void PlayerMove()
+    {
         StaticClass.isPlayerMove = true;
     }
 

@@ -304,6 +304,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
             s.transform.localScale = new Vector3(1, 1, 1);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            ItemPanelClick.audioSource.Play();
         }
         else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "yellow")
         {
@@ -312,6 +313,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
             s.transform.localScale = new Vector3(1, 1, 1);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            ItemPanelClick.audioSource.Play();
         }
         else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "green")
         {
@@ -320,6 +322,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
             s.transform.localScale = new Vector3(1, 1, 1);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            ItemPanelClick.audioSource.Play();
         }
         else if (this.GetComponent<Image>().sprite.name == "seed" && eventData.pointerCurrentRaycast.gameObject.name == "purple")
         {
@@ -328,6 +331,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
             s.transform.localScale = new Vector3(1, 1, 1);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
+            ItemPanelClick.audioSource.Play();
         }
         //烟斗+烟草=》烟
         else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yandou")
@@ -389,16 +393,18 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             StaticClass.isHamaDrinking = true;
         }
         //盛唾液的杯子+种子=》浇灌
-        else if (this.GetComponent<Image>().sprite.name == "tuoyedebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
+        else if (this.GetComponent<Image>().sprite.name == "cattuoye" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
         {
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Animator>().SetBool("grow", true);
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Seed>().isTuoYe = true;
+            ItemPanelClick.audioSource.Play();
         }
         //盛水的杯子+种子=》浇灌
         else if (this.GetComponent<Image>().sprite.name == "shuidebeizi" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
         {
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Animator>().SetBool("grow", true);
             eventData.pointerCurrentRaycast.gameObject.GetComponent<Seed>().isWater= true;
+            ItemPanelClick.audioSource.Play();
         }
         //烟草+烟斗=》烟
         else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yandou")
@@ -413,34 +419,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             ItemPanelClick.ChangeItemPanel("yan");
         }
 
-
-
         //祭台：乌龟的壳+盘子1=》吸附
-        else if ((this.GetComponent<Image>().sprite.name == "turtleshell"|| this.GetComponent<Image>().sprite.name == "cattooth"||
-            this.GetComponent<Image>().sprite.name == "lung" || this.GetComponent<Image>().sprite.name == "yumao") && 
-            (eventData.pointerCurrentRaycast.gameObject.name == "plate1"||eventData.pointerCurrentRaycast.gameObject.name == "plate2"||
-            eventData.pointerCurrentRaycast.gameObject.name == "plate3" || eventData.pointerCurrentRaycast.gameObject.name == "plate4"))
+        else if (this.GetComponent<Image>().sprite.name == "yumao" && eventData.pointerCurrentRaycast.gameObject.name == "plate1")
         {
-            if (this.GetComponent<Image>().sprite.name == "yumao" && eventData.pointerCurrentRaycast.gameObject.name == "plate1")
-            {
-                //StaticClass.one = true;
-                PlayerPrefs.SetInt("isGui1", 1);
-            }
-            else if (this.GetComponent<Image>().sprite.name == "lung" && eventData.pointerCurrentRaycast.gameObject.name == "plate2")
-            {
-                //StaticClass.two = true;
-                PlayerPrefs.SetInt("isGui2", 1);
-            }
-            else if (this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
-            {
-                //StaticClass.three = true;
-                PlayerPrefs.SetInt("isGui3", 1);
-            }
-            else if (this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
-            {
-                //StaticClass.four = true;
-                PlayerPrefs.SetInt("isGui4", 1);
-            }
+            //StaticClass.one = true;
+            PlayerPrefs.SetInt("isGui1", 1);
             Destroy(this.gameObject);
             GameObject a = Instantiate(jitaiItemPrefab);
             a.GetComponent<Image>().sprite = Resources.Load<Sprite>(this.GetComponent<Image>().sprite.name + "00");
@@ -449,6 +432,44 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
             a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
         }
+        else if(this.GetComponent<Image>().sprite.name == "lung" && eventData.pointerCurrentRaycast.gameObject.name == "plate2")
+        {
+            //StaticClass.one = true;
+            PlayerPrefs.SetInt("isGui2", 1);
+            Destroy(this.gameObject);
+            GameObject a = Instantiate(jitaiItemPrefab);
+            a.GetComponent<Image>().sprite = Resources.Load<Sprite>(this.GetComponent<Image>().sprite.name + "00");
+            a.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+            //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
+            a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+        }
+        else if(this.GetComponent<Image>().sprite.name == "turtleshell" && eventData.pointerCurrentRaycast.gameObject.name == "plate3")
+        {
+            //StaticClass.one = true;
+            PlayerPrefs.SetInt("isGui3", 1);
+            Destroy(this.gameObject);
+            GameObject a = Instantiate(jitaiItemPrefab);
+            a.GetComponent<Image>().sprite = Resources.Load<Sprite>(this.GetComponent<Image>().sprite.name + "00");
+            a.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+            //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
+            a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+        }
+        else if(this.GetComponent<Image>().sprite.name == "cattooth" && eventData.pointerCurrentRaycast.gameObject.name == "plate4")
+        {
+            //StaticClass.one = true;
+            PlayerPrefs.SetInt("isGui4", 1);
+            Destroy(this.gameObject);
+            GameObject a = Instantiate(jitaiItemPrefab);
+            a.GetComponent<Image>().sprite = Resources.Load<Sprite>(this.GetComponent<Image>().sprite.name + "00");
+            a.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            a.transform.localScale = new Vector3(1, 1, 1);
+            //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
+            a.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+        }
+
+        
         
 
         #endregion
@@ -457,6 +478,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             //物品栏回归并且物品名字出现
             ItemPanelClick.ItemPanelKing();
             ItemPanelClick.blackPanelOpen();
+            ItemPanelClick.audioSource2.Play();
         }
     }
 

@@ -25,6 +25,8 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public float timer = 0.2f;
     private GameObject rayitem;
     public static int numDown=0;
+    public static AudioSource audioSource;
+    public static AudioSource audioSource2;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
         }
         panelStd = GameObject.FindGameObjectWithTag("panelStd");
         rayitem = GameObject.Find("rayitem");
+        audioSource = rayitem.GetComponent<AudioSource>();
+        audioSource2 = panelStd.GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -164,6 +168,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public static void ChangeItemPanel(string name)
     {
         ItemPanelKing();
+        audioSource.Play();
         if (Resources.Load(name) != null)
         {
             //实例化resources里面的“预制体”，Instantiate实例化的必须是预制体

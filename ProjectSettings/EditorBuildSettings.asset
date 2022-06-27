@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndGame.unity
     guid: 6d37235425ef9bf40868fcd7ab7c10d7
+  - enabled: 1
+    path: Assets/Scenes/CurtainCall.unity
+    guid: 35de184d37e22674bbf2cfa6c49b3d07
   m_configObjects: {}

@@ -2251,6 +2251,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2932959494243989078, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f76af1838724884584536d7a76811e5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
 --- !u!224 &6797195407786190898 stripped

@@ -12,10 +12,6 @@ class Cat : MonoBehaviour
     {
         catTextBg = cat.transform.GetChild(0).gameObject;
     }
-    private void FixedUpdate()
-    {
-        
-    }
     public void CatSpeak()
     {
         if (StaticClass.isFinishedMove)

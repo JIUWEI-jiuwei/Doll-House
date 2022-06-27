@@ -1,6 +1,8 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 ///<summary>
 ///
@@ -21,6 +23,7 @@ class PlayerEnd : MonoBehaviour
     /// <summary>面向右边</summary>
     public bool m_FacingRight = true;
     public float x = 0.5f;
+    public VideoPlayer videoPlayer;
 
     private void Start()
     {
@@ -33,6 +36,23 @@ class PlayerEnd : MonoBehaviour
     }
     private void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.name == "father")
+            {
+                videoPlayer.Play();
+                AudioManager.audioSource.Stop();
+            }
+        }
+        
+        if (videoPlayer.isPlaying)
+        {
+            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
+            {
+                SceneManager.LoadSceneAsync("CurtainCall");
+            }
+        }
         //将鼠标位置设定为target
         if (agent.isOnNavMesh)
         {
