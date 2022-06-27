@@ -29,6 +29,10 @@ class StartGame : MonoBehaviour
         PlayerPrefs.SetInt("isGui2", 0);
         PlayerPrefs.SetInt("isGui3", 0);
         PlayerPrefs.SetInt("isGui4", 0);
+        PlayerPrefs.SetInt("isSeed1", 0);
+        PlayerPrefs.SetInt("isSeed2", 0);
+        PlayerPrefs.SetInt("isSeed3", 0);
+        PlayerPrefs.SetInt("isSeed4", 0);
         PlayerPrefs.SetInt("isGuiClickNum", 0);
         PlayerPrefs.SetInt("isGuiWin", 0);
         
@@ -38,7 +42,7 @@ class StartGame : MonoBehaviour
         PlayerPrefs.SetInt("note2", 0);
         PlayerPrefs.SetInt("note3", 0);
         PlayerPrefs.SetInt("yumao", 0);
-         PlayerPrefs.SetInt("cup", 0);
+        PlayerPrefs.SetInt("cup", 0);
         PlayerPrefs.SetInt("rawmeat", 0);
         PlayerPrefs.SetInt("scissor", 0);
         PlayerPrefs.SetInt("yandou", 0);

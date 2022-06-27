@@ -47,7 +47,7 @@ class Diaryy : MonoBehaviour
                 {
                     dialog = Instantiate(dialogPrefab, canvas.transform);
                     dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "日记本中有许多重要提示，不妨在这里找找线索。";
-                    Invoke("DestroyDialog", 2f);
+                    Invoke("DestroyDialog", 8f);
                     first1 = true;
                 }
             }
@@ -60,7 +60,7 @@ class Diaryy : MonoBehaviour
                 {
                     dialog = Instantiate(dialogPrefab, canvas.transform);
                     dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "1.拖拽道具至场景中以使用道具。\n2.拖拽道具至物品栏中的其他道具可将其组合使用。\n3.新获得的道具会出现在道具栏末尾。\n4.要留意道具的介绍哦。";
-                    Invoke("DestroyDialog", 4f);
+                    Invoke("DestroyDialog", 10f);
                     first2 = true;
                 }
             }

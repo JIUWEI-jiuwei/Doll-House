@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4490984714309752077}
   - component: {fileID: -6325740299754074973}
   - component: {fileID: -6034359006430882346}
+  - component: {fileID: 5963760307091155603}
   m_Layer: 5
   m_Name: jitaiItem
   m_TagString: Untagged
@@ -90,15 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jitaiItemPrefab: {fileID: 4490984714309752072}
-  one1: {fileID: 0}
-  two2: {fileID: 0}
-  three3: {fileID: 0}
-  four4: {fileID: 0}
-  plates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!225 &-6034359006430882346
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -111,3 +103,15 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5963760307091155603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490984714309752072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa399e37372996d4ea2d940b9eab313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -42,6 +42,8 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         //视频
         videoPlayer2 = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
+
+        
     }
     private void FixedUpdate()
     {
@@ -95,9 +97,9 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //解决物体拖拽时父物体移动导致的物体遮挡问题
+       /* //解决物体拖拽时父物体移动导致的物体遮挡问题
         tempTF = this.gameObject.transform.GetComponentInParent<Transform>().gameObject;
-        this.transform.SetParent(jitaiF);
+        this.transform.SetParent(jitaiF);*/
     }
     /// <summary>
     /// 正在拖拽
@@ -105,7 +107,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
-        //鼠标位置移动+矫正鼠标偏移
+       /* //鼠标位置移动+矫正鼠标偏移
         foreach (Canvas canvas in FindObjectsOfType<Canvas>())
         {
             if (canvas.name == "UpperCanvas")
@@ -113,7 +115,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 rectTrans.anchoredPosition += eventData.delta / canvas.scaleFactor;
                 this.GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
-        }       
+        }   */    
     }
     /// <summary>
     /// 拖拽结束
@@ -121,7 +123,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        /*this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         //乌龟的壳+盘子1=》吸附
         if ((this.GetComponent<Image>().sprite.name == "turtleshell00"|| this.GetComponent<Image>().sprite.name == "cattooth00"||
             this.GetComponent<Image>().sprite.name == "lung00" || this.GetComponent<Image>().sprite.name == "yumao00") && 
@@ -180,7 +182,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             this.gameObject.transform.SetParent(tempTF.transform);            
         }
-        FindGrid(plates[0], plates[1], plates[2], plates[3]);
+        FindGrid(plates[0], plates[1], plates[2], plates[3]);*/
     }
     /// <summary>
     /// 位置矫正

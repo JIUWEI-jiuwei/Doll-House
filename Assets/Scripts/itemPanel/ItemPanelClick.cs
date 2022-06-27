@@ -55,12 +55,12 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
             panel2.SetActive(false);
             panel3.SetActive(false);
             
-        }                
-        /*if (PlayerPrefs.GetInt(this.name) == 1)
+        }
+        if (PlayerPrefs.GetInt(this.name) == 1)
         {//销毁该物体
             Destroy(this.gameObject);
             //ChangeItemPanel(this.gameObject.name);
-        }*/
+        }
     }
     /// <summary>
     /// 物品栏下降动画

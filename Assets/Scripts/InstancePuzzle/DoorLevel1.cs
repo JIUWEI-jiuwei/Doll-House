@@ -43,11 +43,12 @@ class DoorLevel1 : MonoBehaviour
         if (doorOpen.isPlaying)
         {
             //判断视频是否播放完成
-            if ((int)doorOpen.frame >= (int)doorOpen.frameCount - 1)
+            if ((int)doorOpen.frame >= (int)doorOpen.frameCount - 3)
             {
                 doorOpen.gameObject.SetActive(false);
                 StaticClass.isPlayerMove = true;
-                AudioManager.audioSource.Play();
+                //AudioManager.audioSource.Play();
+                //Debug.Log("door");
             }
         }
         //点击门按钮的效果
@@ -187,7 +188,7 @@ class DoorLevel1 : MonoBehaviour
     {
         doorPanel.gameObject.SetActive(false);
         doorOpen.Play();
-        AudioManager.audioSource.Stop();
+        //AudioManager.audioSource.Stop();
         Invoke("SwapSprite", 1f);//延迟1s调用是为了防止视频延迟播放的情况
         PlayerPrefs.SetInt("DoorLevel1", 1);
     }
