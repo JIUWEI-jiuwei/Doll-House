@@ -11,7 +11,7 @@ class LoadingNextLevelInvoke : MonoBehaviour
     public string sceneName2 = "DollLayer2";
     public void Next()
     {
-        Invoke("SceneLoad", 1.5f);
+        Invoke("SceneLoad", 2.5f);
     }
     public void SceneLoad()
     {

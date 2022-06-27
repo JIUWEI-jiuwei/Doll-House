@@ -168,6 +168,7 @@ class ItemPanelClick : MonoBehaviour, IPointerClickHandler
     public static void ChangeItemPanel(string name)
     {
         ItemPanelKing();
+        blackPanelOpen();
         audioSource.Play();
         if (Resources.Load(name) != null)
         {

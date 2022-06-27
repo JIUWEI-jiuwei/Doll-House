@@ -23,6 +23,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Transform[] plates=new Transform[4];
 
     public static VideoPlayer videoPlayer2;
+    private bool openBox = false;
 
     private void Start()
     {
@@ -45,17 +46,21 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
         
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        //祭品位置摆放正确
-        if (PlayerPrefs.GetInt("isGui1")==1 && PlayerPrefs.GetInt("isGui2") == 1 && PlayerPrefs.GetInt("isGui3") == 1 && PlayerPrefs.GetInt("isGui4") == 1)
+        if (!openBox)
         {
-            
-            //播放盒子开启动画，得到钥匙
-            videoPlayer2.Play();
-            AudioManager.audioSource.Stop();
-            StaticClass.isPlayerMove = false;
-            jitai.gameObject.SetActive(true);
+            //祭品位置摆放正确
+            if (PlayerPrefs.GetInt("isGui1") == 1 && PlayerPrefs.GetInt("isGui2") == 1 && PlayerPrefs.GetInt("isGui3") == 1 && PlayerPrefs.GetInt("isGui4") == 1)
+            {
+
+                //播放盒子开启动画，得到钥匙
+                videoPlayer2.Play();
+                AudioManager.audioSource.Stop();
+                StaticClass.isPlayerMove = false;
+                jitai.gameObject.SetActive(true);
+                openBox = true;
+            }
         }
         if (videoPlayer2.isPlaying&& videoPlayer2.clip.name== "打开祭台盒子的视频")
         {
@@ -68,7 +73,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 //退回场景2清空物品栏只显示钥匙,播放给结尾的mp4
                 ItemPanelClick.DestroyAllItem();
                 ItemPanelClick.ChangeItemPanel("yaoshi");
-                Invoke("PlayEndCGVideo", 1.5f);
+                Invoke("PlayEndCGVideo", 2.5f);
             }
         }
         if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
@@ -77,6 +82,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             {
                 videoPlayer2.Stop();
                 AudioManager.audioSource.Play();
+                StaticClass.isPlayerMove = true;
                 SceneManager.LoadSceneAsync("DollLayer3");
             }
         }

@@ -35,6 +35,8 @@ class StartGame : MonoBehaviour
         PlayerPrefs.SetInt("isSeed4", 0);
         PlayerPrefs.SetInt("isGuiClickNum", 0);
         PlayerPrefs.SetInt("isGuiWin", 0);
+        PlayerPrefs.SetInt("isHamaDrinking", 0);
+        PlayerPrefs.SetInt("isHamaDuyao", 0);
         
         PlayerPrefs.SetInt("candle", 0);
         PlayerPrefs.SetInt("lip", 0);
@@ -78,7 +80,7 @@ class StartGame : MonoBehaviour
         }
         if (videoPlayer.isPlaying && videoPlayer.clip.name == "starttoone")
         {            
-            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
+            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 10)
             {
                 SceneManager.LoadSceneAsync("DollLayer1");
             }

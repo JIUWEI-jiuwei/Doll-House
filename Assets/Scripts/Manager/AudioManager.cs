@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 ///<summary>
@@ -13,5 +12,11 @@ class AudioManager : MonoBehaviour
     {
         audioSource = this.GetComponent<AudioSource>();
     }
-
+    private void FixedUpdate()
+    {
+        if (SceneManager.GetActiveScene().name == "DollLayer3")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

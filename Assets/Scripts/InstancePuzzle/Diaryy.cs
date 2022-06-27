@@ -14,7 +14,7 @@ class Diaryy : MonoBehaviour
     private GameObject player;
     private int diaryNum = 0;
     public GameObject dialogPrefab;
-    private int num = 0;
+    private int rawMeatNum = 0;
     private bool first1 = false;
     private bool first2 = false;
 
@@ -60,7 +60,7 @@ class Diaryy : MonoBehaviour
                 {
                     dialog = Instantiate(dialogPrefab, canvas.transform);
                     dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "1.拖拽道具至场景中以使用道具。\n2.拖拽道具至物品栏中的其他道具可将其组合使用。\n3.新获得的道具会出现在道具栏末尾。\n4.要留意道具的介绍哦。";
-                    Invoke("DestroyDialog", 10f);
+                    Invoke("DestroyDialog", 8f);
                     first2 = true;
                 }
             }
@@ -104,14 +104,19 @@ class Diaryy : MonoBehaviour
     }
    public void RawMeatDialog()
     {
-        foreach (Canvas canvas in FindObjectsOfType<Canvas>())
+        rawMeatNum++;
+        if (rawMeatNum <= 1)
         {
-            if (canvas.name == "OtherCanvas" )
+            foreach (Canvas canvas in FindObjectsOfType<Canvas>())
             {
-                dialog = Instantiate(dialogPrefab, canvas.transform);
-                dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "那地方太高，我碰不着，得找个方法上去才行……";
-                Invoke("DestroyDialog", 2f);
+                if (canvas.name == "OtherCanvas")
+                {
+                    dialog = Instantiate(dialogPrefab, canvas.transform);
+                    dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "那地方太高，我碰不着，\n得找个方法上去才行……";
+                    Invoke("DestroyDialog", 3f);
+                }
             }
         }
+        
     }
 }

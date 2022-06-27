@@ -88,7 +88,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
                 a.transform.position = plate1.transform.position;
             }
-            else if(PlayerPrefs.GetInt("isGui2") == 1)
+            if(PlayerPrefs.GetInt("isGui2") == 1)
             {
                 GameObject a = Instantiate(jitaiItemPrefab);
                 a.GetComponent<Image>().sprite = Resources.Load<Sprite>("lung00");
@@ -97,7 +97,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
                 a.transform.position = plate2.transform.position;
             }
-            else if(PlayerPrefs.GetInt("isGui3") == 1)
+            if(PlayerPrefs.GetInt("isGui3") == 1)
             {
                 GameObject a = Instantiate(jitaiItemPrefab);
                 a.GetComponent<Image>().sprite = Resources.Load<Sprite>("turtleshell00");
@@ -106,7 +106,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
                 a.transform.position = plate3.transform.position;
             }
-            else if(PlayerPrefs.GetInt("isGui4") == 1)
+            if(PlayerPrefs.GetInt("isGui4") == 1)
             {
                 GameObject a = Instantiate(jitaiItemPrefab);
                 a.GetComponent<Image>().sprite = Resources.Load<Sprite>("cattooth00");
@@ -115,35 +115,44 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 //MouseDragForJiTai.tempTF = eventData.pointerCurrentRaycast.gameObject;
                 a.transform.position = plate4.transform.position;
             }
-            else if(PlayerPrefs.GetInt("isSeed1") == 1)
+            if(PlayerPrefs.GetInt("isSeed1") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed1.transform);
                 s.transform.localScale = new Vector3(1, 1, 1);
                 s.transform.position = seed1.transform.GetChild(0).position;
             }
-            else if(PlayerPrefs.GetInt("isSeed2") == 1)
+            if(PlayerPrefs.GetInt("isSeed2") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed2.transform);
                 s.transform.localScale = new Vector3(1, 1, 1);
                 s.transform.position = seed2.transform.GetChild(0).position;
             }
-            else if(PlayerPrefs.GetInt("isSeed3") == 1)
+            if(PlayerPrefs.GetInt("isSeed3") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed3.transform);
                 s.transform.localScale = new Vector3(1, 1, 1);
                 s.transform.position = seed3.transform.GetChild(0).position;
             }
-            else if(PlayerPrefs.GetInt("isSeed4") == 1)
+            if(PlayerPrefs.GetInt("isSeed4") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed3.transform);
                 s.transform.localScale = new Vector3(1, 1, 1);
                 s.transform.position = seed3.transform.GetChild(0).position;
             }
-
+            if (PlayerPrefs.GetInt("isHamaDrinking") == 1)
+            {                
+                Hama.hama.SetBool("death", true);
+                //StaticClass.isHamaDuyao = true;
+                PlayerPrefs.SetInt("isHamaDuyao", 1);
+            }
+            if (PlayerPrefs.GetInt("isHamaDuyao") == 2)
+            {                
+                Hama.hama.SetBool("sci", true);
+            }
         }
 
     }
@@ -207,10 +216,12 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             }
 
         }
-        if (eventData.pointerCurrentRaycast.gameObject != null)
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null)
         {
             //拖动到左箭头翻页
-            if (eventData.pointerCurrentRaycast.gameObject.name == "left_item")
+            if (hit.collider.gameObject.name == "left_item")
             {
                 if (PanelManager.itemNum > 0)
                 {
@@ -221,7 +232,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 }
             }
             //拖动到右箭头翻页
-            else if (eventData.pointerCurrentRaycast.gameObject.name == "right_item")
+            else if (hit.collider.gameObject.name == "right_item")
             {
                 if (PanelManager.itemNum < 2)
                 {
@@ -231,6 +242,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                     itemTime2 = 0f;
                 }
             }
+            
         }
         
     }
@@ -268,6 +280,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 //控制变量=1，角色移动
                 StaticClass.isMoveTarget = 1;
+                Destroy(this.gameObject);
             }                                   
         }
         //细绳+鹅
@@ -278,7 +291,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 //控制变量=1，角色移动
                 StaticClass.isMoveTarget2 = 1;
-                //Destroy(this.gameObject);               
+                Destroy(this.gameObject);               
             }
             else
             {
@@ -309,6 +322,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //熟肉+猫=》唾液
         else if (this.GetComponent<Image>().sprite.name == "meatshu" && eventData.pointerCurrentRaycast.gameObject.name == "cat")
         {
+            Destroy(this.gameObject);
             ItemPanelClick.ChangeItemPanel("cattuoye");
             catTextBg.GetComponentInChildren<Text>().text = "这块肉倒是不错，再找块更熟点的吧";
             catTextBg.SetActive(true);
@@ -448,11 +462,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         else if (this.GetComponent<Image>().sprite.name == "yancao" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yandou")
         {
             Destroy(this.gameObject);
+            Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("yan");
         }
         //烟斗+烟草=》烟
         else if (this.GetComponent<Image>().sprite.name == "yandou" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "yancao")
         {
+            Destroy(this.gameObject);
             Destroy(eventData.pointerCurrentRaycast.gameObject);
             ItemPanelClick.ChangeItemPanel("yan");
         }
@@ -471,22 +487,25 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         //毒药+蛤蟆=》死亡静帧
         else if (this.GetComponent<Image>().sprite.name == "duyao" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
-            if (StaticClass.isHamaDrinking)
-            {             
+            if (PlayerPrefs.GetInt("isHamaDrinking") ==1)
+            {
+                Destroy(this.gameObject);
                 Hama.hama.SetBool("death", true);
-                StaticClass.isHamaDuyao = true;
+                //StaticClass.isHamaDuyao = true;
+                PlayerPrefs.SetInt("isHamaDuyao", 1);
             }                   
         }
         //剪刀+蛤蟆=》播放剪肚子视频得到：剪刀静帧+肺  
         else if (this.GetComponent<Image>().sprite.name == "scissor" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
-            if (StaticClass.isHamaDuyao)
+            if (PlayerPrefs.GetInt("isHamaDuyao") == 1)
             {
                 MouseDragForJiTai.videoPlayer2.clip = MouseDragForJiTai.videoPlayer2.GetComponent<VideoClips>().videoClips[2];
                 MouseDragForJiTai.videoPlayer2.Play();
                 AudioManager.audioSource.Stop();
                 Hama.hama.SetBool("sci", true);
                 ItemPanelClick.ChangeItemPanel("lung");
+                PlayerPrefs.SetInt("isHamaDuyao", 2);
             }           
         }
         //水杯+蛤蟆=》播放说话动画+文本框提示抽烟
@@ -494,14 +513,14 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             Hama.hama.SetBool("hamatalk", true);
             Hama.hamaDialog0.SetActive(true);
-            StaticClass.isHamaDrinking = false;
+            PlayerPrefs.SetInt("isHamaDrinking", 0);
         }
         //烟+蛤蟆=》播放抽烟动画+文本框提示喝水
         else if (this.GetComponent<Image>().sprite.name == "yan" && eventData.pointerCurrentRaycast.gameObject.name == "hama")
         {
             Hama.hama.SetBool("hamasmoke", true);//1.3f
             Invoke("HamaDialog1", 1.2f);
-            StaticClass.isHamaDrinking = true;
+            PlayerPrefs.SetInt("isHamaDrinking", 1);
         }
         //唾液+种子=》浇灌
         else if (this.GetComponent<Image>().sprite.name == "cattuoye" && eventData.pointerCurrentRaycast.gameObject.name == "seed(Clone)")
@@ -617,9 +636,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
         {
             this.transform.SetParent(ItemPanelClick.panel1.transform);
         }
-        else
+        else if(ItemPanelClick.panel2.transform.childCount <= 5)
         {
             this.transform.SetParent(ItemPanelClick.panel2.transform);
+        }
+        else
+        {
+            this.transform.SetParent(ItemPanelClick.panel3.transform);
         }
         //若未使用，则回到最初位置
         if (rectTrans != null)

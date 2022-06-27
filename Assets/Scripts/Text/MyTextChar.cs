@@ -18,7 +18,7 @@ public class MyTextChar : MonoBehaviour
     private bool isPrint = false;
     private float perCharSpeed = 1;
 
-    private int text_length = 0;
+    //private int text_length = 0;
     private string Ctext;
     // Use this for initialization
     void Start()

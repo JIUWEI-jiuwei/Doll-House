@@ -18,8 +18,10 @@ class DontDestroyBGM : MonoBehaviour
             clone = Instantiate(MusicBk, transform.position, transform.rotation) ;
             IsHaveMusicBk = true;
         }
-
-        DontDestroyOnLoad(clone);
+        if (clone != null)
+        {
+            DontDestroyOnLoad(clone);
+        }
     }
 
 

@@ -67,10 +67,15 @@ class DoorLevel1 : MonoBehaviour
         }
         //密码的
         //MiMaPan();
-        if (circle1.eulerAngles.z % 360 == 0 && circle2.eulerAngles.z % 360 == 330 && circle3.eulerAngles.z % 360 == 270)
+        if (circle2.eulerAngles.z % 360 == 330 && circle3.eulerAngles.z % 360 == 270)
         {//负数也适用
             //胜利
-            ButtonWin();
+            if(circle1.eulerAngles.z!= 330||circle1.eulerAngles.z!= 270||circle1.eulerAngles.z!= 300||circle1.eulerAngles.z!= 240||
+                circle1.eulerAngles.z!= 210||circle1.eulerAngles.z!= 180||circle1.eulerAngles.z!= 150||circle1.eulerAngles.z!= 120||
+                circle1.eulerAngles.z!= 90||circle1.eulerAngles.z!= 60||circle1.eulerAngles.z!= 30)
+            {
+                ButtonWin();
+            }
         }
     }
     /// <summary>
