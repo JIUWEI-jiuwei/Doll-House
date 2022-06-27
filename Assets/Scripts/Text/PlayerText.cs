@@ -21,36 +21,26 @@ class PlayerText : MonoBehaviour
         {
             dialogPos = player.transform.GetChild(0);
         }
+        InvokeRepeating("MoveOutText", 10f, 6f);
     }
     private void FixedUpdate()
     {
         if (dialog != null && dialogPos != null)
         {
-            dialog.transform.position = dialogPos.position;
+            float zz = 0;
+            dialog.transform.position = new Vector3(dialogPos.position.x, dialogPos.position.y, zz);
+            dialog.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(dialog.GetComponent<RectTransform>().anchoredPosition3D.x, dialog.GetComponent<RectTransform>().anchoredPosition3D.y,zz);
         }
         if (Input.GetMouseButtonUp(0))
         {
+
             num++;
             num1++;
         }
-        if(SceneManager.GetActiveScene().name== "DollLayer3")
-        {
-            if (num % 2 == 0 && num > 0)
-            {
-                foreach (Canvas canvas in FindObjectsOfType<Canvas>())
-                {
-                    if (canvas.name == "UpperCanvas")
-                    {
-                        dialog = Instantiate(dialogPrefab, canvas.transform);
-                        dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "该出去了";
-                        Invoke("DestroyDialog", 2f);
-                    }
-                }
-            }
-        }
+        
         if (SceneManager.GetActiveScene().name == "EndGame")
         {
-            if (num1 == 3&&oneTime==false)
+            if (num1 == 3 && oneTime == false)
             {
                 foreach (Canvas canvas in FindObjectsOfType<Canvas>())
                 {
@@ -61,10 +51,27 @@ class PlayerText : MonoBehaviour
                         Invoke("DestroyDialog", 2f);
                     }
                 }
-                
+
             }
         }
     }
+
+    private void MoveOutText()
+    {
+        if (SceneManager.GetActiveScene().name == "DollLayer3")
+        {
+                foreach (Canvas canvas in FindObjectsOfType<Canvas>())
+                {
+                    if (canvas.name == "UpperCanvas")
+                    {
+                        dialog = Instantiate(dialogPrefab, canvas.transform);
+                        dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "该出去了";
+                        Invoke("DestroyDialog", 2f);
+                    }
+                }            
+        }
+    }
+
     private void DestroyDialog()
     {
         Destroy(dialog);

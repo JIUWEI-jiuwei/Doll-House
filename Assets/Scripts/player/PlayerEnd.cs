@@ -45,14 +45,17 @@ class PlayerEnd : MonoBehaviour
                 AudioManager.audioSource.Stop();
             }
         }
-        
-        if (videoPlayer.isPlaying)
+        if (videoPlayer != null)
         {
-            if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
+            if (videoPlayer.isPlaying)
             {
-                SceneManager.LoadSceneAsync("CurtainCall");
+                if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 3)
+                {
+                    SceneManager.LoadSceneAsync("CurtainCall");
+                }
             }
         }
+        
         //将鼠标位置设定为target
         if (agent.isOnNavMesh)
         {

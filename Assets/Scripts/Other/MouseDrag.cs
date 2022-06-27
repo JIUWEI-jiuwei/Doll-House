@@ -30,11 +30,12 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private GameObject catTextBg;
     private void Start()
     {
-        catTextBg = GameObject.Find("cat").transform.GetChild(0).gameObject;
         if (SceneManager.GetActiveScene().name == "DollLayer1")
         {
             paiting = GameObject.Find("nonAnim").transform.GetChild(0).gameObject;
             videoPlayer = GameObject.Find("VideoClips").GetComponent<VideoPlayer>();
+            catTextBg = GameObject.Find("cat").transform.GetChild(0).gameObject;
+
         }
         freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;       
         rectTrans = GetComponent<RectTransform>();
