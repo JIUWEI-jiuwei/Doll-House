@@ -66,6 +66,7 @@ class playerAI : MonoBehaviour
                             if (rawmeatAnim.GetCurrentAnimatorStateInfo(0).IsName("climbstop"))
                             {//µ½´ï¶¥¶Ë
                                 Destroy(hit.collider.gameObject);
+                                PlayerPrefs.SetInt("rawmeat", 1);
                                 ItemPanelClick.ChangeItemPanel(hit.collider.gameObject.name);
 
                                 rawmeatAnim.SetBool("reverse", true);

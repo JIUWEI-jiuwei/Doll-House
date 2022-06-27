@@ -21,7 +21,7 @@ class PlayerText : MonoBehaviour
         {
             dialogPos = player.transform.GetChild(0);
         }
-        InvokeRepeating("MoveOutText", 10f, 6f);
+        InvokeRepeating("MoveOutText", 10f, 9f);
     }
     private void FixedUpdate()
     {
@@ -38,7 +38,7 @@ class PlayerText : MonoBehaviour
             num1++;
         }
         
-        if (SceneManager.GetActiveScene().name == "EndGame")
+       /* if (SceneManager.GetActiveScene().name == "EndGame")
         {
             if (num1 == 3 && oneTime == false)
             {
@@ -53,7 +53,7 @@ class PlayerText : MonoBehaviour
                 }
 
             }
-        }
+        }*/
     }
 
     private void MoveOutText()
@@ -62,7 +62,7 @@ class PlayerText : MonoBehaviour
         {
                 foreach (Canvas canvas in FindObjectsOfType<Canvas>())
                 {
-                    if (canvas.name == "UpperCanvas")
+                    if (canvas.name == "Canvas")
                     {
                         dialog = Instantiate(dialogPrefab, canvas.transform);
                         dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "该出去了";

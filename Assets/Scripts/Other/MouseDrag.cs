@@ -41,6 +41,11 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private GameObject seed4;
     private Transform seedF;
 
+    private float itemTime = 0;
+    private float itemTimer = 0.2f;
+    private float itemTime2 = 0;
+    private float itemTimer2 = 0.2f;
+
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "DollLayer1")
@@ -209,7 +214,10 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 if (PanelManager.itemNum > 0)
                 {
-                    Invoke("ItemNumMinus", 0.5f);
+                    itemTime += Time.deltaTime;
+                    if (itemTime < itemTimer)return;
+                    ItemNumMinus();
+                    itemTime = 0f;
                 }
             }
             //ÍÏ¶¯µ½ÓÒ¼ýÍ··­Ò³
@@ -217,7 +225,10 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 if (PanelManager.itemNum < 2)
                 {
-                    Invoke("ItemNumPlus", 0.5f);
+                    itemTime2 += Time.deltaTime;
+                    if (itemTime2 < itemTimer2) return;
+                    ItemNumPlus();
+                    itemTime2 = 0f;
                 }
             }
         }

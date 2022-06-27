@@ -751,7 +751,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1419,7 +1419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 793
+      value: -796
       objectReference: {fileID: 0}
     - target: {fileID: 1129821514809463384, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1448,7 +1448,7 @@ PrefabInstance:
     - target: {fileID: 1129821514809463390, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 382dc71ecd0967b42a338f13f3f80210, type: 3}
+      objectReference: {fileID: 21300000, guid: ef21dd492743d2c43a313b9338133a38, type: 3}
     - target: {fileID: 1129821514809463391, guid: 6198ef2526d3bfe48a88d6308ca6f9d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1570,7 +1570,7 @@ PrefabInstance:
     - target: {fileID: 7194711505585878995, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 382dc71ecd0967b42a338f13f3f80210, type: 3}
+      objectReference: {fileID: 21300000, guid: b0f10362b233bc843b3bf171ba4023b7, type: 3}
     - target: {fileID: 7194711505585879004, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_Name
       value: right
@@ -1609,11 +1609,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 57
+      value: 62.5
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1645,11 +1657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 747
+      value: -827.3
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 414
+      value: 387
       objectReference: {fileID: 0}
     - target: {fileID: 7194711505585879005, guid: 1f5b4681c4cbbe34da69d839033e6d28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2589,7 +2601,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1274839752}
+  m_Camera: {fileID: 76924785}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2598,7 +2610,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1738888137
-  m_SortingOrder: 6
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &525892393
 RectTransform:
@@ -5198,7 +5210,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1274839752}
+  m_Camera: {fileID: 76924785}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5207,7 +5219,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1738888137
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1240602429
 RectTransform:
@@ -6660,7 +6672,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1738888137
+  m_SortingLayerID: 650663079
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1516193605
