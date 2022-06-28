@@ -21,6 +21,12 @@ class PictureClick : MonoBehaviour
     public AudioClip[] audioClips = new AudioClip[5];
     public GameObject[] pics = new GameObject[5];
 
+    public static bool b_pic1 = false;
+    private bool b_pic2 = false;
+    private bool b_pic3 = false;
+    private bool b_pic4 = false;
+    private bool b_pic5 = false;
+
     private bool isMouseDown = false;
     private void Start()
     {
@@ -50,44 +56,55 @@ class PictureClick : MonoBehaviour
     {
         if (isMouseDown)
         {
-            //if (StaticClass.isFinishedMove)
-            //{
-            //child0.SetActive(true);
-            audioSource.Play();
+            
+            //audioSource.Play();
             if (this.gameObject.name == "picture1")
             {
-                text1.SetActive(true);
                 pic1.SetActive(true);
-                audioSource.clip = audioClips[0];
-                audioSource.Play();
             }
             else if (this.gameObject.name == "picture2")
             {
-                text2.SetActive(true);
                 pic2.SetActive(true);
-                audioSource.clip = audioClips[1];
-                audioSource.Play();
+                if (!b_pic2)
+                {
+                    text2.SetActive(true);
+                    audioSource.clip = audioClips[1];
+                    audioSource.Play();
+                    b_pic2 = true;
+                }
             }
             else if (this.gameObject.name == "picture3")
             {
-                text3.SetActive(true);
                 pic3.SetActive(true);
-                audioSource.clip = audioClips[2];
-                audioSource.Play();
+                if (!b_pic3)
+                {
+                    text3.SetActive(true);
+                    audioSource.clip = audioClips[2];
+                    audioSource.Play();
+                    b_pic3 = true;
+                }
             }
             else if (this.gameObject.name == "picture4")
             {
-                text4.SetActive(true);
                 pic4.SetActive(true);
-                audioSource.clip = audioClips[3];
-                audioSource.Play();
+                if (!b_pic4)
+                {
+                    text4.SetActive(true);
+                    audioSource.clip = audioClips[3];
+                    audioSource.Play();
+                    b_pic4 = true;
+                }
             }
             else if (this.gameObject.name == "picture5")
             {
-                text5.SetActive(true);
                 pic5.SetActive(true);
-                audioSource.clip = audioClips[4];
-                audioSource.Play();
+                if (!b_pic5)
+                {
+                    text5.SetActive(true);
+                    audioSource.clip = audioClips[4];
+                    audioSource.Play();
+                    b_pic5 = true;
+                }
             }
             else if (this.gameObject.name == "picture0")
             {
@@ -95,16 +112,19 @@ class PictureClick : MonoBehaviour
                 {
                     pics[i].SetActive(true);
                 }
-                text1.SetActive(true);
                 pic1.SetActive(true);
-                audioSource.clip = audioClips[0];
-                audioSource.Play();
                 this.gameObject.SetActive(false);
+                if (!b_pic1)
+                {
+                    text1.SetActive(true);
+                    audioSource.clip = audioClips[0];
+                    audioSource.Play();
+                    b_pic1 = true;
+                }
             }
 
             isMouseDown = false;
             StaticClass.isPlayerMove = false;
-            // }
         }
     }
     public void Back1()

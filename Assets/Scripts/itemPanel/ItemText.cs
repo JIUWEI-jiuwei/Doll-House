@@ -32,10 +32,10 @@ static class ItemText
     public static string yaoshi = "逃吧";
 
     public static string bottle = "很沉，说明里面装着不少水";
-    public static string note1 = "空白的纸条，但是有一股牛奶味";
+    public static string note1 = "新婚快乐，我的艾尔公主！谨奉盒中之礼以表我心意。对了，密码是你的生日。";
     public static string note2 = "纸条上只写着一个数字5";
     public static string note3 = "狞猫正处于换牙期，请勿投喂过于坚硬的食物";
-    public static string note4 = "新婚快乐，我的艾尔公主！谨奉盒中之礼以表我心意。对了，密码是你的生日。";
+    public static string note4 = "空白的纸条，但是有一股牛奶味";
     public static string rawmeat = "总会引起各种各样的贪婪念头";
     public static string cattuoye = "狞猫吃肉时流下的口水沾到了手上";
     public static string note1_b = "纸条上出现了发黄的字迹，看着像数字2";
@@ -62,7 +62,7 @@ static class ItemText
     public static string rawmeat01 = "生肉";
     public static string cattuoye01 = "狞猫的唾液";
     public static string boiledmeat01 = "烧焦的肉";
-    public static string note1_b01 = "梳妆台上的纸条";
+    public static string note1_b01 = "珠宝盒内的纸条（显形后）";
 
     //第二关
     public static string yandou01 = "烟斗";

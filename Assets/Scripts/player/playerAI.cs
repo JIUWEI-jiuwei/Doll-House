@@ -36,6 +36,22 @@ class playerAI : MonoBehaviour
         /// <summary>获取真正的角色的动画</summary>
         player = this.transform.GetChild(0).GetComponent<Animator>();
         StaticClass.isFinishedMove = false;
+
+        if (yumao != null)
+        {
+            if (PlayerPrefs.GetInt("isGoose1") == 1)
+            {
+                yumao.SetActive(true);
+            }
+            
+        }
+        if (ButtonManager.note2 != null)
+        {
+            if (PlayerPrefs.GetInt("isGoose1") == 2)
+            {
+                ButtonManager.note2.SetActive(true);
+            }
+        }
     }
 
     private void Update()

@@ -373,14 +373,14 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             ItemPanelClick.ChangeItemPanel("tuoyedebeizi");
         }*/
         //蜡烛+纸条1
-        else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "note1")
+        else if (this.GetComponent<Image>().sprite.name == "candle" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "note4")
         {
             Destroy(eventData.pointerCurrentRaycast.gameObject);
             //获得丝带
             ItemPanelClick.ChangeItemPanel("note1_b");
         }
         //蜡烛+纸条1 2
-        else if (this.GetComponent<Image>().sprite.name == "note1" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
+        else if (this.GetComponent<Image>().sprite.name == "note4" && eventData.pointerCurrentRaycast.gameObject.GetComponent<Image>().sprite.name == "candle")
         {
             Destroy(this.gameObject);
             //获得丝带

@@ -45,6 +45,10 @@ class HeartBox : MonoBehaviour
         {
             SwapSprite();
         }
+        if(PlayerPrefs.GetInt("isHearBoxFirstPlay") == 1)
+        {
+            GetComponent<Button>().interactable = false;
+        }
     }
     private void Update()
     {
