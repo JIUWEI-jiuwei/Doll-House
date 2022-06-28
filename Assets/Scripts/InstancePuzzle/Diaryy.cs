@@ -17,6 +17,7 @@ class Diaryy : MonoBehaviour
     private int rawMeatNum = 0;
     private bool first1 = false;
     private bool first2 = false;
+    public static bool gooseSpeak=false;
 
 
     // Start is called before the first frame update
@@ -66,6 +67,19 @@ class Diaryy : MonoBehaviour
             }
         }
         
+        if (gooseSpeak)
+        {
+            foreach (Canvas canvas in FindObjectsOfType<Canvas>())
+            {
+                if (canvas.name == "OtherCanvas")
+                {
+                    dialog = Instantiate(dialogPrefab, canvas.transform);
+                    dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "这根绳太细了，得找更坚固的东西。";
+                    Invoke("DestroyDialog", 2f);
+                    gooseSpeak = false;
+                }
+            }
+        }
     }
     /// <summary>
     /// 日记本按钮（一二关）

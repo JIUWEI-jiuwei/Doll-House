@@ -14,7 +14,7 @@ class WuGui : MonoBehaviour
     public static GameObject guiDialog1;
     private GameObject guiDialog2;
 
-    private bool getGui=false;
+    public static bool getGui=false;
     private void Start()
     {
         wuGuiPanel = GameObject.Find("GuiF").transform.GetChild(0).gameObject;
@@ -32,8 +32,8 @@ class WuGui : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("isGuiClickNum") == 1)
             {
-                guiDialog0.SetActive(true);
-                
+                guiDialog0.SetActive(true); 
+                Invoke("DestroyDialog0", 6f);
             }
             else if(PlayerPrefs.GetInt("isGuiClickNum") >= 2)
             {
@@ -45,26 +45,31 @@ class WuGui : MonoBehaviour
                 else
                 {
                     guiDialog1.SetActive(true);
+                    Invoke("DestroyDialog1", 2f);
                 }
             }
             StaticClass.isGuiClick = false;
         }
-        if (Input.GetMouseButtonUp(0))
+        /*if (Input.GetMouseButtonUp(0))
         {
             if (guiDialog0 != null)
             {
                 guiDialog0.SetActive(false);
                 guiDialog1.SetActive(false);
             }
-        }
-        if (PlayerPrefs.GetInt("isGuiWin") == 1&&getGui==false)
+        }*/
+        if (!getGui)
         {
-            wuGuiPanel.SetActive(false);
-            wuGuiLeft.SetActive(false);
-            cameraBrush.SetActive(false);
-            ItemPanelClick.ChangeItemPanel("turtleshell");
-            getGui = true;
+            if (PlayerPrefs.GetInt("isGuiWin") == 1)
+            {
+                wuGuiPanel.SetActive(false);
+                wuGuiLeft.SetActive(false);
+                cameraBrush.SetActive(false);
+                ItemPanelClick.ChangeItemPanel("turtleshell");
+                getGui = true;
+            }
         }
+        
     }
     public void OpenPanel()
     {
@@ -85,5 +90,13 @@ class WuGui : MonoBehaviour
     public void DestroyDialog()
     {
         guiDialog2.SetActive(false);
+    }
+    public void DestroyDialog0()
+    {
+        guiDialog0.SetActive(false);
+    }
+    public void DestroyDialog1()
+    {
+        guiDialog1.SetActive(false);
     }
 }

@@ -17,6 +17,7 @@ class StartGame : MonoBehaviour
     public Animator headline;
     public Button start;
     public AudioSource audioSource;
+    private bool firstPlay = false;
 
     private void Start()
     {
@@ -70,18 +71,22 @@ class StartGame : MonoBehaviour
         }
         if (alfa_black.GetComponent<SpriteRenderer>().color.a >= 0.95f)
         {
-            alfa_black.SetActive(false);
-            start.gameObject.SetActive(false);
-            //播放视频，播放完视频，跳转场景
+            if (!firstPlay)
+            {
+                alfa_black.SetActive(false);
+                start.gameObject.SetActive(false);
+                //播放视频，播放完视频，跳转场景
 
-            videoPlayer.clip = videoPlayer.GetComponent<VideoClips>().videoClips[1];
-            videoPlayer.Play();
-            audioSource.Stop();
+                videoPlayer.clip = videoPlayer.GetComponent<VideoClips>().videoClips[1];
+                videoPlayer.Play();
+                audioSource.Stop();
+            }
         }
         if (videoPlayer.isPlaying && videoPlayer.clip.name == "starttoone")
         {            
             if ((int)videoPlayer.frame >= (int)videoPlayer.frameCount - 10)
             {
+                firstPlay = true;
                 SceneManager.LoadSceneAsync("DollLayer1");
             }
         }

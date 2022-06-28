@@ -42,7 +42,7 @@ class PlayerEnd : MonoBehaviour
             if (hit.collider.gameObject.name == "father")
             {
                 videoPlayer.Play();
-                AudioManager.audioSource.Stop();
+                AudioManager2.audioSource2.Stop();
             }
         }
         if (videoPlayer != null)

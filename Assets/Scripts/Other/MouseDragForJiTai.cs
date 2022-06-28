@@ -70,13 +70,15 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 AudioManager.audioSource.Play();
                 jitaiF.gameObject.SetActive(false);
                 StaticClass.isPlayerMove = true;
+                //合二为一
+                SceneManager.LoadSceneAsync("DollLayer3");
                 //退回场景2清空物品栏只显示钥匙,播放给结尾的mp4
-                ItemPanelClick.DestroyAllItem();
+                /*ItemPanelClick.DestroyAllItem();
                 ItemPanelClick.ChangeItemPanel("yaoshi");
-                Invoke("PlayEndCGVideo", 2.5f);
+                Invoke("PlayEndCGVideo", 2.5f);*/
             }
         }
-        if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
+        /*if (videoPlayer2.isPlaying && videoPlayer2.clip.name == "endCG")
         {
             if ((int)videoPlayer2.frame >= (int)videoPlayer2.frameCount - 5)
             {
@@ -85,7 +87,7 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 StaticClass.isPlayerMove = true;
                 SceneManager.LoadSceneAsync("DollLayer3");
             }
-        }
+        }*/
     }
     /// <summary>
     /// 播放endCG视频

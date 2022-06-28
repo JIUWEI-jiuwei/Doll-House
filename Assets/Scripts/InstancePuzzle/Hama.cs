@@ -21,10 +21,19 @@ class Hama : MonoBehaviour
     {
         if (StaticClass.isFinishedMove && StaticClass.isHamaClick)
         {           
-            hamaDialog0.SetActive(true);
-            hama.SetBool("hamatalk", true);
             StaticClass.isHamaClick = false;
+            if(PlayerPrefs.GetInt("isHamaDrinking") == 1)
+            {
+                hama.SetBool("hamasmoke", true);
+                Invoke("HamaDialog1", 1.2f);
+            }
+            else
+            {
+                hamaDialog0.SetActive(true);
+                hama.SetBool("hamatalk", true);
+            }
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             if (hamaDialog0 != null)
@@ -38,5 +47,10 @@ class Hama : MonoBehaviour
     public void OpenPanel()
     {
         StaticClass.isHamaClick = true;
+    }
+    public void HamaDialog1()
+    {
+        Hama.hamaDialog1.SetActive(true);
+        Hama.hama.SetBool("hamasmoke", false);
     }
 }

@@ -21,8 +21,6 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     public GameObject itemImage;
     public float timer = 0f;
     public float resTime = 2f;
-    private GameObject dialog;
-    private Transform dialogPos;
     private GameObject paiting;
 
     public GameObject jitaiItemPrefab;
@@ -40,6 +38,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private GameObject seed3;
     private GameObject seed4;
     private Transform seedF;
+    private AudioSource hama;
 
     private float itemTime = 0;
     private float itemTimer = 0.2f;
@@ -53,17 +52,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             paiting = GameObject.Find("nonAnim").transform.GetChild(0).gameObject;
             videoPlayer = GameObject.Find("VideoClips").GetComponent<VideoPlayer>();
             catTextBg = GameObject.Find("cat").transform.GetChild(0).gameObject;
-
+            player = GameObject.Find("Player");
+            //dialogPos = player.transform.GetChild(0);
         }
         freePanel = GameObject.FindGameObjectWithTag("freePanel").transform;       
         rectTrans = GetComponent<RectTransform>();
         FindGrid();
-        player = GameObject.Find("Player");
         itemPanelClick = GameObject.Find("itemPanelClick").GetComponent<ItemPanelClick>();        
-        if (player != null)
-        {
-            dialogPos = player.transform.GetChild(0);
-        }
 
         //存档
         if (SceneManager.GetActiveScene().name == "DollLayer2")
@@ -78,7 +73,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             seed2 = seedF.GetChild(1).gameObject;
             seed3 = seedF.GetChild(2).gameObject;
             seed4 = seedF.GetChild(3).gameObject;
-
+            hama = GameObject.Find("hama").GetComponent<AudioSource>();
             if (PlayerPrefs.GetInt("isGui1") == 1)
             {
                 GameObject a = Instantiate(jitaiItemPrefab);
@@ -119,28 +114,28 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed1.transform);
-                s.transform.localScale = new Vector3(1, 1, 1);
+                s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 s.transform.position = seed1.transform.GetChild(0).position;
             }
             if(PlayerPrefs.GetInt("isSeed2") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed2.transform);
-                s.transform.localScale = new Vector3(1, 1, 1);
+                s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 s.transform.position = seed2.transform.GetChild(0).position;
             }
             if(PlayerPrefs.GetInt("isSeed3") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed3.transform);
-                s.transform.localScale = new Vector3(1, 1, 1);
+                s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 s.transform.position = seed3.transform.GetChild(0).position;
             }
             if(PlayerPrefs.GetInt("isSeed4") == 1)
             {
                 GameObject s = Instantiate(seedPrefab);
                 s.transform.SetParent(seed3.transform);
-                s.transform.localScale = new Vector3(1, 1, 1);
+                s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 s.transform.position = seed3.transform.GetChild(0).position;
             }
             if (PlayerPrefs.GetInt("isHamaDrinking") == 1)
@@ -152,16 +147,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             if (PlayerPrefs.GetInt("isHamaDuyao") == 2)
             {                
                 Hama.hama.SetBool("sci", true);
+                hama.enabled = false;
             }
         }
 
     }
     private void FixedUpdate()
     {
-        if (dialog != null&&dialogPos!=null)
-        {
-            dialog.transform.position = dialogPos.position;
-        }
         if (MouseDragForJiTai.videoPlayer2 != null)
         {
             if (MouseDragForJiTai.videoPlayer2.isPlaying && MouseDragForJiTai.videoPlayer2.clip.name == "剪开蛤蟆肚子")
@@ -295,16 +287,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             }
             else
             {
-                foreach (Canvas canvas in FindObjectsOfType<Canvas>())
-                {
-                    if (canvas.name == "OtherCanvas")
-                    {
-                        dialog = Instantiate(dialogPrefab, canvas.transform);
-                        dialog.transform.GetChild(0).GetComponent<ShrinkText>().text = "这根绳太细了，得找更坚固的东西。";
-                        Invoke("DestroyDialog", 2f);
-                    }
-                }
-
+                Diaryy.gooseSpeak = true;
             }
         }
         //蜡烛+生肉=》熟肉
@@ -424,7 +407,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(this.gameObject);
             GameObject s = Instantiate(seedPrefab);
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
             ItemPanelClick.audioSource.Play();
         }
@@ -434,7 +417,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(this.gameObject);
             GameObject s = Instantiate(seedPrefab);
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
             ItemPanelClick.audioSource.Play();
         }
@@ -444,7 +427,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(this.gameObject);
             GameObject s = Instantiate(seedPrefab);
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
             ItemPanelClick.audioSource.Play();
         }
@@ -454,7 +437,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             Destroy(this.gameObject);
             GameObject s = Instantiate(seedPrefab);
             s.transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-            s.transform.localScale = new Vector3(1, 1, 1);
+            s.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             s.transform.position = eventData.pointerCurrentRaycast.gameObject.transform.GetChild(0).position;
             ItemPanelClick.audioSource.Play();
         }
@@ -620,11 +603,6 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             ItemPanelClick.blackPanelOpen();
             ItemPanelClick.audioSource2.Play();
         }
-    }
-
-    private void DestroyDialog()
-    {
-        Destroy(dialog);
     }
 
     /// <summary>

@@ -17,7 +17,7 @@ class EndCameraMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (player.position.x >= 0&& player.position.x<=145)
+        if (player.position.x >= 0&& player.position.x<=163)
         {
             x = player.position.x;
             this.transform.position = new Vector3(x, this.transform.position.y, this.transform.position.z);
@@ -40,6 +40,10 @@ class EndCameraMove : MonoBehaviour
         {
             audioSource.Play();
             audioSource.volume = 1f;
+        }
+        else if(this.transform.position.x > 150 && this.transform.position.x < 152)
+        {
+            audioSource.Stop();
         }
 
     }
