@@ -38,7 +38,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
     private GameObject seed3;
     private GameObject seed4;
     private Transform seedF;
-    private AudioSource hama;
+   // private AudioSource hama;
 
     private float itemTime = 0;
     private float itemTimer = 0.2f;
@@ -73,7 +73,7 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             seed2 = seedF.GetChild(1).gameObject;
             seed3 = seedF.GetChild(2).gameObject;
             seed4 = seedF.GetChild(3).gameObject;
-            hama = GameObject.Find("hama").GetComponent<AudioSource>();
+            //hama = GameObject.Find("hama").GetComponent<AudioSource>();
             if (PlayerPrefs.GetInt("isGui1") == 1)
             {
                 GameObject a = Instantiate(jitaiItemPrefab);
@@ -147,7 +147,13 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
             if (PlayerPrefs.GetInt("isHamaDuyao") == 2)
             {                
                 Hama.hama.SetBool("sci", true);
-                hama.enabled = false;
+            }
+            if (PlayerPrefs.GetInt("isHamaDuyao") == 1)
+            {                
+                Hama.hama.SetBool("death", true);
+                Hama.hamaAudio.enabled = false;
+                StaticClass.isHamaDialog = true;
+                StaticClass.isHamaClick = false;
             }
         }
 
@@ -488,6 +494,9 @@ class MouseDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandle
                 AudioManager.audioSource.Stop();
                 Hama.hama.SetBool("sci", true);
                 ItemPanelClick.ChangeItemPanel("lung");
+                Hama.hamaAudio.enabled = false;
+                StaticClass.isHamaDialog= true;
+                StaticClass.isHamaClick = false;
                 PlayerPrefs.SetInt("isHamaDuyao", 2);
             }           
         }

@@ -22,6 +22,7 @@ using UnityEngine;
     public static int isMoveTarget2 = 0;
     public static bool isClimb = false;
     public static bool isHearBoxFirstPlay = false;
+    public static bool isHamaDialog = false;
 
     //第二关
     /// <summary>判断点击乌龟按钮</summary>

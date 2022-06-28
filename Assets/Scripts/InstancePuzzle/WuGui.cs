@@ -33,7 +33,7 @@ class WuGui : MonoBehaviour
             if(PlayerPrefs.GetInt("isGuiClickNum") == 1)
             {
                 guiDialog0.SetActive(true); 
-                Invoke("DestroyDialog0", 6f);
+                Invoke("DestroyDialog0", 10f);
             }
             else if(PlayerPrefs.GetInt("isGuiClickNum") >= 2)
             {

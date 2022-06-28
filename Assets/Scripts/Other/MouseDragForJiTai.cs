@@ -53,8 +53,8 @@ class MouseDragForJiTai : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             //祭品位置摆放正确
             if (PlayerPrefs.GetInt("isGui1") == 1 && PlayerPrefs.GetInt("isGui2") == 1 && PlayerPrefs.GetInt("isGui3") == 1 && PlayerPrefs.GetInt("isGui4") == 1)
             {
-
                 //播放盒子开启动画，得到钥匙
+                videoPlayer2.clip = videoPlayer2.GetComponent<VideoClips>().videoClips[0];
                 videoPlayer2.Play();
                 AudioManager.audioSource.Stop();
                 StaticClass.isPlayerMove = false;

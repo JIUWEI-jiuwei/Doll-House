@@ -20,6 +20,6 @@ public class TestButtonClick : MonoBehaviour
 
     private void ButtonClick()
     {
-        Debug.LogError("µã»÷TestBtn");
+        //Debug.LogError("µã»÷TestBtn");
     }
 }

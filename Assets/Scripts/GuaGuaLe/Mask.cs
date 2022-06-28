@@ -16,7 +16,7 @@ class Mask : MonoBehaviour
         {
             Instantiate(brush, pos, Quaternion.identity, transform);
         }
-        if (this.transform.childCount >= 250)//判断完成
+        if (this.transform.childCount >= 600)//判断完成
         {
             PlayerPrefs.SetInt("isGuiWin", 1);
         }
